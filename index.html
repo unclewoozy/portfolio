@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Sigmund Godfrey M. Dela Cruz - Full Stack Web Developer & IT Specialist.">
+    <title>Sigmund Godfrey M. Dela Cruz | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="portfolio.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">My Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact" class="btn-primary">Contact Me</a></li>
+            <li><button id="theme-toggle" class="theme-btn" aria-label="Toggle dark/light mode"><i class="fas fa-sun"></i></button></li>
+        </ul>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1>Hi, I'm <span class="highlight">Sigmund Godfrey M. Dela Cruz</span></h1>
+            <h2>Information Technology Specialist & Full Stack Web Developer</h2>
+            <p>A dedicated learner and developer focused on building dynamic web applications, embracing AI as a collaborative tool to enhance the development process.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn-primary">View My Work</a>
+                <a href="#contact" class="btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+        <div class="hero-image-placeholder">
+            <img src="prof.jpg" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+    </header>
+
+    <!-- About & Education Section -->
+    <section class="section about" id="about">
+        <div class="section-title">
+            <h2>About Me & Education</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I am an Information Technology graduate with experience in Full-Stack Web Development, Database Management, and software development. I enjoy building dynamic web applications, designing databases, and developing scalable solutions using modern technologies and AI-assisted development tools.</p>
+                <p>I consider myself a continuous learner. While I enjoy diving deep into code, I also believe in working smart by integrating AI tools into my workflow to accelerate development, improve quality, and explore creative solutions.</p>
+            </div>
+            <div class="education-card glass-card">
+                <i class="fas fa-graduation-cap edu-icon"></i>
+                <h3>Accountancy, Business and Management (SHS) </h3>
+                <p class="institution">St. John Colleges</p>
+                <p class="date">2020 - 2022</p>
+                <p class="location">Calamba, Laguna</p>
+            </div>
+            <div class="education-card glass-card">
+                <i class="fas fa-graduation-cap edu-icon"></i>
+                <h3>Bachelor of Science in Information Technology</h3>
+                <p class="institution">Colegio de San Juan de Letran – Calamba</p>
+                <p class="date">2022 - 2026</p>
+                <p class="location">Calamba, Laguna</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section experience" id="experience">
+        <div class="section-title">
+            <h2>Experience</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item glass-card">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Internship - Full Stack Web Developer</h3>
+                    <h4 class="company">PNP Maritime Group</h4>
+                    <p class="date">Feb – May 2026 | Camp Crame, Quezon City</p>
+                    <p>Contributed in the design, development, and implementation of the Maritime Vessel Inventory System (MVIS) and PRS Memo Tracking System.</p>
+                </div>
+            </div>
+            <div class="timeline-item glass-card">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Accenture Academy Trainee</h3>
+                    <h4 class="company">Accenture</h4>
+                    <p class="date">Feb – May 2026</p>
+                    <p>Completed Microsoft training program focused on AI-assisted software development, GitHub Copilot, SQL, C#, ASP.NET Core, Azure Cloud, and DevOps fundamentals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects" id="projects">
+        <div class="section-title">
+            <h2>Featured Projects</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="project-grid">
+            
+            <div class="project-card glass-card">
+                <div class="project-img-drop" data-project="1">
+                    <img src="MVIS/1.jpg" alt="Maritime Vessel Inventory System" style="width: 100%; height: 100%; object-fit: cover;">
+                    <p style="display: none;">Drag & Drop Image</p>
+                    <div class="project-overlay">
+                        <span>Click to view gallery</span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>Maritime Vessel Inventory System</h3>
+                    <p class="date"><i class="fas fa-calendar"></i> April 2026</p>
+                    <p>A comprehensive inventory and maintenance management system developed during my internship at the Philippine National Police (PNP) Maritime Group. The system was designed to monitor and manage vessel parts, equipment, and Preventive Maintenance Services (PMS) across maritime units and regional offices throughout the Philippines. It centralizes inventory records, tracks maintenance schedules and repair activities, and improves operational efficiency through accurate asset monitoring and reporting.</p>
+                </div>
+            </div>
+
+            <div class="project-card glass-card">
+                <div class="project-img-drop" data-project="2">
+                    <img src="MEMO/1.jpg" alt="PRS Memo Tracking System" style="width: 100%; height: 100%; object-fit: cover;">
+                    <p style="display: none;">Drag & Drop Image</p>
+                    <div class="project-overlay">
+                        <span>Click to view gallery</span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>PRS Memo Tracking System</h3>
+                    <p class="date"><i class="fas fa-calendar"></i> March 2026</p>
+                    <p>A tracking system designed to streamline the distribution, monitoring, and management of internal memoranda within the Philippine National Police Maritime Group. The system centralizes memo records, improves document tracking, enhances information accuracy, and enables efficient monitoring of memo status and departmental workflows.</p>
+                </div>
+            </div>
+
+            <div class="project-card glass-card">
+                <div class="project-img-drop" data-project="3">
+                    <img src="CAPSTONE/Screenshot 2026-06-13 185847.png" alt="AI-Driven Web-Based Transaction Processing System" style="width: 100%; height: 100%; object-fit: cover;">
+                    <p style="display: none;">Drag & Drop Image</p>
+                    <div class="project-overlay">
+                        <span>Click to view gallery</span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>AI-Driven Web-Based Transaction Processing System for ISO Documentation with Automated Content Evaluation and Redundancy Detection in Letran Calamba</h3>
+                    <p class="date"><i class="fas fa-calendar"></i> Dec 2025</p>
+                    <p>Capstone Project: A web-based system designed to automate ISO 21001:2025 documentation workflows at Letran Calamba. It integrates role-based access, secure e-signatures, and AI-assisted content evaluation to enhance compliance, audit readiness, and operational efficiency.</p>
+                </div>
+            </div>
+
+            <div class="project-card glass-card">
+                <div class="project-img-drop" data-project="4">
+                    <img src="KIOSK/Screenshot 2026-06-13 032327.png" alt="KIOSK Machine Project" style="width: 100%; height: 100%; object-fit: cover;">
+                    <p style="display: none;">Drag & Drop Image</p>
+                    <div class="project-overlay">
+                        <span>Click to view gallery</span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>KIOSK Machine Project</h3>
+                    <p class="date"><i class="fas fa-calendar"></i> Dec 2024</p>
+                    <p>An interactive self-service food ordering application using Java Swing and MySQL, enabling efficient menu browsing, order management, and transaction processing through a user-friendly graphical interface and database-driven system.</p>
+                </div>
+            </div>
+
+            <div class="project-card glass-card">
+                <div class="project-img-drop" data-project="5">
+                    <img src="CHATBOT/Screenshot 2026-06-13 211454.png" alt="AI Chatbot App" style="width: 100%; height: 100%; object-fit: cover;">
+                    <p style="display: none;">Drag & Drop Image</p>
+                    <div class="project-overlay">
+                        <span>Click to view gallery</span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>AI Chatbot App</h3>
+                    <p class="date"><i class="fas fa-calendar"></i> Sept 2023</p>
+                    <p>an Android-based chatbot application using Android Studio, integrated with the OpenAI GPT-4 API to provide intelligent and context-aware conversational responses. The application enables real-time user interactions through a mobile-friendly interface, leveraging natural language processing (NLP) and artificial intelligence to answer queries, assist users, and generate human-like responses.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Skills & Certifications Section -->
+    <section class="section skills-certs" id="skills">
+        <div class="section-title">
+            <h2>Skills & Certifications</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="skills-container">
+            <div class="skills-column glass-card">
+                <h3><i class="fas fa-code"></i> Technical Skills</h3>
+
+                <div class="skill-category">
+                    <h4>Languages</h4>
+                    <div class="tags">
+                        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span><span>Java</span><span>C++</span><span>PHP</span><span>SQL</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Frameworks & Libraries</h4>
+                    <div class="tags">
+                        <span>Flask</span><span>Django</span><span>Node.js</span><span>Tailwind CSS</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Databases & Tools</h4>
+                    <div class="tags">
+                        <span>MySQL</span><span>SQLite</span><span>MSSQL</span><span>Git</span><span>GitHub</span><span>Android Studio</span><span>Visual Studio</span><span>NetBeans</span><span>XAMPP</span><span>Cursor IDE</span><span>Figma</span><span>AI Tools</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Security & Cryptography</h4>
+                    <div class="tags">
+                        <span>Data Encryption</span><span>Hashing (SHA-256)</span><span>Digital Signatures</span><span>Authentication</span><span>Secure API Development</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Development Practices</h4>
+                    <div class="tags">
+                        <span>Full Stack Web Development</span><span>API Integration</span><span>UI/UX Design</span><span>Database Design</span><span>SDLC</span><span>Software Testing and Debugging</span><span>System Troubleshooting</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>AI-Assisted Development</h4>
+                    <div class="tags">
+                        <span>AI-Assisted Coding</span><span>AI Integration in Workflow</span><span>Prompt-based Development Optimization</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Soft Skills</h4>
+                    <p>Communication, Teamwork, Adaptability, Continuous Learning, Attention to Detail, Problem-Solving.</p>
+                </div>
+            </div>
+
+            <div class="certs-column">
+                <div class="cert-item glass-card">
+                    <i class="fas fa-certificate cert-icon"></i>
+                    <div>
+                        <h4>Device Configuration and Management</h4>
+                        <p>Certiport (Jan 2026)</p>
+                    </div>
+                    <a class="cert-verify-btn" href="https://www.credly.com/badges/e505406c-1413-45e3-9204-7a3f22e3ec75/public_url" target="_blank" rel="noopener noreferrer" aria-label="Verify Device Configuration and Management certificate">
+                        <img src="check.png" alt="Verify" class="cert-verify-icon">
+                    </a>
+                </div>
+
+                <div class="cert-item glass-card">
+                    <i class="fas fa-certificate cert-icon"></i>
+                    <div>
+                        <h4>Java</h4>
+                        <p>Certiport (Jan 2025)</p>
+                    </div>
+                    <a class="cert-verify-btn" href="https://www.credly.com/badges/33faff6c-028b-4eb0-8631-7fa639348037/public_url" target="_blank" rel="noopener noreferrer" aria-label="Verify Java certificate">
+                        <img src="check.png" alt="Verify" class="cert-verify-icon">
+                    </a>
+                </div>
+
+                <div class="cert-item glass-card">
+                    <i class="fas fa-certificate cert-icon"></i>
+                    <div>
+                        <h4>HTML5 Application Development</h4>
+                        <p>Certiport (May 2024)</p>
+                    </div>
+                    <a class="cert-verify-btn" href="https://www.credly.com/badges/bbb50d97-9b9d-4537-ac94-b405835ab863/public_url" target="_blank" rel="noopener noreferrer" aria-label="Verify HTML5 Application Development certificate">
+                        <img src="check.png" alt="Verify" class="cert-verify-icon">
+                    </a>
+                </div>
+
+                <div class="cert-item glass-card">
+                    <i class="fas fa-certificate cert-icon"></i>
+                    <div>
+                        <h4>Databases</h4>
+                        <p>Certiport (Jan 2024)</p>
+                    </div>
+                    <a class="cert-verify-btn" href="https://www.credly.com/badges/6056a54d-b5b7-4594-978d-4783d2434aa7/public_url" target="_blank" rel="noopener noreferrer" aria-label="Verify Databases certificate">
+                        <img src="check.png" alt="Verify" class="cert-verify-icon">
+                    </a>
+                </div>
+
+                <div class="cert-item glass-card">
+                    <i class="fas fa-certificate cert-icon"></i>
+                    <div>
+                        <h4>Microsoft Office Specialist: Excel Associate</h4>
+                        <p>Certiport (Jan 2023)</p>
+                    </div>
+                    <a class="cert-verify-btn" href="https://www.credly.com/badges/7af061f0-f35c-46a9-b778-18bfa08a8ead/public_url" target="_blank" rel="noopener noreferrer" aria-label="Verify Microsoft Office Specialist: Excel Associate certificate">
+                        <img src="check.png" alt="Verify" class="cert-verify-icon">
+                    </a>
+                </div>
+
+
+                <div class="cert-item glass-card">
+                    <i class="fas fa-certificate cert-icon"></i>
+                    <div>
+                        <h4>Introduction to Data Science</h4>
+                        <p>Cisco (June 2026)</p>
+                    </div>
+                    <a class="cert-verify-btn" href="https://www.credly.com/badges/5d44b447-0262-445d-b6d6-9cb66c4109bb/public_url" target="_blank" rel="noopener noreferrer" aria-label="Verify Introduction to Data Science certificate">
+                        <img src="check.png" alt="Verify" class="cert-verify-icon">
+                    </a>
+                </div>
+
+                <div class="cert-item glass-card">
+                    <i class="fas fa-certificate cert-icon"></i>
+                    <div>
+                        <h4>Data Science Essentials With Python</h4>
+                        <p>Cisco (June 2026)</p>
+                    </div>
+                    <a class="cert-verify-btn" href="https://www.credly.com/badges/9bb3ca45-f153-4847-9e26-841f99ca40b6/public_url" target="_blank" rel="noopener noreferrer" aria-label="Verify Data Science Essentials With Python certificate">
+                        <img src="check.png" alt="Verify" class="cert-verify-icon">
+                    </a>
+                </div>
+
+                <div class="cert-item glass-card">
+                    <i class="fas fa-certificate cert-icon"></i>
+                    <div>
+                        <h4>Data Analytics Essentials</h4>
+                        <p>Cisco (June 2026)</p>
+                    </div>
+                    <a class="cert-verify-btn" href="https://www.credly.com/badges/6d9d8327-7d04-4d4f-8d44-701be94f4d40/public_url" target="_blank" rel="noopener noreferrer" aria-label="Verify Data Analytics Essentials certificate">
+                        <img src="check.png" alt="Verify" class="cert-verify-icon">
+                    </a>
+                </div>
+
+                <div class="cert-item glass-card">
+                    <i class="fas fa-certificate cert-icon"></i>
+                    <div>
+                        <h4>Python Essentials I</h4>
+                        <p>Cisco (June 2026)</p>
+                    </div>
+                    <a class="cert-verify-btn" href="https://www.credly.com/badges/5ccea955-8bb1-4a15-9474-4dec021edf4d/public_url" target="_blank" rel="noopener noreferrer" aria-label="Verify Python Essentials I certificate">
+                        <img src="check.png" alt="Verify" class="cert-verify-icon">
+                    </a>
+                </div>
+
+                <div class="cert-item glass-card">
+                    <i class="fas fa-certificate cert-icon"></i>
+                    <div>
+                        <h4>Python Essentials II</h4>
+                        <p>Cisco (June 2026)</p>
+                    </div>
+                    <a class="cert-verify-btn" href="https://www.credly.com/badges/806e58a2-09c8-4f24-8e13-17fe7968e680/public_url" target="_blank" rel="noopener noreferrer" aria-label="Verify Python Essentials II certificate">
+                        <img src="check.png" alt="Verify" class="cert-verify-icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <footer class="section contact" id="contact">
+        <div class="contact-card glass-card">
+            <h2>Let's Work Together</h2>
+            <p>I'm currently available for full-time roles and freelance projects.</p>
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> <a href="mailto:delacruzsigmund14@gmail.com">delacruzsigmund14@gmail.com</a></p>
+                <p><i class="fas fa-phone"></i> +63 952 480 1517</p>
+                <p><i class="fas fa-map-marker-alt"></i> 479 DNE Subdivision Brgy. 3 Calamba, Laguna</p>
+            </div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/sigmund-godfrey-dela-cruz-a663ab352/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 Sigmund Godfrey M. Dela Cruz. All rights reserved.</p>
+    </footer>
+
+    <!-- Slideshow Modal -->
+    <div id="slideshow-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <div class="slide-container">
+                <img id="modal-img" src="" alt="Project Slide">
+            </div>
+            <a class="prev" id="modal-prev">&#10094;</a>
+            <a class="next" id="modal-next">&#10095;</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
