@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/resume.py": {
-      "runtime": "@vercel/python@latest"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
