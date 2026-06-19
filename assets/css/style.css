@@ -988,9 +988,10 @@ a.btn-tertiary {
 }
 
 .project-card:hover:not(.dragging) {
+    transform: translateY(-4px);
     box-shadow: 0 20px 40px color-mix(in srgb, var(--bg) 32%, transparent), 0 0 0 1px rgba(91, 140, 255, 0.2), 0 0 30px rgba(91, 140, 255, 0.1);
     border-color: rgba(91, 140, 255, 0.3);
-    transition: box-shadow 0.28s ease, border-color 0.28s ease;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
 .about-text:hover:not(.dragging) {
@@ -1001,9 +1002,10 @@ a.btn-tertiary {
 }
 
 .glass-card:hover:not(.dragging) {
+    transform: translateY(-4px);
     box-shadow: var(--shadow-xl), 0 0 0 1px rgba(91, 140, 255, 0.2), 0 0 30px rgba(91, 140, 255, 0.1);
     border-color: rgba(91, 140, 255, 0.3);
-    transition: box-shadow 0.28s ease, border-color 0.28s ease;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
 /* Education cards hover (glow and movement) */
@@ -1014,44 +1016,81 @@ a.btn-tertiary {
     transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
-/* Experience timeline cards hover (glow only, no movement) */
+/* Experience timeline cards hover (glow and movement) */
 .timeline-item:hover:not(.dragging) {
+    transform: translateY(-4px);
     box-shadow: 0 14px 30px rgba(0,0,0,.18), inset 0 0 0 1px rgba(255,255,255,.03), 0 0 0 1px rgba(91, 140, 255, 0.2), 0 0 20px rgba(91, 140, 255, 0.1);
     border-color: rgba(91, 140, 255, 0.3);
-    transition: box-shadow 0.28s ease, border-color 0.28s ease;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
-/* Skills column hover (glow only, no movement) */
+/* Skills column hover (glow and movement) */
 .skills-column:hover:not(.dragging) {
+    transform: translateY(-4px);
     box-shadow: 0 18px 40px color-mix(in srgb, var(--bg) 32%, transparent), 0 0 0 1px rgba(91, 140, 255, 0.2), 0 0 30px rgba(91, 140, 255, 0.1);
     border-color: rgba(91, 140, 255, 0.3);
-    transition: box-shadow 0.28s ease, border-color 0.28s ease;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
-/* Skills category hover (glow only, no movement) */
+/* Skills category hover (glow and movement) */
 .skill-category:hover:not(.dragging) {
+    transform: translateY(-4px);
     box-shadow: 0 14px 30px color-mix(in srgb, var(--bg) 28%, transparent), 0 0 0 1px rgba(91, 140, 255, 0.2), 0 0 20px rgba(91, 140, 255, 0.1);
     border-color: rgba(91, 140, 255, 0.3);
-    transition: box-shadow 0.28s ease, border-color 0.28s ease;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
-/* Certification cards hover (glow only, no movement) */
+/* Certification cards hover (glow and movement) */
 .cert-item:hover:not(.dragging) {
+    transform: translateY(-4px);
     box-shadow: 0 10px 24px color-mix(in srgb, var(--bg) 28%, transparent), 0 0 0 1px rgba(91, 140, 255, 0.2), 0 0 20px rgba(91, 140, 255, 0.1);
     border-color: rgba(91, 140, 255, 0.3);
-    transition: box-shadow 0.28s ease, border-color 0.28s ease;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
-/* Contact card hover (glow only, no movement) */
+/* Contact card hover (glow and movement) */
 .contact-card:hover:not(.dragging) {
+    transform: translateY(-4px);
     box-shadow: 0 20px 44px color-mix(in srgb, var(--bg) 34%, transparent), 0 0 0 1px rgba(91, 140, 255, 0.2), 0 0 30px rgba(91, 140, 255, 0.1);
     border-color: rgba(91, 140, 255, 0.3);
-    transition: box-shadow 0.28s ease, border-color 0.28s ease;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
 .dragging {
     transition: none !important;
     cursor: grabbing !important;
+}
+
+/* Floating cards hover - ensure movement + glow works after drag */
+.is-floating:hover:not(.dragging) {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px color-mix(in srgb, var(--bg) 32%, transparent), 0 0 0 1px rgba(91, 140, 255, 0.2), 0 0 30px rgba(91, 140, 255, 0.1);
+    border-color: rgba(91, 140, 255, 0.3);
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+/* Hero image placeholder floating hover */
+.hero-image-placeholder.is-floating:hover:not(.dragging) {
+    transform: translateY(-4px);
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(91, 140, 255, 0.25), 0 0 40px rgba(91, 140, 255, 0.15);
+    border-color: rgba(91, 140, 255, 0.35);
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+/* Project card floating hover */
+.project-card.is-floating:hover:not(.dragging) {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px color-mix(in srgb, var(--bg) 32%, transparent), 0 0 0 1px rgba(91, 140, 255, 0.2), 0 0 30px rgba(91, 140, 255, 0.1);
+    border-color: rgba(91, 140, 255, 0.3);
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+/* About text floating hover */
+.about-text.is-floating:hover:not(.dragging) {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px color-mix(in srgb, var(--bg) 32%, transparent), 0 0 0 1px rgba(91, 140, 255, 0.2), inset 0 0 30px rgba(91, 140, 255, 0.05);
+    border-color: rgba(91, 140, 255, 0.3);
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
 /* ===== ABOUT SECTION - IDE FILE STYLE ===== */
@@ -3234,6 +3273,15 @@ body.light-mode .cert-item p::before {
     .site-footer-copy {
         font-size: .7rem;
         text-align: center;
+    }
+
+    /* Disable cursor glow on mobile */
+    .cyber-cursor-glow {
+        display: none;
+    }
+
+    body::after {
+        background: transparent;
     }
 }
 
