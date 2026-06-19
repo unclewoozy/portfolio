@@ -43,9 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
         typeStep();
     }
 
-    // --- Draggable Profile Window ---
-    const profileWindow = document.querySelector('.hero-image-placeholder');
-    if (profileWindow) {
+    // --- Generic Draggable Window Function ---
+    const mobileDragQuery = window.matchMedia('(max-width: 820px)');
+    
+    function makeDraggable(draggableEl) {
+        if (!draggableEl) return;
+        
         let isDragging = false;
         let pointerId = null;
         let isDetached = false;
@@ -61,10 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let nextTranslateX = 0;
         let nextTranslateY = 0;
         let rafPaintId = null;
-        const mobileDragQuery = window.matchMedia('(max-width: 820px)');
 
-        const profileImage = profileWindow.querySelector('img');
-        if (profileImage) profileImage.draggable = false;
+        const images = draggableEl.querySelectorAll('img');
+        images.forEach(img => img.draggable = false);
 
         function isDragEnabled() {
             return !mobileDragQuery.matches;
@@ -72,32 +74,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function syncDragModeByViewport() {
             if (isDragEnabled()) {
-                profileWindow.style.touchAction = 'none';
+                draggableEl.style.touchAction = 'none';
                 return;
             }
 
-            profileWindow.style.touchAction = 'auto';
+            draggableEl.style.touchAction = 'auto';
 
             if (!isDragging) return;
 
-            const rect = profileWindow.getBoundingClientRect();
+            const rect = draggableEl.getBoundingClientRect();
             if (rafPaintId !== null) {
                 cancelAnimationFrame(rafPaintId);
                 rafPaintId = null;
             }
 
-            profileWindow.style.left = `${rect.left}px`;
-            profileWindow.style.top = `${rect.top + window.scrollY}px`;
-            profileWindow.style.transform = 'none';
-            profileWindow.classList.remove('dragging');
-            profileWindow.style.willChange = 'auto';
+            draggableEl.style.left = `${rect.left}px`;
+            draggableEl.style.top = `${rect.top + window.scrollY}px`;
+            draggableEl.style.transform = 'none';
+            draggableEl.classList.remove('dragging');
+            draggableEl.style.willChange = 'auto';
 
             if (pointerId !== null) {
                 try {
-                    profileWindow.releasePointerCapture(pointerId);
-                } catch (err) {
-                    // Ignore capture release errors during viewport mode switches.
-                }
+                    draggableEl.releasePointerCapture(pointerId);
+                } catch (err) {}
             }
 
             isDragging = false;
@@ -116,8 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function recalcDragBounds() {
-            const width = profileWindow.offsetWidth;
-            const height = profileWindow.offsetHeight;
+            const width = draggableEl.offsetWidth;
+            const height = draggableEl.offsetHeight;
             const doc = document.documentElement;
             const pageWidth = Math.max(doc.scrollWidth, window.innerWidth);
             const pageHeight = Math.max(doc.scrollHeight, window.innerHeight);
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (rafPaintId !== null) return;
 
             rafPaintId = requestAnimationFrame(() => {
-                profileWindow.style.transform = `translate3d(${nextTranslateX}px, ${nextTranslateY}px, 0)`;
+                draggableEl.style.transform = `translate3d(${nextTranslateX}px, ${nextTranslateY}px, 0)`;
                 rafPaintId = null;
             });
         }
@@ -142,17 +142,20 @@ document.addEventListener('DOMContentLoaded', () => {
             placeholder.style.width = `${rect.width}px`;
             placeholder.style.height = `${rect.height}px`;
             placeholder.style.maxWidth = '100%';
-            profileWindow.parentElement.insertBefore(placeholder, profileWindow);
+            
+            // Replicate classes for grid or flex sizing if needed, but simple block is usually fine
+            draggableEl.parentElement.insertBefore(placeholder, draggableEl);
 
-            document.body.appendChild(profileWindow);
-            profileWindow.classList.add('is-floating');
-            profileWindow.style.position = 'absolute';
-            profileWindow.style.margin = '0';
-            profileWindow.style.left = `${rect.left}px`;
-            profileWindow.style.top = `${rect.top + window.scrollY}px`;
-            profileWindow.style.width = `${rect.width}px`;
-            profileWindow.style.height = `${rect.height}px`;
-            profileWindow.style.transform = 'none';
+            document.body.appendChild(draggableEl);
+            draggableEl.classList.add('is-floating');
+            draggableEl.style.position = 'absolute';
+            draggableEl.style.margin = '0';
+            draggableEl.style.left = `${rect.left}px`;
+            draggableEl.style.top = `${rect.top + window.scrollY}px`;
+            draggableEl.style.width = `${rect.width}px`;
+            draggableEl.style.height = `${rect.height}px`;
+            draggableEl.style.transform = 'none';
+            draggableEl.style.zIndex = '1000'; // Bring to front
 
             isDetached = true;
         }
@@ -167,20 +170,29 @@ document.addEventListener('DOMContentLoaded', () => {
             queuePaint();
         }
 
-        profileWindow.addEventListener('pointerdown', (e) => {
+        draggableEl.addEventListener('pointerdown', (e) => {
             if (!isDragEnabled()) return;
             if (e.button !== 0) return;
+            
+            // Ignore if clicking on interactive elements
+            if (e.target.closest('a, button, input, textarea, select, [role="button"], .ide-dot, .close-modal, .controls, .nav-links')) {
+                return;
+            }
 
-            let rect = profileWindow.getBoundingClientRect();
+            let rect = draggableEl.getBoundingClientRect();
             if (!isDetached) {
                 detachToFloating(rect);
-                rect = profileWindow.getBoundingClientRect();
+                rect = draggableEl.getBoundingClientRect();
             }
+
+            // Bring to top among other floating cards
+            document.querySelectorAll('.is-floating').forEach(el => el.style.zIndex = '1000');
+            draggableEl.style.zIndex = '1001';
 
             recalcDragBounds();
 
-            baseLeft = parseFloat(profileWindow.style.left || '0');
-            baseTop = parseFloat(profileWindow.style.top || '0');
+            baseLeft = parseFloat(draggableEl.style.left || '0');
+            baseTop = parseFloat(draggableEl.style.top || '0');
             startPointerX = e.clientX;
             startPointerPageY = e.clientY + window.scrollY;
             targetLeft = baseLeft;
@@ -190,15 +202,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             isDragging = true;
             pointerId = e.pointerId;
-            profileWindow.classList.add('dragging');
-            profileWindow.style.willChange = 'transform';
-            profileWindow.setPointerCapture(pointerId);
+            draggableEl.classList.add('dragging');
+            draggableEl.style.willChange = 'transform';
+            draggableEl.setPointerCapture(pointerId);
 
             moveWindow(e.clientX, e.clientY);
             e.preventDefault();
         });
 
-        profileWindow.addEventListener('pointermove', (e) => {
+        draggableEl.addEventListener('pointermove', (e) => {
             if (!isDragging || e.pointerId !== pointerId) return;
             moveWindow(e.clientX, e.clientY);
         });
@@ -212,31 +224,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 rafPaintId = null;
             }
 
-            profileWindow.style.left = `${targetLeft}px`;
-            profileWindow.style.top = `${targetTop}px`;
-            profileWindow.style.transform = 'none';
-            profileWindow.classList.remove('dragging');
-            profileWindow.style.willChange = 'auto';
-            profileWindow.releasePointerCapture(pointerId);
+            draggableEl.style.left = `${targetLeft}px`;
+            draggableEl.style.top = `${targetTop}px`;
+            draggableEl.style.transform = 'none';
+            draggableEl.classList.remove('dragging');
+            draggableEl.style.willChange = 'auto';
+            draggableEl.releasePointerCapture(pointerId);
             pointerId = null;
         };
 
-        profileWindow.addEventListener('pointerup', stopDragging);
-        profileWindow.addEventListener('pointercancel', stopDragging);
+        draggableEl.addEventListener('pointerup', stopDragging);
+        draggableEl.addEventListener('pointercancel', stopDragging);
 
         window.addEventListener('resize', () => {
             if (!isDetached) return;
-
             if (isDragging) return;
 
-            const currentLeft = parseFloat(profileWindow.style.left || '0');
-            const currentTop = parseFloat(profileWindow.style.top || '0');
+            const currentLeft = parseFloat(draggableEl.style.left || '0');
+            const currentTop = parseFloat(draggableEl.style.top || '0');
             recalcDragBounds();
 
-            profileWindow.style.left = `${clamp(currentLeft, 0, maxX)}px`;
-            profileWindow.style.top = `${clamp(currentTop, 0, maxY)}px`;
+            draggableEl.style.left = `${clamp(currentLeft, 0, maxX)}px`;
+            draggableEl.style.top = `${clamp(currentTop, 0, maxY)}px`;
         });
     }
+
+    // Apply draggable to all "div boxes"
+    const draggableSelectors = [
+        '.hero-image-placeholder',
+        '.glass-card',
+        '.project-card',
+        '.service-card',
+        '.resume-card',
+        '.certification-card',
+        '.stat-card',
+        '.about-text'
+    ];
+    
+    document.querySelectorAll(draggableSelectors.join(', ')).forEach(el => {
+        makeDraggable(el);
+    });
 
     // --- Cursor Glow + Spotlight variables ---
     const cursorGlow = document.createElement('div');
