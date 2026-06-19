@@ -812,7 +812,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!pagesRoot) return;
 
         const isMobileViewport = window.matchMedia('(max-width: 820px)').matches;
-        const containerWidth = Math.max(isMobileViewport ? 260 : 320, resumeViewer.clientWidth - (isMobileViewport ? 18 : 28));
+        const containerWidth = Math.max(isMobileViewport ? 260 : 320, resumeViewer.clientWidth - (isMobileViewport ? 18 : 64));
         const renderTargetWidth = isMobileViewport ? containerWidth * 2.35 : containerWidth;
         const maxRenderDpr = isMobileViewport ? 1.05 : 2;
         const dpr = Math.min(window.devicePixelRatio || 1, maxRenderDpr);
