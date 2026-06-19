@@ -141,7 +141,7 @@ def contact_message():
             }, 500)
 
         resend_payload = {
-            'from': resend_from,
+            'from': f"{name} <{resend_from}>",
             'to': [resend_to],
             'reply_to': email,
             'subject': f'Portfolio Contact: {subject}',
@@ -167,6 +167,7 @@ def contact_message():
             headers={
                 'Authorization': f'Bearer {resend_api_key}',
                 'Content-Type': 'application/json',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
             },
             method='POST'
         )
