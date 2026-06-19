@@ -2908,7 +2908,8 @@ body.light-mode .cert-item p::before {
     .floating-code { display: none; }
 
     .ide-header-bar {
-        grid-template-columns: 90px 1fr 90px;
+        padding-left: 92px;
+        padding-right: 14px;
     }
 
     .subrow-rail { display: none; }
