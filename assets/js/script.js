@@ -502,18 +502,18 @@ document.addEventListener('DOMContentLoaded', () => {
         "1": ["projects/MVIS/1.jpg","projects/MVIS/2.jpg","projects/MVIS/3.jpg","projects/MVIS/4.jpg","projects/MVIS/5.jpg","projects/MVIS/6.jpg","projects/MVIS/7.jpg","projects/MVIS/8.jpg"],
         "2": ["projects/MEMO/1.jpg","projects/MEMO/2.jpg","projects/MEMO/3.jpg","projects/MEMO/4.jpg"],
         "3": [
-            "projects/CAPSTONE/Screenshot 2026-06-13 185847.png","projects/CAPSTONE/Screenshot 2026-06-13 185853.png","projects/CAPSTONE/Screenshot 2026-06-13 185858.png",
-            "projects/CAPSTONE/Screenshot 2026-06-13 185911.png","projects/CAPSTONE/Screenshot 2026-06-13 185924.png","projects/CAPSTONE/Screenshot 2026-06-13 185936.png",
-            "projects/CAPSTONE/Screenshot 2026-06-13 185950.png","projects/CAPSTONE/Screenshot 2026-06-13 185957.png","projects/CAPSTONE/Screenshot 2026-06-13 190003.png",
-            "projects/CAPSTONE/Screenshot 2026-06-13 190020.png","projects/CAPSTONE/Screenshot 2026-06-13 190026.png","projects/CAPSTONE/Screenshot 2026-06-13 190032.png",
-            "projects/CAPSTONE/Screenshot 2026-06-13 190040.png"
+            "projects/CAPSTONE/Screenshot%202026-06-13%20185847.png","projects/CAPSTONE/Screenshot%202026-06-13%20185853.png","projects/CAPSTONE/Screenshot%202026-06-13%20185858.png",
+            "projects/CAPSTONE/Screenshot%202026-06-13%20185911.png","projects/CAPSTONE/Screenshot%202026-06-13%20185924.png","projects/CAPSTONE/Screenshot%202026-06-13%20185936.png",
+            "projects/CAPSTONE/Screenshot%202026-06-13%20185950.png","projects/CAPSTONE/Screenshot%202026-06-13%20185957.png","projects/CAPSTONE/Screenshot%202026-06-13%20190003.png",
+            "projects/CAPSTONE/Screenshot%202026-06-13%20190020.png","projects/CAPSTONE/Screenshot%202026-06-13%20190026.png","projects/CAPSTONE/Screenshot%202026-06-13%20190032.png",
+            "projects/CAPSTONE/Screenshot%202026-06-13%20190040.png"
         ],
         "4": [
-            "projects/KIOSK/Screenshot 2026-06-13 032327.png","projects/KIOSK/Screenshot 2026-06-13 032336.png","projects/KIOSK/Screenshot 2026-06-13 032344.png",
-            "projects/KIOSK/Screenshot 2026-06-13 032354.png","projects/KIOSK/Screenshot 2026-06-13 032400.png","projects/KIOSK/Screenshot 2026-06-13 032409.png",
-            "projects/KIOSK/Screenshot 2026-06-13 032415.png"
+            "projects/KIOSK/Screenshot%202026-06-13%20032327.png","projects/KIOSK/Screenshot%202026-06-13%20032336.png","projects/KIOSK/Screenshot%202026-06-13%20032344.png",
+            "projects/KIOSK/Screenshot%202026-06-13%20032354.png","projects/KIOSK/Screenshot%202026-06-13%20032400.png","projects/KIOSK/Screenshot%202026-06-13%20032409.png",
+            "projects/KIOSK/Screenshot%202026-06-13%20032415.png"
         ],
-        "5": ["projects/CHATBOT/Screenshot 2026-06-13 211454.png","projects/CHATBOT/Screenshot 2026-06-13 211520.png","projects/CHATBOT/Screenshot 2026-06-13 211603.png"]
+        "5": ["projects/CHATBOT/Screenshot%202026-06-13%20211454.png","projects/CHATBOT/Screenshot%202026-06-13%20211520.png","projects/CHATBOT/Screenshot%202026-06-13%20211603.png"]
     };
 
     function setupDragAndDrop(dropZoneSelector) {
