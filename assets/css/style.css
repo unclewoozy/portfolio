@@ -337,7 +337,22 @@ body.light-mode #code-rain { opacity: .12; }
     height: 10px;
     border-radius: 50%;
     background: var(--accent-2);
+    /* Same clean halo as the footer dot */
     box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-2) 24%, transparent);
+    position: relative;
+}
+
+/* Opaque disk behind the dot masks the rail line completely. Its solid color
+   approximates the nav background at the dot's vertical position so it blends
+   in; the translucent halo then renders over it the same way it does over the
+   footer's panel background. */
+.logo-dot::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    background: #1a2332;
+    z-index: -1;
 }
 .logo {
     font-size: 1.85rem;
@@ -483,6 +498,16 @@ body.light-mode #code-rain { opacity: .12; }
     opacity: 0.7;
     transform: translateY(-50%);
     pointer-events: none;
+    /* Keep the decorative line behind the nav content (logo, links, toggle),
+       so it never overlaps interactive controls regardless of viewport width. */
+    z-index: 0;
+}
+
+.logo-wrap,
+.nav-links,
+.hamburger {
+    position: relative;
+    z-index: 1;
 }
 
 .subrow-rail.left { left: 1.1%; }
@@ -574,6 +599,7 @@ body.multi-page footer.section:first-of-type {
     grid-template-columns: minmax(420px, 42vw) minmax(0, 1fr);
     gap: clamp(1.2rem, 2.4vw, 3rem);
     align-items: center;
+    align-content: center;
     padding: 8.1rem 3.2vw 3rem;
     position: relative;
 }
@@ -791,20 +817,6 @@ a.btn-tertiary {
 .btn-primary:hover::before {
     left: 100%;
 }
-.btn-primary::after {
-    content: '>';
-    position: absolute;
-    right: 1.1rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: .9rem;
-    opacity: 0;
-    transform: translateX(-5px);
-    transition: opacity .22s ease, transform .22s ease;
-}
-.btn-primary:hover::after {
-    opacity: 1;
-    transform: translateX(0);
-}
 .btn-primary:hover {
     /* hover removed */
 }
@@ -894,10 +906,9 @@ a.btn-tertiary {
 /* ===== HERO IMAGE - IDE FILE STYLE ===== */
 .hero-image-placeholder {
     width: min(620px, 41vw);
-    height: min(78vh, 760px);
-    aspect-ratio: 4 / 5;
+    height: 100%;
     justify-self: start;
-    align-self: center;
+    align-self: stretch;
     margin-top: 0;
     border-radius: 8px;
     overflow: hidden;
@@ -2776,7 +2787,16 @@ body.light-mode .portfolio-title {
     text-shadow: 0 0 0 transparent;
 }
 
-body.light-mode .logo-dot,
+body.light-mode .logo-dot {
+    /* Same clean halo as the footer dot in light mode */
+    box-shadow: 0 0 0 5px rgba(37, 99, 235, .12);
+}
+
+/* Match the light-mode nav background behind the masking disk */
+body.light-mode .logo-dot::before {
+    background: #f4f8fe;
+}
+
 body.light-mode .site-footer-dot {
     box-shadow: 0 0 0 5px rgba(37, 99, 235, .12);
 }
@@ -2948,13 +2968,14 @@ body.light-mode .resume-modal {
 }
 
 body.light-mode .close-modal {
-    color: #4a6181;
-    background: rgba(255,255,255,.72);
-    border: 1px solid rgba(148, 163, 184, .24);
+    color: transparent;
+    background: #ff5f57;
+    border: none;
 }
 
 body.light-mode .close-modal:hover {
-    background: rgba(255,255,255,.94);
+    background: #ff6b64;
+    box-shadow: 0 0 10px rgba(255, 95, 87, 0.6);
 }
 
 body.light-mode .prev,
