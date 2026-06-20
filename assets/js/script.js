@@ -723,7 +723,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const downloadResumeBtn = document.getElementById('download-resume');
     const viewResumeBtn = document.getElementById('view-resume');
     const resumeModal = document.getElementById('resume-modal');
-    const resumeModalClose = document.querySelector('.resume-modal-close');
+    const resumeModalClose = document.querySelector('.close-resume');
     const resumeViewer = document.getElementById('resume-viewer');
     const resumeLoading = document.getElementById('resume-loading');
     const resumeError = document.getElementById('resume-error');
@@ -912,6 +912,13 @@ document.addEventListener('DOMContentLoaded', () => {
         resumeModalClose.addEventListener('click', () => {
             if (resumeModal) resumeModal.classList.remove('active');
             document.body.style.overflow = '';
+        });
+        resumeModalClose.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (resumeModal) resumeModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
     }
 

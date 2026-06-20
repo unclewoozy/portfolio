@@ -40,7 +40,7 @@ body.light-mode {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     scroll-behavior: smooth;
 }
 
@@ -136,7 +136,7 @@ h1,h2,h3,h4 { color: var(--text); font-weight: 800; }
 
 .floating-code {
     position: absolute;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: .72rem;
     color: color-mix(in srgb, var(--accent) 72%, #fff 10%);
     border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
@@ -260,7 +260,7 @@ body.light-mode #code-rain { opacity: .12; }
     font-size: 0.76rem;
     letter-spacing: 0.06em;
     color: var(--muted);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -295,7 +295,7 @@ body.light-mode #code-rain { opacity: .12; }
     position: relative;
     z-index: 2;
     cursor: pointer;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     text-transform: uppercase;
 }
 .ide-chip:hover {
@@ -361,7 +361,7 @@ body.light-mode #code-rain { opacity: .12; }
 }
 
 .portfolio-title {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 1.4rem;
     font-weight: 700;
     letter-spacing: 0.15em;
@@ -403,7 +403,7 @@ body.light-mode #code-rain { opacity: .12; }
     color: #fff;
     box-shadow: 0 4px 10px rgba(91,140,255,.3);
     transition: transform .18s ease, box-shadow .2s ease, background .2s ease;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -432,7 +432,7 @@ body.light-mode #code-rain { opacity: .12; }
     cursor: pointer;
     transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, color .2s ease;
     position: relative;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
 }
 .theme-btn::before {
     content: '';
@@ -472,7 +472,7 @@ body.light-mode #code-rain { opacity: .12; }
     border-radius: 4px;
     background: var(--panel-2);
     border: 1px solid var(--line);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
 }
 .hamburger:hover {
     color: var(--accent);
@@ -559,7 +559,7 @@ body.multi-page footer.section:first-of-type {
     letter-spacing: .14em;
     text-transform: uppercase;
     color: var(--accent);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
 }
 .section-kicker::before {
     content: '//';
@@ -568,7 +568,7 @@ body.multi-page footer.section:first-of-type {
 }
 .section-title h2 {
     font-size: clamp(2rem, 4vw, 2.8rem);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     color: var(--text);
 }
 .underline {
@@ -627,14 +627,14 @@ body.multi-page footer.section:first-of-type {
     padding: 6px 10px;
     background: var(--panel-2);
     border-bottom: 1px solid var(--line);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 0.62rem;
     color: var(--muted);
 }
 .hero-intro-terminal::after {
     content: 'const developer = {\n  name: "Sigmund",\n  role: "Full Stack"\n};\n\ndeveloper.code();';
     padding: 10px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 0.58rem;
     color: var(--accent);
     line-height: 1.6;
@@ -659,7 +659,7 @@ body.light-mode .hero-intro-terminal { opacity: 0.25; }
     border: 1px solid var(--line);
     background: var(--panel-2);
     color: var(--muted);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     text-transform: uppercase;
 }
 .status-pill i {
@@ -677,7 +677,7 @@ body.light-mode .hero-intro-terminal { opacity: 0.25; }
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: .65rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     padding: .4rem .8rem;
     background: var(--panel-2);
     border-radius: 4px;
@@ -688,7 +688,6 @@ body.light-mode .hero-intro-terminal { opacity: 0.25; }
 .hero-content h1 {
     font-size: clamp(2.3rem, 6vw, 5rem);
     line-height: 1.04;
-    font-family: 'Inter', sans-serif;
 }
 .hero-content h1 .highlight {
     background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent));
@@ -714,7 +713,7 @@ body.light-mode .hero-intro-terminal { opacity: 0.25; }
     font-size: clamp(1rem, 2.6vw, 1.5rem);
     color: var(--muted);
     font-weight: 600;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     background: var(--panel-2);
     padding: .6rem .8rem;
     border-radius: 4px;
@@ -730,7 +729,7 @@ body.light-mode .hero-intro-terminal { opacity: 0.25; }
 .hero-content p {
     max-width: 100%;
     margin-bottom: 1.4rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 0.92rem;
     line-height: 1.7;
     color: var(--muted);
@@ -801,7 +800,7 @@ a.btn-tertiary {
     color: #fff;
     box-shadow: 0 10px 20px rgba(91,140,255,.35);
     border: 1px solid rgba(103,232,168,.3);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     letter-spacing: 0.02em;
 }
 .btn-primary::before {
@@ -827,7 +826,7 @@ a.btn-tertiary {
     background: linear-gradient(180deg, var(--panel-2), var(--panel));
     color: var(--text);
     box-shadow: 0 4px 12px rgba(0,0,0,.15);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 0.9rem;
 }
 .btn-secondary:hover {
@@ -878,7 +877,7 @@ a.btn-tertiary {
     border: 1px solid var(--line);
     border-radius: 4px;
     padding: .6rem .7rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     position: relative;
 }
 .metric-box::before {
@@ -951,7 +950,7 @@ a.btn-tertiary {
     top: 0;
     left: 0;
     padding: 4px 12px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 0.62rem;
     color: var(--muted);
     background: var(--panel);
@@ -1116,7 +1115,7 @@ a.btn-tertiary {
     border: 1px solid color-mix(in srgb, var(--line) 78%, transparent); 
     background: linear-gradient(180deg, color-mix(in srgb, var(--panel-2) 84%, transparent), var(--panel)); 
     box-shadow: 0 16px 32px color-mix(in srgb, var(--bg) 28%, transparent);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     position: relative;
 }
 .about-text::before {
@@ -1133,7 +1132,7 @@ a.btn-tertiary {
 }
 .about-text p { 
     margin-bottom: 1.05rem; 
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     line-height: 1.82;
     font-size: 0.96rem;
     color: color-mix(in srgb, var(--text) 90%, var(--muted));
@@ -1146,7 +1145,7 @@ a.btn-tertiary {
 .education-card { 
     padding: 1.85rem 1.55rem; 
     text-align: center; 
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     border-radius: 8px;
     border: 1px solid color-mix(in srgb, var(--line) 74%, transparent);
     background: linear-gradient(180deg, color-mix(in srgb, var(--panel-2) 88%, transparent), var(--panel));
@@ -1176,18 +1175,16 @@ a.btn-tertiary {
 }
 .education-card h3 {
     font-size: 1.08rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     color: var(--accent);
     margin-bottom: 0.65rem;
     font-weight: 700;
     line-height: 1.45;
 }
 .education-card h3::before {
-    content: '"';
     color: var(--accent-2);
 }
 .education-card h3::after {
-    content: '":';
     color: var(--accent-2);
 }
 .education-card .institution {
@@ -1234,7 +1231,7 @@ a.btn-tertiary {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.2rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
 }
 .timeline::before {
     display: none;
@@ -1281,33 +1278,31 @@ a.btn-tertiary {
 }
 .timeline-content h3 { 
     color: var(--accent); 
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 1rem;
     margin-bottom: .32rem;
 }
-.timeline-content h4 { 
-    color: var(--text); 
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; 
+.timeline-content h4 {
+    color: var(--text);
     font-size: 0.88rem;
     margin-bottom: .48rem;
     text-transform: uppercase;
     letter-spacing: .08em;
 }
 .timeline-content .company {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     color: var(--accent-3);
 }
 .timeline-content .date { 
     color: var(--muted); 
     font-size: 0.74rem; 
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     margin-bottom: .8rem;
     padding-bottom: .65rem;
     border-bottom: 1px dashed color-mix(in srgb, var(--line) 78%, transparent);
 }
-.timeline-content p { 
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; 
-    font-size: 0.86rem; 
+.timeline-content p {
+    font-size: 0.86rem;
     line-height: 1.72;
     color: color-mix(in srgb, var(--text) 92%, var(--muted));
 }
@@ -1374,7 +1369,7 @@ a.btn-tertiary {
 
 .company-info h3 {
     color: var(--accent);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 0.25rem;
@@ -1387,7 +1382,7 @@ a.btn-tertiary {
 
 .company-info h4 {
     color: var(--text);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 0.88rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -1478,7 +1473,7 @@ body.light-mode .timeline-item:hover .logo-container {
     left: 0;
     right: 0;
     padding: 8px 12px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 0.62rem;
     color: var(--muted);
     background: var(--panel-2);
@@ -1517,11 +1512,11 @@ body.light-mode .timeline-item:hover .logo-container {
     display: grid;
     grid-template-rows: auto auto 1fr auto;
     gap: .66rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     align-content: start;
 }
 .project-info h3 {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 1rem;
 }
 .project-info .date {
@@ -1533,7 +1528,7 @@ body.light-mode .timeline-item:hover .logo-container {
     font-weight: 700;
     font-size: .84rem;
     line-height: 1.1;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
 }
 .project-info .date i,
 .project-modal-date i {
@@ -1542,7 +1537,7 @@ body.light-mode .timeline-item:hover .logo-container {
     transform: translateY(-0.02em);
 }
 .project-info p {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 0.85rem;
     line-height: 1.6;
 }
@@ -1626,7 +1621,7 @@ body.light-mode .timeline-item:hover .logo-container {
     background:
         radial-gradient(circle at top right, rgba(91,140,255,.13), transparent 24%),
         linear-gradient(180deg, color-mix(in srgb, var(--panel) 96%, transparent), color-mix(in srgb, var(--panel-2) 90%, transparent));
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     position: relative;
     overflow: hidden;
 }
@@ -1658,7 +1653,7 @@ body.light-mode .timeline-item:hover .logo-container {
     display: inline-flex; 
     gap:.4rem; 
     align-items:center; 
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 0.95rem;
 }
 .skills-intro-panel {
@@ -1724,7 +1719,7 @@ body.light-mode .timeline-item:hover .logo-container {
     display: inline-flex;
     align-items: center;
     gap: .45rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 0.75rem;
     color: var(--muted);
     margin-bottom: 0.5rem;
@@ -1781,7 +1776,7 @@ body.light-mode .timeline-item:hover .logo-container {
     background: color-mix(in srgb, var(--panel-2) 88%, transparent);
     border: 1px solid color-mix(in srgb, var(--line) 92%, transparent);
     font-size: .8rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     line-height: 1.2;
     color: var(--text);
 }
@@ -1810,7 +1805,7 @@ body.light-mode .timeline-item:hover .logo-container {
     border-radius: 4px;
     border: 1px solid var(--line);
     background: var(--panel);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     position: relative;
 }
 .cert-item::before {
@@ -1835,7 +1830,7 @@ body.light-mode .timeline-item:hover .logo-container {
 }
 .cert-item h4 {
     font-size: 0.82rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     color: var(--text);
     margin-bottom: 2px;
 }
@@ -1858,7 +1853,7 @@ body.light-mode .timeline-item:hover .logo-container {
     place-items: center;
     cursor: pointer;
     transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
 }
 .cert-verify-btn:hover {
     transform: scale(1.1);
@@ -1891,7 +1886,7 @@ body.light-mode .timeline-item:hover .logo-container {
     border-radius: 10px;
     border: 1px solid color-mix(in srgb, var(--line) 76%, transparent);
     background: linear-gradient(180deg, color-mix(in srgb, var(--panel-2) 86%, transparent), var(--panel));
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     position: relative;
     box-shadow: 0 20px 44px color-mix(in srgb, var(--bg) 34%, transparent);
 }
@@ -1908,7 +1903,7 @@ body.light-mode .timeline-item:hover .logo-container {
     border-left: 1px solid var(--line);
 }
 .contact-card h2 {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: clamp(1.65rem, 3.4vw, 2.45rem);
     line-height: 1.22;
     margin-bottom: 1.15rem;
@@ -1918,7 +1913,7 @@ body.light-mode .timeline-item:hover .logo-container {
     color: var(--accent-2);
 }
 .contact-card > p {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     color: color-mix(in srgb, var(--text) 85%, var(--muted));
     font-size: 1rem;
     line-height: 1.85;
@@ -1930,7 +1925,7 @@ body.light-mode .timeline-item:hover .logo-container {
 .contact-layout {
     margin-top: 1.15rem;
     display: grid;
-    grid-template-columns: 1.55fr 1fr;
+    grid-template-columns: 2fr 2fr;
     gap: 1rem;
     text-align: left;
 }
@@ -1994,7 +1989,7 @@ body.light-mode .timeline-item:hover .logo-container {
     color: var(--text);
     border-radius: 8px;
     padding: 0.72rem 0.85rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 0.9rem;
     line-height: 1.5;
     transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
@@ -2049,7 +2044,7 @@ body.light-mode .timeline-item:hover .logo-container {
     background: linear-gradient(180deg, color-mix(in srgb, #0f1f1a 88%, var(--panel)), color-mix(in srgb, #0d1713 92%, var(--panel-2)));
     color: color-mix(in srgb, var(--accent-2) 92%, #ffffff);
     box-shadow: 0 14px 34px color-mix(in srgb, #000 34%, transparent);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 0.82rem;
     letter-spacing: 0.02em;
     opacity: 0;
@@ -2098,7 +2093,7 @@ body.light-mode .timeline-item:hover .logo-container {
     border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
     border-radius: 8px;
     background: color-mix(in srgb, var(--panel-2) 66%, transparent);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: .98rem;
     line-height: 1.55;
 }
@@ -2120,7 +2115,7 @@ body.light-mode .timeline-item:hover .logo-container {
     cursor: pointer;
     transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
     color: var(--muted);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 1.18rem;
 }
 .social-links a:hover {
@@ -2178,7 +2173,7 @@ body.light-mode .timeline-item:hover .logo-container {
     align-items: center;
     gap: .45rem;
     color: var(--text);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: .78rem;
     letter-spacing: .14em;
 }
@@ -2195,7 +2190,7 @@ body.light-mode .timeline-item:hover .logo-container {
     margin: .72rem 0 0;
     color: var(--muted);
     font-size: .76rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
 }
 
 /* Modal */
@@ -2352,7 +2347,7 @@ body.modal-open {
     text-transform: uppercase;
 }
 #project-modal-title {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: clamp(1.35rem, 2vw, 2rem);
     line-height: 1.2;
     margin: 0;
@@ -2391,7 +2386,7 @@ body.modal-open {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     z-index: 10;
     background: #ff5f57;
     border: none;
@@ -2422,7 +2417,7 @@ body.modal-open {
     cursor: pointer;
     transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
     border: 1px solid var(--line);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: 1rem;
     font-weight: 700;
 }
@@ -2526,7 +2521,7 @@ body.light-mode .resume-modal {
 .resume-studio-path {
     margin-left: .35rem;
     color: var(--muted);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: .7rem;
     letter-spacing: .02em;
     white-space: nowrap;
@@ -2545,7 +2540,7 @@ body.light-mode .resume-modal {
     border: 1px solid var(--line);
     background: var(--panel);
     color: var(--muted);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: .62rem;
     letter-spacing: .08em;
     border-radius: 6px;
@@ -2561,7 +2556,7 @@ body.light-mode .resume-modal {
 }
 
 .resume-meta {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: .69rem;
     color: var(--muted);
     border-bottom: 1px solid var(--line);
@@ -2569,27 +2564,14 @@ body.light-mode .resume-modal {
     background: color-mix(in srgb, var(--panel) 94%, transparent);
 }
 
-.resume-modal-close {
-    position: absolute;
-    top: .2rem;
-    right: .4rem;
-    width: 32px;
-    height: 32px;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    background: transparent;
-    font-size: 1.7rem;
+.resume-studio-bar .close-resume {
     cursor: pointer;
-    color: var(--muted);
-    transition: color 0.2s ease, transform 0.2s ease;
-    line-height: 1;
-    z-index: 2;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.resume-modal-close:hover {
-    color: var(--danger);
-    transform: scale(1.08);
-    background: rgba(255,122,122,.13);
+.resume-studio-bar .close-resume:hover {
+    transform: scale(1.35);
+    box-shadow: 0 0 8px rgba(255, 92, 92, 0.6);
 }
 
 .resume-viewer-shell {
@@ -2625,7 +2607,7 @@ body.light-mode .resume-modal {
     color: var(--accent-2);
     font-size: .65rem;
     letter-spacing: .08em;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     background: color-mix(in srgb, var(--panel-2) 70%, transparent);
 }
 
@@ -2636,7 +2618,7 @@ body.light-mode .resume-modal {
     color: #d5dfef;
     font-size: .76rem;
     line-height: 1.58;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
 }
 
 .resume-pages {
@@ -2661,7 +2643,7 @@ body.light-mode .resume-modal {
     color: var(--muted);
     font-size: .64rem;
     letter-spacing: .08em;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     background: color-mix(in srgb, var(--panel) 86%, transparent);
 }
 
@@ -2694,7 +2676,7 @@ body.light-mode .resume-page-card {
     padding: 1.2rem;
     text-align: center;
     color: var(--muted);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
     font-size: .74rem;
 }
 
@@ -2883,7 +2865,6 @@ body.light-mode .cert-verify-btn,
 body.light-mode .social-links a,
 body.light-mode .project-detail-trigger,
 body.light-mode .project-thumb,
-body.light-mode .resume-modal-close,
 body.light-mode .resume-zoom-btn,
 body.light-mode .resume-download-link {
     background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(241,246,253,.96));
