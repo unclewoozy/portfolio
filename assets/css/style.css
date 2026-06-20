@@ -1909,7 +1909,6 @@ body.light-mode .timeline-item:hover .logo-container {
     margin-bottom: 1.15rem;
 }
 .contact-card h2::before {
-    content: '$ ';
     color: var(--accent-2);
 }
 .contact-card > p {
