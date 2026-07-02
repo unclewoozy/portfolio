@@ -622,7 +622,7 @@ body.multi-page footer.section:first-of-type {
     overflow: hidden;
 }
 .hero-intro-terminal::before {
-    content: '~/portfolio/src/home.tsx';
+    content: '~/portfolio/src/home';
     display: block;
     padding: 6px 10px;
     background: var(--panel-2);
