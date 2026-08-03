@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { PROFILE } from '../../data/site'
 
 export default function TitleBar() {
   const [time, setTime] = useState('')
@@ -32,6 +33,12 @@ export default function TitleBar() {
         </p>
 
         <div className="flex items-center gap-3">
+          <a
+            href={PROFILE.resumeDownload}
+            className="hidden rounded-lg border border-accent/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-accent transition-all hover:bg-accent hover:text-ink md:block"
+          >
+            Resume ↓
+          </a>
           <p className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-fog sm:block">
             sigmund@portfolio.dev
           </p>

@@ -40,6 +40,17 @@ function PhotoCard() {
   const typingDone =
     typed.length === TYPED_LINES.length && typed[last] === TYPED_LINES[last]
 
+  useEffect(() => {
+    if (!window.matchMedia('(hover: hover)').matches) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const t1 = setTimeout(() => setHovered(true), 1200)
+    const t2 = setTimeout(() => setHovered(false), 5600)
+    return () => {
+      clearTimeout(t1)
+      clearTimeout(t2)
+    }
+  }, [])
+
   return (
     <div className="glass sheen relative overflow-hidden rounded-xl">
       <div className="flex items-center justify-between border-b border-paper/15 bg-ink/40 px-3 py-2">

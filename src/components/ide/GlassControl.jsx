@@ -40,7 +40,7 @@ export default function GlassControl({ glass, onGlass }) {
           aria-hidden="true"
         >
           <div
-            className="h-full rounded-full bg-gradient-to-r from-accent to-[#a8ccff] shadow-[0_0_10px_rgba(10,132,255,0.55)] transition-[width] duration-75"
+            className="h-full rounded-full bg-gradient-to-r from-accent to-accent-3 shadow-[0_0_10px_rgba(10,132,255,0.55)] transition-[width] duration-75"
             style={{ width: `${glass}%` }}
           />
         </div>
