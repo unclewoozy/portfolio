@@ -62,7 +62,7 @@ function ProjectHero({ project, onOpen }) {
             ))}
           </div>
           <p className="mt-4 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">
-            open case study
+            inspect
             <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
           </p>
         </div>

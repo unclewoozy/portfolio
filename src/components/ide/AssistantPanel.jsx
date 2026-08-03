@@ -1,4 +1,4 @@
-import { ArrowUpRight, Bot, Sparkles } from 'lucide-react'
+import { ArrowUpRight, Compass } from 'lucide-react'
 import { PROFILE, SKILLS } from '../../data/site'
 
 const QUICK = [
@@ -16,11 +16,11 @@ export default function AssistantPanel({ onViewResume }) {
   }
 
   return (
-    <div className="flex h-full flex-col overflow-hidden" aria-label="AI assistant panel">
+    <div className="flex h-full flex-col overflow-hidden" aria-label="Navigator panel">
       <div className="flex items-center justify-between border-b border-paper/15 px-4 py-2.5">
         <div className="flex items-center gap-2">
-          <Bot className="h-3.5 w-3.5 text-accent" strokeWidth={2} />
-          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper">copilot</p>
+          <Compass className="h-3.5 w-3.5 text-accent" strokeWidth={2} />
+          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper">navigator</p>
         </div>
         <span className="flex items-center gap-1.5 font-mono text-[10px] text-accent">
           <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse-dot" aria-hidden="true" />
@@ -50,7 +50,6 @@ export default function AssistantPanel({ onViewResume }) {
                 full stack / it specialist
               </p>
             </div>
-            <Sparkles className="ml-auto h-4 w-4 shrink-0 text-accent/70" strokeWidth={1.5} aria-hidden="true" />
           </div>
         </div>
 

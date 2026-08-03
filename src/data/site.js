@@ -334,6 +334,13 @@ export const SKILLS = {
 
 export const CERTIFICATIONS = [
   {
+    image: '/documents/cert/accenture-technology-academy.JPG',
+    title: 'Accenture Technology Academy',
+    issuer: 'Accenture',
+    date: 'May 2026',
+    viewable: true,
+  },
+  {
     image: '/documents/cert/it-specialist-device-configuration-and-management.png',
     title: 'Device Configuration and Management',
     issuer: 'Certiport',
