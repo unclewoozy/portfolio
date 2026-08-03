@@ -30,7 +30,6 @@ export default function App() {
     }
   })
   const [resumeOpen, setResumeOpen] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
   const [glass, setGlass] = useState(() => {
     const saved = Number(localStorage.getItem('glassOpacity'))
     return Number.isFinite(saved) && saved >= 0 && saved <= 100 ? saved : 50
@@ -40,13 +39,6 @@ export default function App() {
     document.documentElement.style.setProperty('--glass-opacity', String(glass / 100))
     localStorage.setItem('glassOpacity', String(glass))
   }, [glass])
-
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [menuOpen])
 
   return (
     <div className="relative flex min-h-screen min-h-dvh flex-col bg-ink font-sans text-paper">
@@ -65,7 +57,7 @@ export default function App() {
       <Particles />
 
       <div className={`flex flex-1 flex-col transition-opacity duration-500 ${booted ? 'opacity-100' : 'opacity-0'}`}>
-        <TitleBar onMenu={() => setMenuOpen((o) => !o)} />
+        <TitleBar />
 
         <div className="relative flex flex-1 items-stretch pt-14 pt-[calc(3.5rem+env(safe-area-inset-top))] pb-24 pb-[calc(6rem+env(safe-area-inset-bottom))] lg:pb-28">
           <aside className="hidden w-64 shrink-0 border-r border-paper/10 bg-ink/50 backdrop-blur-xl lg:block">
@@ -100,25 +92,6 @@ export default function App() {
           <StatusBar />
         </div>
       </div>
-
-      {menuOpen && (
-        <div
-          className="fixed inset-0 z-[80] lg:hidden"
-          role="dialog"
-          aria-modal="true"
-          aria-label="File explorer"
-        >
-          <button
-            type="button"
-            className="absolute inset-0 bg-ink/70 backdrop-blur-sm"
-            onClick={() => setMenuOpen(false)}
-            aria-label="Close explorer"
-          />
-          <div className="window-in relative h-full w-72 border-r border-paper/10 bg-ink/95 p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-[calc(1rem+env(safe-area-inset-top))]">
-            <FileExplorer onNavigate={() => setMenuOpen(false)} />
-          </div>
-        </div>
-      )}
 
       <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
       <div className="noise" aria-hidden="true" />

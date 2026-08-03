@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export default function TitleBar({ onMenu }) {
+export default function TitleBar() {
   const [time, setTime] = useState('')
 
   useEffect(() => {
@@ -36,18 +36,6 @@ export default function TitleBar({ onMenu }) {
             sigmund@portfolio.dev
           </p>
           <p className="font-mono text-[11px] text-paper tabular-nums">{time}</p>
-          <button
-            type="button"
-            onClick={onMenu}
-            className="glass-chip flex h-7 w-7 items-center justify-center rounded-lg lg:hidden"
-            aria-label="Toggle explorer"
-          >
-            <span className="flex flex-col gap-[3px]">
-              <span className="h-px w-3 bg-paper" />
-              <span className="h-px w-3 bg-paper" />
-              <span className="h-px w-3 bg-paper" />
-            </span>
-          </button>
         </div>
       </div>
     </header>
