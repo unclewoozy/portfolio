@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import useScrollSpy from '../../hooks/useScrollSpy'
 import { FILE_ICONS } from './explorer-data'
 
@@ -40,11 +40,34 @@ export default function Dock() {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const touch = useRef({ x: 0, y: 0 })
+
+  const onTouchStart = (e) => {
+    const t = e.touches[0]
+    touch.current = { x: t.clientX, y: t.clientY }
+  }
+
+  const onTouchEnd = (e) => {
+    const t = e.changedTouches[0]
+    const dx = t.clientX - touch.current.x
+    const dy = t.clientY - touch.current.y
+    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return
+    const idx = ids.indexOf(active)
+    const next = dx < 0 ? idx + 1 : idx - 1
+    const target = DOCK_ITEMS[next]
+    if (target) {
+      e.preventDefault()
+      document.getElementById(target.id)?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <div
       className={`fixed bottom-3 left-0 right-0 z-50 flex justify-center px-4 pb-2 pb-[env(safe-area-inset-bottom)] lg:bottom-11 transition-transform duration-500 ${
         hidden ? 'pointer-events-none translate-y-[calc(100%+3rem)]' : 'translate-y-0'
       }`}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
     >
       <nav
         className="glass flex items-end gap-1 rounded-2xl px-2.5 py-2 sm:gap-1.5"
