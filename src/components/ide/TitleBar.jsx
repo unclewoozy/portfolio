@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import ThemeToggle from './ThemeToggle'
 
 export default function TitleBar() {
   const [time, setTime] = useState('')
@@ -33,7 +32,6 @@ export default function TitleBar() {
         </p>
 
         <div className="flex items-center gap-3">
-          <ThemeToggle />
           <p className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-fog sm:block">
             sigmund@portfolio.dev
           </p>
