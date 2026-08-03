@@ -19,7 +19,7 @@ export default function ResumeModal({ open, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-[70] flex items-center justify-center bg-ink/80 p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-[max(0.5rem,env(safe-area-inset-top))] backdrop-blur-xl sm:p-4 md:p-8"
+      className="fixed inset-0 z-[70] flex items-center justify-center bg-ink/80 p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-[max(0.5rem,env(safe-area-inset-top))] sm:p-4 md:p-8"
       role="dialog"
       aria-modal="true"
       aria-label="Resume PDF viewer"

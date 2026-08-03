@@ -45,7 +45,7 @@ function ProjectModal({ project, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-[70] flex items-center justify-center bg-ink/80 p-4 backdrop-blur-xl md:p-10"
+      className="fixed inset-0 z-[70] flex items-center justify-center bg-ink/80 p-4 md:p-10"
       role="dialog"
       aria-modal="true"
       aria-label={`${project.title} details`}
