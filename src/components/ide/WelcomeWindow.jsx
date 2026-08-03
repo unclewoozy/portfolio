@@ -60,7 +60,7 @@ function PhotoCard() {
             src={PROFILE.photo}
             alt="Portrait of Sigmund Godfrey M. Dela Cruz"
             draggable={false}
-            className="aspect-[4/5] w-full object-cover object-top grayscale transition-all duration-700 group-hover:scale-[1.03] group-hover:grayscale-0"
+            className="aspect-[4/5] w-full object-cover object-top transition-all duration-700 group-hover:scale-[1.03]"
             loading="eager"
           />
           <div
