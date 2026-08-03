@@ -104,83 +104,96 @@ export default function WelcomeWindow({ onViewResume, glass, onGlass }) {
   return (
     <IdeWindow id="home" title="welcome — developer workspace" path="~/portfolio/README.md">
       <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
-        <div>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="glass-chip inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
-              <span className="h-2 w-2 rounded-full bg-accent animate-pulse-dot" aria-hidden="true" />
-              Available for work
-            </span>
-            <span className="glass-chip rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.25em] text-fog">
-              Full-time
-            </span>
-            <span className="glass-chip rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.25em] text-fog">
-              Freelance
-            </span>
-          </div>
+        <div className="relative">
+          <div
+            className="hero-orb pointer-events-none absolute -left-28 -top-20 h-80 w-80 rounded-full opacity-70"
+            aria-hidden="true"
+          />
 
-          <p className="mt-7 font-mono text-[11px] md:text-xs uppercase tracking-[0.35em] text-fog">
-            Full Stack Web Developer <span className="text-accent">/</span> IT Specialist
-          </p>
+          <div className="relative">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="glass-chip inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
+                <span className="h-2 w-2 rounded-full bg-accent animate-pulse-dot" aria-hidden="true" />
+                Available for work
+              </span>
+              <span className="glass-chip rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.25em] text-fog">
+                Full-time
+              </span>
+              <span className="glass-chip rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.25em] text-fog">
+                Freelance
+              </span>
+            </div>
 
-          <h1 className="mt-4 font-display font-bold uppercase leading-[0.92] tracking-tight">
-            <span className="block text-outline text-[clamp(2.4rem,7vw,5.6rem)] text-paper">
-              Sigmund
-            </span>
-            <span className="block text-[clamp(2.4rem,7vw,5.6rem)] text-paper">
-              Godfrey M.
-            </span>
-            <span className="block text-[clamp(2.4rem,7vw,5.6rem)] text-paper">
-              Dela <span className="text-accent">Cruz</span>
-            </span>
-          </h1>
+            <p className="mt-7 font-mono text-[11px] md:text-xs uppercase tracking-[0.35em] text-fog">
+              Full Stack Web Developer <span className="text-accent">/</span> IT Specialist
+            </p>
 
-          <p className="mt-6 max-w-xl text-sm md:text-base leading-relaxed text-paper/70">
-            {PROFILE.tagline}
-          </p>
+            <h1 className="mt-4 font-display font-bold uppercase leading-[0.92] tracking-tight">
+              <span className="block text-outline text-[clamp(2.4rem,7vw,5.6rem)] text-paper">
+                Sigmund
+              </span>
+              <span className="block text-[clamp(2.4rem,7vw,5.6rem)] text-paper">
+                Godfrey M.
+              </span>
+              <span className="block text-[clamp(2.4rem,7vw,5.6rem)] text-paper">
+                Dela <span className="text-gradient">Cruz</span>
+              </span>
+            </h1>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a
-              href="#projects"
-              onClick={go('projects')}
-              className="group inline-flex items-center gap-3 rounded-xl border-2 border-accent bg-accent px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-ink transition-all hover:bg-transparent hover:text-accent"
-            >
-              Open projects/
-              <span className="transition-transform group-hover:translate-y-0.5">↓</span>
-            </a>
-            <a
-              href="#contact"
-              onClick={go('contact')}
-              className="glass-chip inline-flex items-center gap-3 rounded-xl px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-paper transition-all hover:bg-paper hover:text-ink"
-            >
-              Initiate contact
-            </a>
-            <button
-              type="button"
-              onClick={onViewResume}
-              className="group inline-flex items-center gap-2 px-3 py-3 font-mono text-xs uppercase tracking-[0.2em] text-fog transition-colors hover:text-accent"
-            >
-              View Resume
-              <span className="text-accent">↗</span>
-            </button>
-          </div>
+            <p className="mt-6 max-w-xl text-sm md:text-base leading-relaxed text-paper/70">
+              {PROFILE.tagline}
+            </p>
 
-          <div className="mt-10 grid grid-cols-3 border-t border-paper/15">
-            {ABOUT.stats.map((stat, i) => (
-              <div key={stat.label} className={`py-4 ${i > 0 ? 'border-l border-paper/15 pl-5' : ''}`}>
-                <p className="font-display text-3xl md:text-4xl font-bold text-paper">
-                  {stat.value}
-                  <span className="text-accent">{stat.suffix}</span>
-                </p>
-                <p className="mt-1 font-mono text-[9px] md:text-[10px] uppercase tracking-[0.25em] text-fog">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href="#projects"
+                onClick={go('projects')}
+                className="btn-primary inline-flex items-center gap-3 rounded-xl px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-paper"
+              >
+                Open projects/
+                <span className="transition-transform group-hover:translate-y-0.5">↓</span>
+              </a>
+              <a
+                href="#contact"
+                onClick={go('contact')}
+                className="glass-chip inline-flex items-center gap-3 rounded-xl px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-paper transition-all hover:bg-paper hover:text-ink"
+              >
+                Initiate contact
+              </a>
+              <button
+                type="button"
+                onClick={onViewResume}
+                className="group inline-flex items-center gap-2 px-3 py-3 font-mono text-xs uppercase tracking-[0.2em] text-fog transition-colors hover:text-accent"
+              >
+                View Resume
+                <span className="text-accent">↗</span>
+              </button>
+            </div>
+
+            <div className="mt-10 grid grid-cols-3 border-t border-paper/15">
+              {ABOUT.stats.map((stat, i) => (
+                <div key={stat.label} className={`py-4 ${i > 0 ? 'border-l border-paper/15 pl-5' : ''}`}>
+                  <p className="font-display text-3xl md:text-4xl font-bold text-paper">
+                    {stat.value}
+                    <span className="text-accent">{stat.suffix}</span>
+                  </p>
+                  <p className="mt-1 font-mono text-[9px] md:text-[10px] uppercase tracking-[0.25em] text-fog">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         <div className="flex flex-col gap-6">
-          <PhotoCard />
+          <div className="relative">
+            <div
+              className="hero-orb pointer-events-none absolute -inset-8 rounded-full opacity-50"
+              aria-hidden="true"
+            />
+            <PhotoCard />
+          </div>
           <GlassControl glass={glass} onGlass={onGlass} />
         </div>
       </div>

@@ -73,7 +73,7 @@ export default function App() {
           </aside>
 
           <main className="min-w-0 flex-1 overflow-x-hidden">
-            <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-8 sm:px-6 md:py-10">
+            <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4 py-10 sm:px-6 md:py-14">
               <WelcomeWindow onViewResume={() => setResumeOpen(true)} glass={glass} onGlass={setGlass} />
               <Suspense fallback={null}>
                 <AboutWindow />

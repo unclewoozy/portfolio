@@ -33,10 +33,12 @@ export default function BootScreen({ done }) {
       aria-label="Loading workspace"
     >
       <p className="font-mono text-sm text-paper">
-        <span className="text-accent">~/</span>portfolio<span className="text-accent">.dev</span>
+        <span className="text-accent">~/</span>
+        <span className="text-gradient font-semibold">portfolio</span>
+        <span className="text-accent">.dev</span>
       </p>
       <div className="mt-6 h-1 w-56 overflow-hidden rounded-full bg-white/10">
-        <div className="boot-bar h-full rounded-full bg-accent" />
+        <div className="boot-bar h-full rounded-full bg-gradient-to-r from-accent to-[#a855f7] shadow-[0_0_18px_rgba(10,132,255,0.8)]" />
       </div>
       <div className="mt-5 h-24 w-56 space-y-1">
         {LINES.map((l) => (

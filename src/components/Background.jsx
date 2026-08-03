@@ -62,6 +62,8 @@ export default function Background() {
 
       <div className="bg-grid absolute inset-0 opacity-80" />
       <div className="absolute inset-0 bg-[conic-gradient(from_210deg_at_50%_45%,transparent_0deg,rgba(10,132,255,0.05)_60deg,transparent_140deg,rgba(191,90,242,0.05)_220deg,transparent_300deg)]" />
+      <div className="bg-horizon absolute inset-x-0 top-0 h-[46vh]" />
+      <div className="bg-vignette absolute inset-0" />
     </div>
   )
 }

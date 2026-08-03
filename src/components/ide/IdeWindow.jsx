@@ -6,6 +6,10 @@ export default function IdeWindow({ id, title, path, children, className = '' })
       className={`glass sheen glass-hover window-in relative overflow-hidden rounded-3xl ${className}`}
     >
       <div className="relative z-10 flex items-center justify-between border-b border-paper/15 bg-ink/40 px-4 py-2.5">
+        <span
+          className="glow-line pointer-events-none absolute inset-x-8 top-0 opacity-70"
+          aria-hidden="true"
+        />
         <div className="flex min-w-0 items-center gap-3">
           <div className="flex shrink-0 gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-rose-500/90" />
