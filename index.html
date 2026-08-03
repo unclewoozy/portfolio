@@ -12,6 +12,13 @@
       content="Sigmund Godfrey M. Dela Cruz — Full Stack Web Developer & IT Specialist. Building dynamic web applications, scalable systems, and AI-assisted development solutions."
     />
     <meta name="theme-color" content="#05060a" />
+    <script>
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.add('light')
+        }
+      } catch (e) {}
+    </script>
     <meta property="og:title" content="Sigmund Godfrey M. Dela Cruz | Portfolio" />
     <meta
       property="og:description"

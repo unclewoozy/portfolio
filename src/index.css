@@ -69,6 +69,22 @@
   }
 }
 
+/* ---------- Light theme ---------- */
+.light {
+  --color-ink: #f4f3ee;
+  --color-ink-2: #ffffff;
+  --color-ink-3: #e9e7e0;
+  --color-paper: #15161a;
+  --color-paper-2: #2b2c31;
+  --color-fog: #6a6b73;
+  --color-fog-dark: #9c9ca4;
+}
+.light .glass-deep {
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.85) 0%, rgba(240, 242, 248, 0.92) 100%),
+    linear-gradient(160deg, rgba(10, 132, 255, 0.05), transparent);
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
