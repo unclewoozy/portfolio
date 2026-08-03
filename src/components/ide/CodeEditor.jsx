@@ -5,7 +5,7 @@ const CODE = `const developer = {
   name: "Sigmund Godfrey M. Dela Cruz",
   role: "Full Stack Developer / IT Specialist",
   location: "Calamba, Philippines",
-  stack: ["React", "Node.js", "Python", "SQL"],
+  stack: ["React", "Next.js", "Node.js", "Python", "SQL"],
   ai: "assisted workflows",
   status: "open to work",
   since: 2023,

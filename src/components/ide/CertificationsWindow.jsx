@@ -110,7 +110,7 @@ function CertificateModal({ cert, onClose }) {
       aria-label={cert.title}
       onClick={onClose}
     >
-      <div className="absolute inset-0 bg-ink/70 backdrop-blur-sm" aria-hidden="true" />
+      <div className="overlay-blur absolute inset-0 bg-ink/70 backdrop-blur-sm" aria-hidden="true" />
       <div
         className="glass-deep window-in relative flex max-h-[92vh] max-h-[92dvh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl"
         onClick={(e) => e.stopPropagation()}

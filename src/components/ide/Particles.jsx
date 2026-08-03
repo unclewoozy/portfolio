@@ -7,6 +7,8 @@ export default function Particles() {
     const canvas = ref.current
     if (!canvas) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (window.matchMedia('(pointer: coarse)').matches) return
+    if (window.innerWidth < 768) return
     if (!canvas.getContext) return
 
     const ctx = canvas.getContext('2d')

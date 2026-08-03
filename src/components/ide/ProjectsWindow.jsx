@@ -42,6 +42,7 @@ function ProjectHero({ project, onOpen }) {
           alt={`${project.shortTitle} preview`}
           className="aspect-[16/9] w-full object-cover transition-transform duration-700 group-hover:scale-[1.05] md:aspect-[21/9]"
           loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/40 to-transparent" aria-hidden="true" />
         <span className="glass-chip absolute left-4 top-4 rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
@@ -85,6 +86,7 @@ function ProjectCard({ project, onOpen }) {
           alt={`${project.shortTitle} preview`}
           className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-110"
           loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent" aria-hidden="true" />
         <span className="absolute right-3 top-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper/80">
@@ -140,7 +142,7 @@ function ProjectsModal({ project, onClose }) {
       aria-label={project.title}
       onClick={onClose}
     >
-      <div className="absolute inset-0 bg-ink/70 backdrop-blur-sm" aria-hidden="true" />
+      <div className="overlay-blur absolute inset-0 bg-ink/70 backdrop-blur-sm" aria-hidden="true" />
       <div
         className="glass-deep window-in relative max-h-[90vh] max-h-[90dvh] w-full max-w-4xl overflow-y-auto rounded-3xl"
         onClick={(e) => e.stopPropagation()}
@@ -173,6 +175,7 @@ function ProjectsModal({ project, onClose }) {
               alt={`${project.title} screenshot ${active + 1}`}
               className="aspect-video w-full object-cover"
               loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -188,7 +191,7 @@ function ProjectsModal({ project, onClose }) {
                   }`}
                   aria-label={`View screenshot ${i + 1}`}
                 >
-                  <img src={src} alt="" className="h-full w-full object-cover" loading="lazy" />
+                  <img src={src} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
                 </button>
               ))}
             </div>

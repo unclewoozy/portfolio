@@ -487,8 +487,25 @@ input[type='range']:focus-visible ~ .glass-thumb {
   animation: window-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* skip rendering of windows below the fold — big win on long mobile pages */
+.ide-window {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 480px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .window-in {
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cursor-light,
+  #particles-canvas {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
   #particles-canvas {
     display: none !important;
   }
@@ -519,5 +536,39 @@ input[type='range']:focus-visible ~ .glass-thumb {
   /* hover lift feels sticky on touch — disable it */
   .glass-hover:hover {
     transform: none;
+  }
+
+  /* heavy parallax blob layers are pure paint cost on phones — hide them */
+  [data-depth] {
+    display: none;
+  }
+
+  /* lighter glass: fewer blur/saturate samples = much cheaper compositing */
+  .glass,
+  .glass-deep {
+    -webkit-backdrop-filter: blur(8px) saturate(1.2);
+    backdrop-filter: blur(8px) saturate(1.2);
+  }
+  .glass-chip {
+    -webkit-backdrop-filter: blur(6px) saturate(1.1);
+    backdrop-filter: blur(6px) saturate(1.1);
+  }
+
+  /* the full-screen modal overlay blur is the single most expensive layer on
+     phones — the dark tint alone is enough, drop the blur */
+  [role='dialog'] > .overlay-blur {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  /* huge blurred hero orbs are expensive on phone GPUs */
+  .hero-orb {
+    filter: blur(34px);
+    opacity: 0.8;
+  }
+
+  /* skip the full-screen modal entrance animation on phones */
+  [role='dialog'] .window-in {
+    animation: none;
   }
 }

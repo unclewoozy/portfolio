@@ -257,6 +257,7 @@ export const SKILLS = {
     { icon: 'devicon-mysql-original colored', name: 'MySQL' },
     { icon: 'devicon-tailwindcss-original colored', name: 'Tailwind CSS' },
     { icon: 'devicon-react-original colored', name: 'ReactJS' },
+    { icon: 'devicon-nextjs-original colored', name: 'Next.js' },
     { icon: 'devicon-nodejs-plain colored', name: 'Node.js' },
     { icon: 'devicon-git-plain colored', name: 'Git' },
   ],
@@ -269,7 +270,7 @@ export const SKILLS = {
     {
       icon: 'fa-cubes',
       title: 'Frameworks & Libraries',
-      tags: ['ReactJS', 'Node.js', 'Flask', 'Flask-SQLAlchemy', 'Tailwind CSS', 'Pandas', 'Android SDK'],
+      tags: ['ReactJS', 'Next.js', 'Node.js', 'Flask', 'Flask-SQLAlchemy', 'Tailwind CSS', 'Pandas', 'Android SDK'],
     },
     {
       icon: 'fa-database',

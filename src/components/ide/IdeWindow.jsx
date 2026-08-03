@@ -3,7 +3,7 @@ export default function IdeWindow({ id, title, path, children, className = '' })
     <section
       id={id}
       data-parallax
-      className={`glass sheen glass-hover window-in relative overflow-hidden rounded-3xl ${className}`}
+      className={`ide-window glass sheen glass-hover window-in relative overflow-hidden rounded-3xl ${className}`}
     >
       <div className="relative z-10 flex items-center justify-between border-b border-paper/15 bg-ink/40 px-4 py-2.5">
         <span
