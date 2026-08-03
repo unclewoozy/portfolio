@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 
 const clamp = (n, min, max) => Math.min(max, Math.max(min, n))
+const REDUCED =
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 export default function useDeviceTilt() {
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     if (!('DeviceOrientationEvent' in window)) return
 
     let raf = 0
@@ -35,26 +36,29 @@ export default function useDeviceTilt() {
       cancelAnimationFrame(raf)
     }
 
-    const needsPermission = typeof DeviceOrientationEvent.requestPermission === 'function'
+    const hasPermissionApi = typeof DeviceOrientationEvent.requestPermission === 'function'
 
-    if (!needsPermission) {
-      start()
+    if (!hasPermissionApi) {
+      if (!REDUCED) start()
       return stop
     }
 
-    const onFirstGesture = () => {
-      window.removeEventListener('pointerdown', onFirstGesture)
+    const onGesture = () => {
+      window.removeEventListener('pointerdown', onGesture)
+      window.removeEventListener('click', onGesture)
       DeviceOrientationEvent.requestPermission()
         .then((state) => {
-          if (state === 'granted') start()
+          if (state === 'granted' && !REDUCED) start()
         })
         .catch(() => {})
     }
 
-    window.addEventListener('pointerdown', onFirstGesture)
+    window.addEventListener('pointerdown', onGesture)
+    window.addEventListener('click', onGesture)
 
     return () => {
-      window.removeEventListener('pointerdown', onFirstGesture)
+      window.removeEventListener('pointerdown', onGesture)
+      window.removeEventListener('click', onGesture)
       stop()
     }
   }, [])
