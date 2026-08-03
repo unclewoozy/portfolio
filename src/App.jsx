@@ -49,7 +49,7 @@ export default function App() {
   }, [menuOpen])
 
   return (
-    <div className="relative flex min-h-dvh flex-col bg-ink font-sans text-paper">
+    <div className="relative flex min-h-screen min-h-dvh flex-col bg-ink font-sans text-paper">
       {!booted && (
         <BootScreen
           done={() => {
@@ -67,7 +67,7 @@ export default function App() {
       <div className={`flex flex-1 flex-col transition-opacity duration-500 ${booted ? 'opacity-100' : 'opacity-0'}`}>
         <TitleBar onMenu={() => setMenuOpen((o) => !o)} />
 
-        <div className="relative flex flex-1 items-stretch pt-[calc(3.5rem+env(safe-area-inset-top))] pb-24 lg:pb-28">
+        <div className="relative flex flex-1 items-stretch pt-14 pt-[calc(3.5rem+env(safe-area-inset-top))] pb-24 pb-[calc(6rem+env(safe-area-inset-bottom))] lg:pb-28">
           <aside className="hidden w-64 shrink-0 border-r border-paper/10 bg-ink/50 backdrop-blur-xl lg:block">
             <div className="sticky top-14 flex h-[calc(100vh-12.5rem)] flex-col overflow-hidden">
               <FileExplorer />

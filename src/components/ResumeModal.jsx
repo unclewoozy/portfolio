@@ -26,7 +26,7 @@ export default function ResumeModal({ open, onClose }) {
       onClick={onClose}
     >
       <div
-        className="glass-deep sheen relative flex h-[96dvh] w-full max-w-4xl flex-col overflow-hidden rounded-[32px]"
+        className="glass-deep sheen relative flex h-[96vh] h-[96dvh] w-full max-w-4xl flex-col overflow-hidden rounded-[32px]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex shrink-0 items-center justify-between border-b border-paper/15 px-4 py-3">
@@ -34,6 +34,15 @@ export default function ResumeModal({ open, onClose }) {
             <span className="text-accent">~/resume</span> / sigmund_godfrey_resume.pdf
           </p>
           <div className="flex shrink-0 items-center gap-2">
+            <a
+              href={PROFILE.resumeView}
+              target="_blank"
+              rel="noreferrer"
+              className="glass-chip hidden items-center gap-2 rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:bg-accent hover:text-ink sm:inline-flex"
+              aria-label="Open resume in new tab"
+            >
+              <span className="text-accent">↗</span> view
+            </a>
             <a
               href={PROFILE.resumeDownload}
               className="glass-chip inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:bg-accent hover:text-ink"

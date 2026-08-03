@@ -91,7 +91,7 @@ function ProjectsModal({ project, onClose }) {
     >
       <div className="absolute inset-0 bg-ink/70 backdrop-blur-sm" aria-hidden="true" />
       <div
-        className="glass-deep window-in relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-3xl"
+        className="glass-deep window-in relative max-h-[90vh] max-h-[90dvh] w-full max-w-4xl overflow-y-auto rounded-3xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="sticky top-0 z-10 flex items-center justify-between border-b border-paper/15 bg-ink/70 px-5 py-3 backdrop-blur-md">

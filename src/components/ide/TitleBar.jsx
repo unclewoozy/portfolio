@@ -14,7 +14,7 @@ export default function TitleBar({ onMenu }) {
   }, [])
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-2 pt-[max(0.5rem,env(safe-area-inset-top))] sm:px-3">
+    <header className="fixed top-0 left-0 right-0 z-50 px-2 pt-2 pt-[max(0.5rem,env(safe-area-inset-top))] sm:px-3">
       <div className="glass mx-auto flex h-11 max-w-[1440px] items-center justify-between rounded-xl px-3 sm:px-4">
         <div className="flex items-center gap-4">
           <div className="flex gap-1.5">

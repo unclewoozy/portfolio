@@ -14,3 +14,6 @@ node_modules/
 dist/
 .vite/
 .vercel/
+
+.vercel
+.env*
