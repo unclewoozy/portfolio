@@ -248,6 +248,15 @@ body {
     background-color: rgba(255, 255, 255, calc(0.08 * var(--glass-opacity, 1)));
   }
 }
+
+/* iOS Safari: backdrop-filter inside fixed overlays delays/loses taps on children.
+   Modals sit on a near-opaque dark overlay, so the blur is invisible — drop it. */
+[role='dialog'] .glass-deep,
+[role='dialog'] .glass-chip,
+[role='dialog'] .glass {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
 .glass-hover:hover {
   background: linear-gradient(
     150deg,
