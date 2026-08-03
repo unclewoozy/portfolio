@@ -22,7 +22,9 @@ import useParallax from './hooks/useParallax'
 
 export default function App() {
   useParallax()
+  const [isDesktop] = useState(() => window.matchMedia('(min-width: 768px)').matches)
   const [booted, setBooted] = useState(() => {
+    if (!isDesktop) return true
     try {
       return sessionStorage.getItem('portfolio-booted') === '1'
     } catch {
