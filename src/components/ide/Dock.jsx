@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import useScrollSpy from '../../hooks/useScrollSpy'
 import { FILE_ICONS } from './explorer-data'
 
@@ -14,6 +14,26 @@ const DOCK_ITEMS = [
 export default function Dock() {
   const ids = useMemo(() => DOCK_ITEMS.map((item) => item.id), [])
   const active = useScrollSpy(ids)
+  const [hidden, setHidden] = useState(false)
+
+  useEffect(() => {
+    let lastY = window.scrollY
+    let ticking = false
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        const y = window.scrollY
+        const delta = y - lastY
+        if (delta > 4 && y > 120) setHidden(true)
+        else if (delta < -4 || y <= 120) setHidden(false)
+        lastY = y
+        ticking = false
+      })
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const go = (id) => (e) => {
     e.preventDefault()
@@ -21,7 +41,11 @@ export default function Dock() {
   }
 
   return (
-    <div className="fixed bottom-3 left-0 right-0 z-50 flex justify-center px-4 pb-2 pb-[env(safe-area-inset-bottom)] lg:bottom-11">
+    <div
+      className={`fixed bottom-3 left-0 right-0 z-50 flex justify-center px-4 pb-2 pb-[env(safe-area-inset-bottom)] lg:bottom-11 transition-transform duration-500 ${
+        hidden ? 'pointer-events-none translate-y-[calc(100%+3rem)]' : 'translate-y-0'
+      }`}
+    >
       <nav
         className="glass flex items-end gap-1 rounded-2xl px-2.5 py-2 sm:gap-1.5"
         aria-label="Desktop dock"
