@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { ChevronDown, ChevronRight } from 'lucide-react'
 import { FILES } from './explorer-data'
 import useScrollSpy from '../../hooks/useScrollSpy'
 
@@ -36,8 +37,16 @@ export default function FileExplorer({ onNavigate }) {
                     onClick={() => setOpenDirs((d) => ({ ...d, [file.id]: !d[file.id] }))}
                     className="flex w-full items-center gap-2 rounded-lg px-2 py-1.5 font-mono text-[12px] text-fog transition-colors hover:bg-white/5 hover:text-paper"
                   >
-                    <span className="text-[9px]">{openDirs[file.id] ? '▾' : '▸'}</span>
-                    <span className="text-accent">{file.icon}</span>
+                    <span className="text-accent">
+                      {openDirs[file.id] ? (
+                        <ChevronDown className="h-3 w-3" strokeWidth={2} />
+                      ) : (
+                        <ChevronRight className="h-3 w-3" strokeWidth={2} />
+                      )}
+                    </span>
+                    <span className="text-accent">
+                      {file.icon && <file.icon className="h-3.5 w-3.5" strokeWidth={1.75} />}
+                    </span>
                     {file.name}
                   </button>
                   {openDirs[file.id] && (
@@ -70,7 +79,9 @@ export default function FileExplorer({ onNavigate }) {
                       : 'text-fog hover:bg-white/5 hover:text-paper'
                   }`}
                 >
-                  <span className="text-accent">{file.icon}</span>
+                  <span className="text-accent">
+                    {file.icon && <file.icon className="h-3.5 w-3.5" strokeWidth={1.75} />}
+                  </span>
                   {file.name}
                   {active === file.id && (
                     <span className="ml-auto h-1.5 w-1.5 rounded-full bg-accent animate-pulse-dot" aria-hidden="true" />
