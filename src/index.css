@@ -482,23 +482,11 @@ input[type='range']:focus-visible ~ .glass-thumb {
 /* ---------- Mobile performance ---------- */
 
 @media (max-width: 767px) {
-  /* lighter blur: keeps the glass look without GPU-heavy 40-50px filters */
-  .glass,
-  .glass-deep,
-  .glass-chip {
-    backdrop-filter: blur(14px) saturate(1.4) brightness(1.05);
-    -webkit-backdrop-filter: blur(14px) saturate(1.4) brightness(1.05);
-  }
   /* stop the large blurred gradient blobs from animating on phones */
   .animate-blob {
     animation: none;
   }
-  /* reduce parallax/glass pseudo-layer cost */
-  .sheen::before,
-  .glass::after {
-    opacity: 0.4;
-  }
-  /* smaller tap targets stay usable, hover lift feels sticky — scale it down */
+  /* hover lift feels sticky on touch — disable it */
   .glass-hover:hover {
     transform: none;
   }
