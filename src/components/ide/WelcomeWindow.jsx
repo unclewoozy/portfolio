@@ -53,9 +53,7 @@ function PhotoCard() {
         className="group relative select-none"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        onTouchStart={() => setHovered(true)}
-        onTouchEnd={() => setHovered(false)}
-        onTouchCancel={() => setHovered(false)}
+        onClick={() => setHovered((h) => !h)}
       >
         <div className="relative overflow-hidden">
           <img
@@ -65,7 +63,11 @@ function PhotoCard() {
             className="aspect-[4/5] w-full object-cover object-top grayscale transition-all duration-700 group-hover:scale-[1.03] group-hover:grayscale-0"
             loading="eager"
           />
-          <div className="absolute inset-0 z-10 flex flex-col justify-end gap-1 bg-ink/75 p-4 font-mono text-[11px] leading-relaxed opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100 md:text-xs">
+          <div
+            className={`absolute inset-0 z-10 flex flex-col justify-end gap-1 bg-ink/75 p-4 font-mono text-[11px] leading-relaxed backdrop-blur-[2px] transition-opacity duration-300 md:text-xs ${
+              hovered ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
             {typed.map((line, i) => (
               <p key={i} className={i === last ? 'text-paper' : 'text-paper/70'}>
                 {line}

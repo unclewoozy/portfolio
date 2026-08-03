@@ -71,7 +71,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: calc(5.5rem + env(safe-area-inset-top));
 }
 
 body {
@@ -461,5 +461,30 @@ input[type='range']:focus-visible ~ .glass-thumb {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Mobile performance ---------- */
+
+@media (max-width: 767px) {
+  /* lighter blur: keeps the glass look without GPU-heavy 40-50px filters */
+  .glass,
+  .glass-deep,
+  .glass-chip {
+    backdrop-filter: blur(14px) saturate(1.4) brightness(1.05);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4) brightness(1.05);
+  }
+  /* stop the large blurred gradient blobs from animating on phones */
+  .animate-blob {
+    animation: none;
+  }
+  /* reduce parallax/glass pseudo-layer cost */
+  .sheen::before,
+  .glass::after {
+    opacity: 0.4;
+  }
+  /* smaller tap targets stay usable, hover lift feels sticky — scale it down */
+  .glass-hover:hover {
+    transform: none;
   }
 }

@@ -54,10 +54,12 @@ const JUMP = {
 export default function Terminal() {
   const [lines, setLines] = useState([{ t: 'banner', text: BANNER }])
   const [input, setInput] = useState('')
+  const scrollRef = useRef(null)
   const endRef = useRef(null)
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ block: 'nearest' })
+    const el = scrollRef.current
+    if (el) el.scrollTop = el.scrollHeight
   }, [lines])
 
   const run = (raw) => {
@@ -115,7 +117,7 @@ export default function Terminal() {
         <p className="font-mono text-[10px] text-fog/70">zsh — /bin/sh</p>
       </div>
 
-      <div className="h-64 overflow-y-auto p-4 font-mono text-[12px] leading-relaxed md:text-[13px]" aria-live="polite">
+      <div ref={scrollRef} className="h-64 overflow-y-auto p-4 font-mono text-[12px] leading-relaxed md:text-[13px]" aria-live="polite">
         {lines.map((l, i) => (
           <p
             key={i}

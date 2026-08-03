@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { CONTACT, PROFILE } from '../../data/site'
+import { CONTACT } from '../../data/site'
 import IdeWindow from './IdeWindow'
 
 const CONNECTION = ['establishing secure channel...', 'handshake verified ✓', 'connection established — say hi']
@@ -7,7 +7,7 @@ const CONNECTION = ['establishing secure channel...', 'handshake verified ✓', 
 export default function ContactWindow() {
   const [line, setLine] = useState(0)
   const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState('idle')
 
   useEffect(() => {
     if (line >= CONNECTION.length) return
@@ -15,12 +15,30 @@ export default function ContactWindow() {
     return () => clearTimeout(t)
   }, [line])
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
-    const subject = encodeURIComponent(`Portfolio inquiry from ${form.name || 'visitor'}`)
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`)
-    window.location.href = `mailto:${PROFILE.email}?subject=${subject}&body=${body}`
-    setSent(true)
+    setStatus('sending')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          subject: `Portfolio inquiry from ${form.name || 'visitor'}`,
+          message: form.message,
+          website: '',
+        }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (res.ok) {
+        setStatus('sent')
+      } else {
+        setStatus('error')
+      }
+    } catch (err) {
+      setStatus('error')
+    }
   }
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }))
@@ -74,7 +92,15 @@ export default function ContactWindow() {
             <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-fog">
               <span className="text-accent">~/dev</span> transmit-message
             </p>
-            <p className="font-mono text-[10px] text-fog/70">{sent ? 'message queued' : 'secure channel'}</p>
+            <p className="font-mono text-[10px] text-fog/70">
+              {status === 'sent'
+                ? 'message sent ✓'
+                : status === 'sending'
+                  ? 'transmitting...'
+                  : status === 'error'
+                    ? 'transmission failed'
+                    : 'secure channel'}
+            </p>
           </div>
 
           <form onSubmit={onSubmit} className="space-y-4 p-5">
@@ -124,13 +150,22 @@ export default function ContactWindow() {
             <div className="flex flex-wrap items-center gap-3">
               <button
                 type="submit"
-                className="group inline-flex items-center gap-3 rounded-xl border-2 border-accent bg-accent px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-ink transition-all hover:bg-transparent hover:text-accent"
+                disabled={status === 'sending'}
+                className="group inline-flex items-center gap-3 rounded-xl border-2 border-accent bg-accent px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-ink transition-all hover:bg-transparent hover:text-accent disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {sent ? 'Message queued ✓' : 'Send Message'}
+                {status === 'sent'
+                  ? 'Message sent ✓'
+                  : status === 'sending'
+                    ? 'Sending...'
+                    : 'Send Message'}
                 <span className="transition-transform group-hover:translate-x-0.5" aria-hidden="true">→</span>
               </button>
               <p className="font-mono text-[10px] text-fog/60">
-                opens your mail client — responses within 24h
+                {status === 'error'
+                  ? 'could not reach server — try again or email me directly'
+                  : status === 'sent'
+                    ? 'delivered — responses within 24h'
+                    : 'encrypted & delivered via email — responses within 24h'}
               </p>
             </div>
           </form>

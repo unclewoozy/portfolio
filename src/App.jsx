@@ -22,7 +22,13 @@ import useParallax from './hooks/useParallax'
 
 export default function App() {
   useParallax()
-  const [booted, setBooted] = useState(false)
+  const [booted, setBooted] = useState(() => {
+    try {
+      return sessionStorage.getItem('portfolio-booted') === '1'
+    } catch {
+      return false
+    }
+  })
   const [resumeOpen, setResumeOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [glass, setGlass] = useState(() => {
@@ -35,9 +41,25 @@ export default function App() {
     localStorage.setItem('glassOpacity', String(glass))
   }, [glass])
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
+
   return (
-    <div className="relative flex min-h-screen flex-col bg-ink font-sans text-paper">
-      {!booted && <BootScreen done={() => setBooted(true)} />}
+    <div className="relative flex min-h-dvh flex-col bg-ink font-sans text-paper">
+      {!booted && (
+        <BootScreen
+          done={() => {
+            try {
+              sessionStorage.setItem('portfolio-booted', '1')
+            } catch {}
+            setBooted(true)
+          }}
+        />
+      )}
       <Background />
       <CursorLight />
       <Particles />
@@ -45,7 +67,7 @@ export default function App() {
       <div className={`flex flex-1 flex-col transition-opacity duration-500 ${booted ? 'opacity-100' : 'opacity-0'}`}>
         <TitleBar onMenu={() => setMenuOpen((o) => !o)} />
 
-        <div className="relative flex flex-1 items-stretch pt-14 pb-24 lg:pb-28">
+        <div className="relative flex flex-1 items-stretch pt-[calc(3.5rem+env(safe-area-inset-top))] pb-24 lg:pb-28">
           <aside className="hidden w-64 shrink-0 border-r border-paper/10 bg-ink/50 backdrop-blur-xl lg:block">
             <div className="sticky top-14 flex h-[calc(100vh-12.5rem)] flex-col overflow-hidden">
               <FileExplorer />
@@ -92,7 +114,7 @@ export default function App() {
             onClick={() => setMenuOpen(false)}
             aria-label="Close explorer"
           />
-          <div className="window-in relative h-full w-72 border-r border-paper/10 bg-ink/95 p-4">
+          <div className="window-in relative h-full w-72 border-r border-paper/10 bg-ink/95 p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-[calc(1rem+env(safe-area-inset-top))]">
             <FileExplorer onNavigate={() => setMenuOpen(false)} />
           </div>
         </div>
