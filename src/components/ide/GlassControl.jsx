@@ -33,8 +33,14 @@ export default function GlassControl({ glass, onGlass }) {
           value={glass}
           onChange={(e) => onGlass(Number(e.target.value))}
           className="absolute inset-0 h-full w-full cursor-pointer appearance-none opacity-0"
-          aria-label="Liquid glass opacity"
+          aria-label="Liquid glass intensity"
         />
+        <span className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 font-mono text-[8px] uppercase tracking-wider text-fog/60">
+          clear
+        </span>
+        <span className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 font-mono text-[8px] uppercase tracking-wider text-fog/60">
+          tinted
+        </span>
         <div
           className="pointer-events-none absolute inset-x-0 top-1/2 h-[7px] -translate-y-1/2 overflow-hidden rounded-full border border-white/15 bg-black/40 shadow-[inset_0_1px_2px_rgba(0,0,0,0.55),inset_0_-1px_0_rgba(255,255,255,0.1)]"
           aria-hidden="true"
