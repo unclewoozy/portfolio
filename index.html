@@ -1,132 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Sigmund Godfrey M. Dela Cruz - Full Stack Web Developer & IT Specialist.">
-    <title>Sigmund Godfrey M. Dela Cruz | Portfolio</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="icon" type="image/png" href="assets/images/portfolio.png">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
-</head>
-<body>
-    <div id="scroll-progress"></div>
-    <div class="studio-overlay"></div>
-    <div class="site-bg">
-        <canvas id="code-rain"></canvas>
-        <div class="bg-grid"></div>
-        <div class="bg-orb orb-1"></div>
-        <div class="bg-orb orb-2"></div>
-        <div class="bg-orb orb-3"></div>
-        <div class="scanlines"></div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="ide-header-bar">
-            <div class="ide-left">
-                <span class="ide-dot red"></span>
-                <span class="ide-dot yellow"></span>
-                <span class="ide-dot green"></span>
-            </div>
-            <p class="ide-path">studio://sigmund-dev/portfolio/home</p>
-            <div class="ide-glow-track"></div>
-        </div>
-        <div class="nav-subrow">
-<div class="subrow-rail left"></div>
-            <div class="logo-wrap">
-                <div class="logo-dot"></div>
-                <span class="portfolio-title">PORTFOLIO</span>
-            </div>
-<ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="experience.html">Experience</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="skills.html">Skills</a></li>
-                <li><a href="certifications.html">Certifications</a></li>
-                <li><a href="contact.html" class="btn-primary">Contact Me</a></li>
-                <li><button id="theme-toggle" class="theme-btn" aria-label="Toggle dark/light mode"><i class="fas fa-sun"></i></button></li>
-            </ul>
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
-            <div class="subrow-rail right"></div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="hero reveal" id="home">
-        <div class="hero-image-placeholder reveal">
-            <img src="assets/images/profile.jpg" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
-        </div>
-        <div class="hero-content">
-            <div class="hero-status-row">
-                <span class="status-pill"><i class="fas fa-circle"></i> SYSTEM ONLINE</span>
-                <span class="status-pill"><i class="fas fa-code-branch"></i> BRANCH: main</span>
-                <span class="status-pill"><i class="fas fa-microchip"></i> MODE: BUILD</span>
-            </div>
-            <h1>Hi, I'm <span class="highlight">Sigmund Godfrey M. Dela Cruz</span></h1>
-            <h2 class="typing-target" data-text="Information Technology Specialist &amp; Full Stack Web Developer">Information Technology Specialist & Full Stack Web Developer</h2>
-            <p class="hero-description">I am a dedicated developer and lifelong learner focused on building dynamic, user centered web applications. I specialize in full-stack development, with a strong interest in designing scalable systems and efficient database solutions. <br> <br>  I actively embrace AI as a collaborative tool to enhance the development process improving productivity, code quality, and creative problem-solving in modern software development.</p>
-            <div class="hero-buttons">
-                <button type="button" class="btn-primary magnetic-btn" onclick="window.location.href='projects.html'">View My Work</button>
-                <button type="button" class="btn-secondary magnetic-btn" onclick="window.location.href='contact.html'">Get In Touch</button>
-                <button type="button" class="btn-tertiary magnetic-btn" id="download-resume">Download Resume</button>
-                <button type="button" class="btn-tertiary magnetic-btn" id="view-resume">View Resume</button>
-            </div>
-            <div class="dev-metrics">
-                <div class="metric-box">
-                    <span class="metric-label">Builds</span>
-                    <span class="metric-value">Web Apps & Databases</span>
-                </div>
-                <div class="metric-box">
-                    <span class="metric-label">Interest</span>
-                    <span class="metric-value">AI + Scalable Systems</span>
-                </div>
-                <div class="metric-box">
-                    <span class="metric-label">Status</span>
-                    <span class="metric-value">Available</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <footer class="site-footer">
-        <div class="site-footer-inner">
-            <p class="site-footer-brand"><span class="site-footer-dot"></span>PORTFOLIO</p>
-        </div>
-        <p class="site-footer-copy">&copy; 2026 Sigmund Godfrey M. Dela Cruz. All rights reserved.</p>
-    </footer>
-
-    <!-- Resume Modal -->
-    <div id="resume-modal" class="resume-modal">
-        <div class="resume-modal-content">
-            <div class="resume-studio-bar">
-                <div class="resume-studio-left">
-                    <span class="ide-dot red close-resume" role="button" aria-label="Close resume viewer" tabindex="0"></span>
-                    <p class="resume-studio-path">viewer://sigmund-dev/resume.pdf</p>
-                </div>
-            </div>
-
-            <div id="resume-meta" class="resume-meta">Initializing PDF engine...</div>
-
-            <div id="resume-viewer-shell" class="resume-viewer-shell">
-                <div id="resume-loading" class="resume-loading" style="display: none;">
-                    <p>Parsing resume through pypdf...</p>
-                </div>
-                <div id="resume-viewer" class="resume-viewer"></div>
-                <div id="resume-error" class="resume-error" style="display: none;">
-                    <p>Unable to load resume preview right now.</p>
-                    <p>Please retry in a few seconds.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="assets/js/script.js"></script>
-</body>
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/assets/images/portfolio.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Sigmund Godfrey M. Dela Cruz — Full Stack Web Developer & IT Specialist. Building dynamic web applications, scalable systems, and AI-assisted development solutions."
+    />
+    <meta name="theme-color" content="#05060a" />
+    <meta property="og:title" content="Sigmund Godfrey M. Dela Cruz | Portfolio" />
+    <meta
+      property="og:description"
+      content="Full Stack Web Developer & IT Specialist — web applications, databases, and AI-assisted development."
+    />
+    <meta property="og:image" content="/assets/images/portfolio.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+    <title>Sigmund Godfrey M. Dela Cruz | Full Stack Web Developer</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

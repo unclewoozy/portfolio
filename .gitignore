@@ -11,3 +11,6 @@ pip-delete-this-directory.txt
 .DS_Store
 .env
 node_modules/
+dist/
+.vite/
+.vercel/
