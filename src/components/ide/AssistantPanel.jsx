@@ -1,12 +1,13 @@
-import { ArrowUpRight, Compass } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { Compass, Command } from 'lucide-react'
 import { PROFILE, SKILLS } from '../../data/site'
 
-const QUICK = [
-  { id: 'about', label: 'about.me', icon: '◈' },
-  { id: 'skills', label: 'skills.json', icon: '{}' },
-  { id: 'projects', label: 'projects/', icon: '▣' },
-  { id: 'experience', label: 'experience/', icon: '▤' },
-  { id: 'contact', label: 'contact/', icon: '✉' },
+const COMMANDS = [
+  { id: 'about', label: 'open about.me', keys: ['g', 'a'] },
+  { id: 'skills', label: 'open skills.json', keys: ['g', 's'] },
+  { id: 'projects', label: 'open projects/', keys: ['g', 'p'] },
+  { id: 'experience', label: 'open experience/', keys: ['g', 'e'] },
+  { id: 'contact', label: 'open contact/', keys: ['g', 'c'] },
 ]
 
 export default function AssistantPanel({ onViewResume }) {
@@ -15,6 +16,22 @@ export default function AssistantPanel({ onViewResume }) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    const update = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      setProgress(max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0)
+    }
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
+  }, [])
+
   return (
     <div className="flex h-full flex-col overflow-hidden" aria-label="Navigator panel">
       <div className="flex items-center justify-between border-b border-paper/15 px-4 py-2.5">
@@ -22,9 +39,9 @@ export default function AssistantPanel({ onViewResume }) {
           <Compass className="h-3.5 w-3.5 text-accent" strokeWidth={2} />
           <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper">navigator</p>
         </div>
-        <span className="flex items-center gap-1.5 font-mono text-[10px] text-accent">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse-dot" aria-hidden="true" />
-          online
+        <span className="flex items-center gap-1 rounded-md border border-paper/15 bg-white/5 px-1.5 py-0.5 font-mono text-[9px] text-fog">
+          <Command className="h-2.5 w-2.5" strokeWidth={2.5} />
+          K
         </span>
       </div>
 
@@ -65,7 +82,11 @@ export default function AssistantPanel({ onViewResume }) {
             open to work.
           </p>
           <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-full origin-left rounded-full bg-gradient-to-r from-accent via-accent to-lime animate-progress" aria-hidden="true" />
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-accent via-accent to-lime transition-[width] duration-150 ease-out"
+              style={{ width: `${progress}%` }}
+              aria-hidden="true"
+            />
           </div>
         </div>
 
@@ -81,24 +102,29 @@ export default function AssistantPanel({ onViewResume }) {
         </div>
 
         <div className="mt-5">
-          <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">// quick open</p>
+          <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">// goto</p>
           <nav className="mt-2 space-y-1">
-            {QUICK.map((q) => (
+            {COMMANDS.map((c) => (
               <a
-                key={q.id}
-                href={`#${q.id}`}
-                onClick={go(q.id)}
-                className="group flex items-center gap-2.5 rounded-lg px-2.5 py-1.5 font-mono text-[11px] text-fog transition-colors hover:bg-white/5 hover:text-paper"
+                key={c.id}
+                href={`#${c.id}`}
+                onClick={go(c.id)}
+                className="group flex items-center gap-2.5 rounded-lg border border-transparent px-2.5 py-1.5 font-mono text-[11px] text-fog transition-colors hover:border-white/10 hover:bg-white/5 hover:text-paper"
               >
-                <span className="w-5 text-center text-xs text-accent/60 group-hover:text-accent" aria-hidden="true">
-                  {q.icon}
+                <span className="text-accent/60 transition-colors group-hover:text-accent" aria-hidden="true">
+                  ❯
                 </span>
-                <span className="truncate">~/portfolio/{q.label}</span>
-                <ArrowUpRight
-                  className="ml-auto h-3.5 w-3.5 shrink-0 text-fog/40 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
-                  strokeWidth={2}
-                  aria-hidden="true"
-                />
+                <span className="truncate">{c.label}</span>
+                <span className="ml-auto flex shrink-0 items-center gap-1">
+                  {c.keys.map((k) => (
+                    <kbd
+                      key={k}
+                      className="rounded border border-paper/15 bg-white/5 px-1 py-px font-mono text-[9px] text-fog/70 group-hover:text-fog"
+                    >
+                      {k}
+                    </kbd>
+                  ))}
+                </span>
               </a>
             ))}
           </nav>
@@ -111,6 +137,11 @@ export default function AssistantPanel({ onViewResume }) {
         >
           Open resume.pdf
         </button>
+      </div>
+
+      <div className="flex items-center justify-between border-t border-paper/15 px-4 py-2">
+        <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-fog/70">cmd palette</p>
+        <p className="font-mono text-[9px] text-fog/50">{COMMANDS.length} cmds</p>
       </div>
     </div>
   )

@@ -8,6 +8,12 @@ const BLOBS = [
   { depth: 86, className: 'absolute left-1/3 top-1/2 h-[520px] w-[520px] rounded-full bg-[#7a5cff]/30 blur-[120px] animate-blob', style: { animationDuration: '42s', animationDelay: '-15s' } },
 ]
 
+const LIQUID = [
+  { depth: 26, className: 'liquid-orb liquid-orb-cyan absolute -right-40 -top-32 h-[640px] w-[640px] animate-blob', style: { animationDuration: '30s' } },
+  { depth: 44, className: 'liquid-orb liquid-orb-violet absolute -bottom-56 -left-40 h-[720px] w-[720px] animate-blob', style: { animationDuration: '36s', animationDelay: '-12s' } },
+  { depth: 62, className: 'liquid-orb liquid-orb-blue absolute left-1/4 top-1/3 h-[560px] w-[560px] animate-blob', style: { animationDuration: '40s', animationDelay: '-22s' } },
+]
+
 export default function Background() {
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
@@ -59,6 +65,15 @@ export default function Background() {
           <div className={blob.className} style={blob.style} />
         </div>
       ))}
+
+      {LIQUID.map((orb, i) => (
+        <div key={`liquid-${i}`} data-depth={orb.depth} className="will-change-transform" style={{ position: 'absolute', inset: 0 }}>
+          <div className={orb.className} style={orb.style} />
+        </div>
+      ))}
+
+      <div className="liquid-sheen" />
+      <div className="specular-sweep" />
 
       <div className="bg-grid absolute inset-0 opacity-80" />
       <div className="absolute inset-0 bg-[conic-gradient(from_210deg_at_50%_45%,transparent_0deg,rgba(10,132,255,0.05)_60deg,transparent_140deg,rgba(122,92,255,0.05)_220deg,transparent_300deg)]" />
