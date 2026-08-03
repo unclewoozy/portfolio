@@ -66,12 +66,25 @@ function CardBody({ cert, i, viewable = false }) {
         {cert.issuer} · {cert.date}
       </p>
 
-      {viewable && (
-        <span className="mt-4 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
-          view certificate
-          <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
-        </span>
-      )}
+      <div className="mt-4 flex items-center gap-4">
+        {cert.verify && (
+          <a
+            href={cert.verify}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-accent transition-colors hover:text-paper"
+          >
+            verify credential
+            <span aria-hidden="true">↗</span>
+          </a>
+        )}
+        {viewable && (
+          <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
+            view certificate
+            <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
+          </span>
+        )}
+      </div>
     </>
   )
 }
