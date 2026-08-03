@@ -19,9 +19,11 @@ import ExperienceWindow from './components/ide/ExperienceWindow'
 import CertificationsWindow from './components/ide/CertificationsWindow'
 import ContactWindow from './components/ide/ContactWindow'
 import useParallax from './hooks/useParallax'
+import useDeviceTilt from './hooks/useDeviceTilt'
 
 export default function App() {
   useParallax()
+  useDeviceTilt()
   const [isDesktop] = useState(() => window.matchMedia('(min-width: 768px)').matches)
   const [booted, setBooted] = useState(() => {
     if (!isDesktop) return true
