@@ -1,36 +1,37 @@
 const NODES = [
   { id: 'hub', x: 280, y: 56, label: 'portfolio.dev', accent: true, r: 30 },
-  { id: 'nextjs', x: 440, y: 56, label: 'Next.js', r: 11 },
-  { id: 'frontend', x: 120, y: 150, label: 'Frontend', r: 12 },
-  { id: 'react', x: 280, y: 150, label: 'React', r: 12 },
-  { id: 'backend', x: 440, y: 150, label: 'Backend', r: 12 },
-  { id: 'javascript', x: 120, y: 250, label: 'JavaScript', r: 11 },
-  { id: 'database', x: 280, y: 250, label: 'Database', r: 12 },
-  { id: 'node', x: 440, y: 250, label: 'Node.js', r: 11 },
-  { id: 'ai', x: 120, y: 350, label: 'AI Workflows', r: 11 },
-  { id: 'mysql', x: 280, y: 350, label: 'MySQL', r: 11 },
-  { id: 'python', x: 440, y: 350, label: 'Python', r: 11 },
+  { id: 'frontend', x: 120, y: 148, label: 'Frontend', r: 12 },
+  { id: 'backend', x: 280, y: 148, label: 'Backend', r: 12 },
+  { id: 'database', x: 440, y: 148, label: 'Database', r: 12 },
+  { id: 'javascript', x: 120, y: 246, label: 'JavaScript', r: 11 },
+  { id: 'python', x: 280, y: 246, label: 'Python', r: 11 },
+  { id: 'sql', x: 440, y: 246, label: 'SQL', r: 11 },
+  { id: 'tailwind', x: 120, y: 344, label: 'Tailwind CSS', r: 11 },
+  { id: 'django', x: 280, y: 344, label: 'Django', r: 11 },
+  { id: 'mysql', x: 440, y: 344, label: 'MySQL', r: 11 },
+  { id: 'flask', x: 120, y: 442, label: 'Flask', r: 11 },
+  { id: 'php', x: 280, y: 442, label: 'PHP', r: 11 },
+  { id: 'sqlite', x: 440, y: 442, label: 'SQLite', r: 11 },
 ]
 
 const EDGES = [
   ['hub', 'frontend'],
-  ['hub', 'react'],
   ['hub', 'backend'],
-  ['hub', 'nextjs'],
-  ['frontend', 'react'],
+  ['hub', 'database'],
   ['frontend', 'javascript'],
-  ['react', 'nextjs'],
-  ['react', 'database'],
-  ['backend', 'react'],
-  ['backend', 'nextjs'],
-  ['backend', 'node'],
-  ['node', 'database'],
+  ['frontend', 'tailwind'],
+  ['backend', 'python'],
+  ['backend', 'django'],
+  ['backend', 'flask'],
+  ['backend', 'php'],
+  ['database', 'sql'],
   ['database', 'mysql'],
-  ['ai', 'frontend'],
-  ['ai', 'backend'],
-  ['python', 'backend'],
-  ['node', 'python'],
-  ['mysql', 'python'],
+  ['database', 'sqlite'],
+  ['python', 'django'],
+  ['python', 'flask'],
+  ['django', 'mysql'],
+  ['flask', 'sqlite'],
+  ['php', 'mysql'],
 ]
 
 const pos = Object.fromEntries(NODES.map((n) => [n.id, n]))
@@ -44,7 +45,7 @@ export default function SkillNetwork() {
         </p>
         <p className="font-mono text-[10px] text-fog/70">graph view</p>
       </div>
-      <svg viewBox="0 0 560 420" className="h-auto w-full" role="img" aria-label="Skill network graph">
+      <svg viewBox="0 0 560 520" className="h-auto w-full" role="img" aria-label="Skill network graph">
         <defs>
           <radialGradient id="net-glow" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="#0a84ff" stopOpacity="0.9" />
