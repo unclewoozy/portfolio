@@ -1,39 +1,17 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "npm install && pip install -r requirements.txt",
   "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "framework": "vite",
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/((?!assets/|projects/|documents/).*)",
-      "destination": "/index.html"
+  "functions": {
+    "backend/config/wsgi.py": {
+      "maxDuration": 30
     }
-  ],
-  "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Credentials",
-          "value": "true"
-        },
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
-        }
-      ]
-    }
+  },
+  "routes": [
+    { "src": "/admin(/.*)?", "dest": "/backend/config/wsgi.py" },
+    { "src": "/api/.*", "dest": "/backend/config/wsgi.py" },
+    { "src": "/media/.*", "dest": "/backend/config/wsgi.py" },
+    { "src": "/health", "dest": "/backend/config/wsgi.py" },
+    { "src": "/.*", "dest": "/backend/config/wsgi.py" }
   ]
 }

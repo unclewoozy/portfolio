@@ -1,0 +1,15 @@
+[project]
+name = "sigmund-portfolio-backend"
+version = "1.0.0"
+requires-python = ">=3.12"
+dependencies = [
+    "Django>=5.2,<7.0",
+    "Pillow>=11.0",
+    "python-dotenv>=1.0",
+    "pypdf>=5.0",
+    "dj-database-url>=2.0",
+    "psycopg2-binary>=2.9",
+]
+
+[tool.vercel]
+entrypoint = "backend.config.wsgi:application"

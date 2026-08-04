@@ -1,22 +1,9 @@
-import { ABOUT } from '../../data/site'
+import { useSiteData } from '../../SiteData'
 import IdeWindow from './IdeWindow'
 
-const ROWS = [
-  {
-    title: 'Full-Stack Development',
-    desc: 'End-to-end web applications — clean front-ends, robust back-ends, shipped as complete systems.',
-  },
-  {
-    title: 'Database Design',
-    desc: 'Efficient relational schemas, normalized models, and secure, well-optimized query patterns.',
-  },
-  {
-    title: 'AI-Assisted Workflows',
-    desc: 'AI used as a collaborator to accelerate builds, sharpen code quality, and solve hard problems.',
-  },
-]
-
 export default function AboutWindow() {
+  const { ABOUT } = useSiteData()
+  const ROWS = ABOUT.whatIDo
   return (
     <IdeWindow id="about" title="about.me" path="~/portfolio/about.me">
       <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">

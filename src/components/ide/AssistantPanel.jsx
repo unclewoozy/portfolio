@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Compass, Command } from 'lucide-react'
-import { PROFILE, SKILLS } from '../../data/site'
+import { useSiteData } from '../../SiteData'
 
 const COMMANDS = [
   { id: 'about', label: 'open about.me', keys: ['g', 'a'] },
@@ -11,6 +11,7 @@ const COMMANDS = [
 ]
 
 export default function AssistantPanel({ onViewResume }) {
+  const { PROFILE, SKILLS } = useSiteData()
   const go = (id) => (e) => {
     e.preventDefault()
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })

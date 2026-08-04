@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
-import { PROFILE } from '../data/site'
+import { useSiteData } from '../SiteData'
 
 export default function ResumeModal({ open, onClose }) {
+  const { PROFILE } = useSiteData()
   useEffect(() => {
     if (!open) return
     document.body.style.overflow = 'hidden'

@@ -17,3 +17,13 @@ dist/
 
 .vercel
 .env*
+
+# Django backend
+backend/venv/
+backend/db.sqlite3
+
+# backend/media is committed so Vercel can serve the seeded images.
+
+# Neon integration agent skills (installed by Vercel, not project code)
+.agents/
+skills-lock.json

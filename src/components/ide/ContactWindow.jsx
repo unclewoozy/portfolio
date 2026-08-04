@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import { CONTACT } from '../../data/site'
+import { useSiteData } from '../../SiteData'
 import IdeWindow from './IdeWindow'
 
 const CONNECTION = ['establishing secure channel...', 'handshake verified ✓', 'connection established — say hi']
 
 export default function ContactWindow() {
+  const { CONTACT } = useSiteData()
   const [line, setLine] = useState(0)
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState('idle')

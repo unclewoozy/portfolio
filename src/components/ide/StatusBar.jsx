@@ -1,7 +1,8 @@
 import { GitBranch, Network } from 'lucide-react'
-import { PROFILE } from '../../data/site'
+import { useSiteData } from '../../SiteData'
 
 export default function StatusBar() {
+  const { PROFILE } = useSiteData()
   const year = new Date().getFullYear()
 
   return (

@@ -1,8 +1,9 @@
-import { SKILLS } from '../../data/site'
+import { useSiteData } from '../../SiteData'
 import IdeWindow from './IdeWindow'
 import SkillNetwork from './SkillNetwork'
 
 export default function SkillsWindow() {
+  const { SKILLS } = useSiteData()
   return (
     <IdeWindow id="skills" title="skills.json" path="~/portfolio/skills.json">
       <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">

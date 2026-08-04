@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ABOUT, PROFILE } from '../../data/site'
+import { useSiteData } from '../../SiteData'
 import IdeWindow from './IdeWindow'
 import GlassControl from './GlassControl'
 
@@ -33,7 +33,7 @@ function useTypingLines(lines, active) {
   return typed
 }
 
-function PhotoCard() {
+function PhotoCard({ photo }) {
   const [hovered, setHovered] = useState(false)
   const typed = useTypingLines(TYPED_LINES, hovered)
   const last = typed.length - 1
@@ -68,7 +68,7 @@ function PhotoCard() {
       >
         <div className="relative overflow-hidden">
           <img
-            src={PROFILE.photo}
+            src={photo}
             alt="Portrait of Sigmund Godfrey M. Dela Cruz"
             draggable={false}
             className="aspect-[4/5] w-full object-cover object-top transition-all duration-700 group-hover:scale-[1.03]"
@@ -107,6 +107,7 @@ function PhotoCard() {
 }
 
 export default function WelcomeWindow({ onViewResume, glass, onGlass }) {
+  const { ABOUT, PROFILE } = useSiteData()
   const go = (id) => (e) => {
     e.preventDefault()
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -203,7 +204,7 @@ export default function WelcomeWindow({ onViewResume, glass, onGlass }) {
               className="hero-orb pointer-events-none absolute -inset-8 rounded-full opacity-50"
               aria-hidden="true"
             />
-            <PhotoCard />
+            <PhotoCard photo={PROFILE.photo} />
           </div>
           <GlassControl glass={glass} onGlass={onGlass} />
         </div>

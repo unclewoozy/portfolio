@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { CERTIFICATIONS } from '../../data/site'
+import { useSiteData } from '../../SiteData'
 import IdeWindow from './IdeWindow'
 
 export default function CertificationsWindow() {
+  const { CERTIFICATIONS } = useSiteData()
   const [open, setOpen] = useState(null)
 
   return (
