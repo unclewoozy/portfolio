@@ -46,6 +46,7 @@ export const MARQUEE_ITEMS = [
   'PHP',
   'SQL',
   'Flask',
+  'Django',
   'Flask-SQLAlchemy',
   'Tailwind CSS',
   'Pandas',
@@ -254,6 +255,7 @@ export const SKILLS = {
     { icon: 'devicon-php-plain colored', name: 'PHP' },
     { icon: 'fas fa-database', name: 'SQL' },
     { icon: 'devicon-flask-original', name: 'Flask' },
+    { icon: 'devicon-django-plain colored', name: 'Django' },
     { icon: 'devicon-mysql-original colored', name: 'MySQL' },
     { icon: 'devicon-tailwindcss-original colored', name: 'Tailwind CSS' },
     { icon: 'devicon-react-original colored', name: 'ReactJS' },
@@ -270,7 +272,7 @@ export const SKILLS = {
     {
       icon: 'fa-cubes',
       title: 'Frameworks & Libraries',
-      tags: ['ReactJS', 'Next.js', 'Node.js', 'Flask', 'Flask-SQLAlchemy', 'Tailwind CSS', 'Pandas', 'Android SDK'],
+      tags: ['ReactJS', 'Next.js', 'Node.js', 'Flask', 'Django', 'Flask-SQLAlchemy', 'Tailwind CSS', 'Pandas', 'Android SDK'],
     },
     {
       icon: 'fa-database',
