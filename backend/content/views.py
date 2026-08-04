@@ -7,6 +7,7 @@ from django.conf import settings
 from django.http import JsonResponse, FileResponse
 from django.views.decorators.http import require_GET, require_POST
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 from .models import (
     Profile,
@@ -194,6 +195,7 @@ def resume_download(request):
     return response
 
 
+@xframe_options_exempt
 @require_GET
 def resume_file(request):
     path = _resume_path()
