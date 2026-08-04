@@ -71,6 +71,8 @@ class Command(BaseCommand):
                 ['node', str(tmp_path)],
                 capture_output=True,
                 text=True,
+                encoding='utf-8',
+                errors='replace',
                 check=True,
                 cwd=str(root),
             )
@@ -139,19 +141,19 @@ class Command(BaseCommand):
         photo = self._copy_file(p.get('photo', ''), 'profile')
         obj, _ = Profile.objects.get_or_create(
             name=p['name'],
-            defaults={
-                'first_name': p.get('firstName', ''),
-                'roles': p.get('roles', []),
-                'tagline': p.get('tagline', ''),
-                'location': p.get('location', ''),
-                'email': p.get('email', ''),
-                'phone': p.get('phone', ''),
-                'linkedin': p.get('linkedin', ''),
-                'photo': photo,
-                'status_pills': p.get('statusPills', []),
-                'metrics': p.get('metrics', []),
-            },
+            defaults={'first_name': p.get('firstName', '')},
         )
+        obj.first_name = p.get('firstName', '')
+        obj.roles = p.get('roles', [])
+        obj.tagline = p.get('tagline', '')
+        obj.location = p.get('location', '')
+        obj.email = p.get('email', '')
+        obj.phone = p.get('phone', '')
+        obj.linkedin = p.get('linkedin', '')
+        obj.photo = photo
+        obj.status_pills = p.get('statusPills', [])
+        obj.metrics = p.get('metrics', [])
+        obj.save()
         self.stdout.write(f'Profile: {obj.name}')
 
     def _seed_simple(self, model, items, mapping, existing_keys=()):
