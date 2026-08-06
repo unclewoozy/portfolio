@@ -150,7 +150,7 @@ export const PROJECTS = [
     cover: '/projects/PORTIFY/1.png',
     gallery: Array.from({ length: 10 }, (_, i) => `/projects/PORTIFY/${i + 1}.png`),
     github: '',
-    demo: '',
+    demo: 'https://port-ify.vercel.app',
     tags: ['Next.js 16', 'React 19', 'TypeScript', 'Supabase', 'PostgreSQL', 'Tailwind CSS 4', 'Zod', 'Auth', 'RBAC'],
     description: [
       'Portify is a production-ready, no-code portfolio builder that lets anyone create and publish a personal site in minutes. Users sign up, pick a theme (Modern, Minimal, or Creative), and manage their content through a full dashboard CMS — profile info, projects with image uploads, skills, experience, education, and section ordering. Each user gets a live public portfolio at /portfolio/<username> with real-time view tracking, per-project analytics, a contact inbox, resume PDF export, and a preview mode to see changes before publishing. It also includes a landing page, email/password auth, an admin panel for moderation, and SEO metadata per user.',
