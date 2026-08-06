@@ -266,6 +266,7 @@ export const SKILLS = {
     { icon: 'devicon-html5-plain colored', name: 'HTML' },
     { icon: 'devicon-css3-plain colored', name: 'CSS' },
     { icon: 'devicon-javascript-plain colored', name: 'JavaScript' },
+    { icon: 'devicon-typescript-plain colored', name: 'TypeScript' },
     { icon: 'devicon-python-plain colored', name: 'Python' },
     { icon: 'devicon-java-plain colored', name: 'Java' },
     { icon: 'devicon-cplusplus-plain colored', name: 'C++' },
@@ -284,7 +285,7 @@ export const SKILLS = {
     {
       icon: 'fa-code',
       title: 'Programming Languages',
-      tags: ['HTML', 'CSS', 'JavaScript', 'Python', 'Java', 'C++', 'PHP', 'SQL'],
+      tags: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'Python', 'Java', 'C++', 'PHP', 'SQL'],
     },
     {
       icon: 'fa-cubes',
