@@ -174,7 +174,7 @@ function ProjectsModal({ project, onClose }) {
             <img
               src={project.gallery[active]}
               alt={`${project.title} screenshot ${active + 1}`}
-              className="aspect-video w-full object-cover"
+              className="max-h-[60vh] w-full bg-ink object-contain"
               loading="lazy"
               decoding="async"
             />
