@@ -55,6 +55,7 @@ export const MARQUEE_ITEMS = [
   'MSSQL',
   'Git',
   'GitHub',
+  'Vercel',
   'Android Studio',
   'Figma',
 ]
@@ -279,6 +280,7 @@ export const SKILLS = {
     { icon: 'devicon-react-original colored', name: 'ReactJS' },
     { icon: 'devicon-nextjs-original colored', name: 'Next.js' },
     { icon: 'devicon-nodejs-plain colored', name: 'Node.js' },
+    { icon: 'devicon-vercel-original colored', name: 'Vercel' },
     { icon: 'devicon-git-plain colored', name: 'Git' },
   ],
   categories: [
@@ -326,7 +328,7 @@ export const SKILLS = {
     {
       icon: 'fa-toolbox',
       title: 'Tools & Platforms',
-      tags: ['Git', 'GitHub', 'Android Studio', 'VS Code', 'NetBeans', 'XAMPP', 'Figma'],
+      tags: ['Git', 'GitHub', 'Vercel', 'Android Studio', 'VS Code', 'NetBeans', 'XAMPP', 'Figma'],
     },
     {
       icon: 'fa-laptop-code',
