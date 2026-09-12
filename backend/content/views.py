@@ -1,12 +1,8 @@
-import os
 import json
-import urllib.request
-import urllib.error
 
 from django.conf import settings
 from django.http import JsonResponse, FileResponse
-from django.views.decorators.http import require_GET, require_POST
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_GET
 from django.views.decorators.clickjacking import xframe_options_exempt
 
 from .models import (
@@ -72,6 +68,7 @@ def build_site_data():
             'description': p.description,
             'github': p.github,
             'demo': p.demo,
+            'private': p.private,
         })
 
     return {
@@ -204,86 +201,6 @@ def resume_file(request):
     response = FileResponse(open(path, 'rb'), content_type='application/pdf')
     response['Content-Disposition'] = 'inline; filename="resume.pdf"'
     return response
-
-
-@csrf_exempt
-@require_POST
-def contact_message(request):
-    try:
-        body = json.loads(request.body or b'{}')
-    except json.JSONDecodeError:
-        body = {}
-
-    def trim(value, max_length=3000):
-        return str(value or '').strip()[:max_length]
-
-    name = trim(body.get('name'), 90)
-    email = trim(body.get('email'), 120)
-    subject = trim(body.get('subject'), 140)
-    message = trim(body.get('message'), 3000)
-    website = trim(body.get('website'), 120)
-
-    if website:
-        return JsonResponse({'ok': True, 'message': 'Accepted'})
-
-    if not name or not email or not subject or not message:
-        return JsonResponse({'error': 'Missing required fields.'}, status=400)
-
-    if '@' not in email or '.' not in email.split('@')[-1]:
-        return JsonResponse({'error': 'Invalid email address.'}, status=400)
-
-    api_key = os.getenv('RESEND_API_KEY', '').strip()
-    resend_from = os.getenv('RESEND_FROM_EMAIL', '').strip()
-    resend_to = os.getenv('RESEND_TO_EMAIL', '').strip()
-
-    if not api_key or not resend_from or not resend_to:
-        return JsonResponse(
-            {'error': 'Email service is not configured. Set RESEND_API_KEY, RESEND_FROM_EMAIL, and RESEND_TO_EMAIL.'},
-            status=500,
-        )
-
-    payload = {
-        'from': f'{name} <{resend_from}>',
-        'to': [resend_to],
-        'reply_to': email,
-        'subject': f'Portfolio Contact: {subject}',
-        'text': f'Name: {name}\nEmail: {email}\nSubject: {subject}\n\nMessage:\n{message}\n',
-        'html': (
-            '<h2>New Portfolio Contact Message</h2>'
-            f'<p><strong>Name:</strong> {name}</p>'
-            f'<p><strong>Email:</strong> {email}</p>'
-            f'<p><strong>Subject:</strong> {subject}</p>'
-            '<p><strong>Message:</strong></p>'
-            f'<p>{message.replace(chr(10), "<br>")}</p>'
-        ),
-    }
-
-    req = urllib.request.Request(
-        'https://api.resend.com/emails',
-        data=json.dumps(payload).encode('utf-8'),
-        headers={
-            'Authorization': f'Bearer {api_key}',
-            'Content-Type': 'application/json',
-            'User-Agent': 'Mozilla/5.0',
-        },
-        method='POST',
-    )
-
-    try:
-        with urllib.request.urlopen(req, timeout=15) as response:
-            parsed = json.loads(response.read().decode('utf-8') or '{}')
-            if response.getcode() >= 400:
-                return JsonResponse({'error': parsed.get('message', 'Email send failed.')}, status=502)
-            return JsonResponse({'ok': True, 'id': parsed.get('id')})
-    except urllib.error.HTTPError as e:
-        try:
-            parsed = json.loads(e.read().decode('utf-8') or '{}')
-            msg = parsed.get('message') or parsed.get('error')
-        except Exception:
-            msg = None
-        return JsonResponse({'error': msg or f'Email delivery failed (Resend {e.code}).'}, status=502)
-    except urllib.error.URLError as e:
-        return JsonResponse({'error': f'Unable to reach email provider: {e.reason}'}, status=502)
 
 
 @require_GET

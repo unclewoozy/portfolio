@@ -82,10 +82,10 @@ export const ABOUT = {
     },
   ],
   stats: [
-    { value: 5, suffix: '+', label: 'Projects Built', icon: 'fa-layer-group' },
-    { value: 10, suffix: '', label: 'Certifications', icon: 'fa-award' },
-    { value: 2, suffix: '', label: 'Internships', icon: 'fa-briefcase' },
-    { value: 3, suffix: '+', label: 'Tech Domains', icon: 'fa-cubes' },
+    { value: 6, suffix: '+', label: 'Projects Built', icon: 'fa-layer-group' },
+    { value: 11, suffix: '', label: 'Certifications', icon: 'fa-award' },
+    { value: 2, suffix: '', label: 'Industry Roles', icon: 'fa-briefcase' },
+    { value: 3, suffix: '+', label: 'Years Hands-On', icon: 'fa-clock' },
   ],
   whatIDo: [
     {
@@ -165,6 +165,7 @@ export const PROJECTS = [
     shortTitle: 'Maritime Vessel Inventory System',
     date: 'April 2026',
     category: 'Enterprise Web App',
+    private: true,
     cover: '/projects/MVIS/1.jpg',
     gallery: Array.from({ length: 8 }, (_, i) => `/projects/MVIS/${i + 1}.jpg`),
     tags: ['Full-Stack', 'Inventory', 'PMS Monitoring', 'Database Design', 'Reporting'],
@@ -180,6 +181,7 @@ export const PROJECTS = [
     shortTitle: 'PRS Memo Tracking System',
     date: 'March 2026',
     category: 'Document Management',
+    private: true,
     cover: '/projects/MEMO/1.jpg',
     gallery: Array.from({ length: 4 }, (_, i) => `/projects/MEMO/${i + 1}.jpg`),
     tags: ['Full-Stack', 'Document Tracking', 'Workflow', 'Database Management'],
@@ -195,6 +197,7 @@ export const PROJECTS = [
     shortTitle: 'AI-Driven ISO Documentation System',
     date: 'Dec 2025',
     category: 'Capstone · AI Integration',
+    private: true,
     cover: '/projects/CAPSTONE/Screenshot_2026-06-13_185847.png',
     gallery: [
       '/projects/CAPSTONE/Screenshot_2026-06-13_185847.png',
@@ -276,12 +279,21 @@ export const SKILLS = {
     { icon: 'devicon-flask-original', name: 'Flask' },
     { icon: 'devicon-django-plain colored', name: 'Django' },
     { icon: 'devicon-mysql-original colored', name: 'MySQL' },
+    { icon: 'devicon-postgresql-plain colored', name: 'PostgreSQL' },
+    { icon: 'devicon-supabase-plain colored', name: 'Supabase' },
     { icon: 'devicon-tailwindcss-original colored', name: 'Tailwind CSS' },
     { icon: 'devicon-react-original colored', name: 'ReactJS' },
-    { icon: 'devicon-nextjs-original colored', name: 'Next.js' },
+    { icon: 'devicon-nextjs-plain', name: 'Next.js' },
     { icon: 'devicon-nodejs-plain colored', name: 'Node.js' },
-    { icon: 'devicon-vercel-original colored', name: 'Vercel' },
+    { icon: 'devicon-vercel-original', name: 'Vercel' },
     { icon: 'devicon-git-plain colored', name: 'Git' },
+    { icon: 'devicon-sqlite-plain colored', name: 'SQLite' },
+    { icon: 'devicon-microsoftsqlserver-plain colored', name: 'MSSQL' },
+    { icon: 'devicon-github-original', name: 'GitHub' },
+    { icon: 'devicon-vscode-plain colored', name: 'VS Code' },
+    { icon: 'cursor-logo', name: 'Cursor' },
+    { icon: 'devicon-figma-plain colored', name: 'Figma' },
+    { icon: 'devicon-androidstudio-plain colored', name: 'Android Studio' },
   ],
   categories: [
     {
@@ -297,7 +309,7 @@ export const SKILLS = {
     {
       icon: 'fa-database',
       title: 'Databases',
-      tags: ['MySQL', 'SQLite', 'Microsoft SQL Server (MSSQL)'],
+      tags: ['PostgreSQL', 'MySQL', 'SQLite', 'Microsoft SQL Server (MSSQL)'],
     },
     {
       icon: 'fa-shield-halved',
@@ -328,7 +340,7 @@ export const SKILLS = {
     {
       icon: 'fa-toolbox',
       title: 'Tools & Platforms',
-      tags: ['Git', 'GitHub', 'Vercel', 'Android Studio', 'VS Code', 'NetBeans', 'XAMPP', 'Figma'],
+      tags: ['Git', 'GitHub', 'Vercel', 'Supabase', 'Android Studio', 'VS Code', 'Cursor', 'NetBeans', 'XAMPP', 'Figma'],
     },
     {
       icon: 'fa-laptop-code',

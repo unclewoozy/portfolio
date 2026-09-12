@@ -127,6 +127,7 @@ class Project(OrderedModel):
     description = models.JSONField(default=list)
     github = models.URLField(blank=True)
     demo = models.URLField(blank=True)
+    private = models.BooleanField(default=False)
     featured = models.BooleanField(default=False)
 
     class Meta(OrderedModel.Meta):

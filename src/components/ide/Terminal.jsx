@@ -109,7 +109,7 @@ export default function Terminal() {
   }
 
   return (
-    <div className="overflow-hidden rounded-xl border border-white/10 bg-ink/80">
+    <div className="overflow-hidden rounded-lg border border-white/10 bg-ink/80">
       <div className="flex items-center justify-between border-b border-white/10 px-3 py-2">
         <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-fog">
           <span className="text-accent">~/dev</span> terminal

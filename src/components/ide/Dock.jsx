@@ -1,15 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import useScrollSpy from '../../hooks/useScrollSpy'
-import { FILE_ICONS } from './explorer-data'
-
-const DOCK_ITEMS = [
-  { id: 'home', label: 'home' },
-  { id: 'about', label: 'about' },
-  { id: 'skills', label: 'skills' },
-  { id: 'projects', label: 'projects' },
-  { id: 'experience', label: 'experience' },
-  { id: 'contact', label: 'contact' },
-]
+import { FILE_ICONS, DOCK_ITEMS } from './explorer-data'
 
 export default function Dock() {
   const ids = useMemo(() => DOCK_ITEMS.map((item) => item.id), [])
@@ -63,14 +54,14 @@ export default function Dock() {
 
   return (
     <div
-      className={`fixed bottom-3 left-0 right-0 z-50 flex justify-center px-4 pb-2 pb-[env(safe-area-inset-bottom)] lg:bottom-11 transition-transform duration-500 ${
+      className={`fixed bottom-3 left-0 right-0 z-50 flex justify-center px-4 pb-2 pb-[env(safe-area-inset-bottom)] transition-transform duration-500 lg:hidden ${
         hidden ? 'pointer-events-none translate-y-[calc(100%+3rem)]' : 'translate-y-0'
       }`}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
       <nav
-        className="glass flex items-end gap-1 rounded-2xl px-2.5 py-2 sm:gap-1.5"
+        className="chrome flex items-end gap-1 rounded-lg px-2.5 py-2 sm:gap-1.5"
         aria-label="Desktop dock"
       >
         {DOCK_ITEMS.map((item) => {
@@ -80,7 +71,7 @@ export default function Dock() {
               key={item.id}
               href={`#${item.id}`}
               onClick={go(item.id)}
-              className={`dock-item group flex w-11 flex-col items-center gap-1 rounded-xl px-1 py-1.5 sm:w-14 ${
+              className={`dock-item group flex w-11 flex-col items-center gap-1 rounded-lg px-1 py-1.5 sm:w-14 ${
                 active === item.id
                   ? 'bg-accent/15 text-accent'
                   : 'text-fog hover:bg-white/5 hover:text-paper'

@@ -82,7 +82,7 @@ Serverless function filesystems are ephemeral, so SQLite edits won't persist in 
 
 - **Production URL:** https://portfolio-sigmunds-projects-8ab98c01.vercel.app
 - **Database:** Neon Postgres (`neon-champagne-ball`), connected via the `DATABASE_URL` env var.
-- **Env vars set in Vercel:** `DATABASE_URL` (Neon), `DJANGO_SECRET_KEY`, `DJANGO_DEBUG=false`, plus the existing `RESEND_*` vars.
+- **Env vars set in Vercel:** `DATABASE_URL` (Neon), `DJANGO_SECRET_KEY`, `DJANGO_DEBUG=false`.
 - `vercel.json` routes everything to the Django function at `backend/config/wsgi.py`; the `buildCommand` builds the SPA into `dist/`, which Django serves.
 - `backend/media/` is committed to git, so the seeded images ship with the function bundle.
 - Admin credentials on Postgres: username `admin` / password `admin12345` (change in production).

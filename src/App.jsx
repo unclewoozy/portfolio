@@ -1,16 +1,14 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import Background from './components/Background'
 import BootScreen from './components/ide/BootScreen'
 import CursorLight from './components/ide/CursorLight'
-import Particles from './components/ide/Particles'
 import TitleBar from './components/ide/TitleBar'
 import Dock from './components/ide/Dock'
 import WelcomeWindow from './components/ide/WelcomeWindow'
 import useParallax from './hooks/useParallax'
 import useDeviceTilt from './hooks/useDeviceTilt'
 
-const FileExplorer = lazy(() => import('./components/ide/FileExplorer'))
-const AssistantPanel = lazy(() => import('./components/ide/AssistantPanel'))
+const Sidebar = lazy(() => import('./components/ide/Sidebar'))
 const StatusBar = lazy(() => import('./components/ide/StatusBar'))
 const ResumeModal = lazy(() => import('./components/ResumeModal'))
 const AboutWindow = lazy(() => import('./components/ide/AboutWindow'))
@@ -34,15 +32,54 @@ export default function App() {
     }
   })
   const [resumeOpen, setResumeOpen] = useState(false)
-  const [glass, setGlass] = useState(() => {
-    const saved = Number(localStorage.getItem('glassOpacity'))
-    return Number.isFinite(saved) && saved >= 0 && saved <= 100 ? saved : 50
+  const [sidebarW, setSidebarW] = useState(() => {
+    try {
+      const v = parseInt(localStorage.getItem('portfolio-sidebar-w'), 10)
+      return Number.isFinite(v) ? Math.min(520, Math.max(240, v)) : 320
+    } catch {
+      return 320
+    }
   })
+  const [resizing, setResizing] = useState(false)
+  const dragRef = useRef(null)
 
   useEffect(() => {
-    document.documentElement.style.setProperty('--glass-opacity', String(glass / 100))
-    localStorage.setItem('glassOpacity', String(glass))
-  }, [glass])
+    if (!resizing) return
+    const onMove = (e) => {
+      if (dragRef.current == null) return
+      const x = e.touches?.[0]?.clientX ?? e.clientX
+      if (x == null) return
+      setSidebarW(Math.min(520, Math.max(240, Math.round(x - dragRef.current))))
+    }
+    const onUp = () => {
+      dragRef.current = null
+      setResizing(false)
+      document.body.style.cursor = ''
+      document.body.style.userSelect = ''
+      try {
+        localStorage.setItem('portfolio-sidebar-w', String(sidebarW))
+      } catch {}
+    }
+    window.addEventListener('pointermove', onMove, { passive: true })
+    window.addEventListener('pointerup', onUp)
+    window.addEventListener('pointercancel', onUp)
+    document.body.style.cursor = 'col-resize'
+    document.body.style.userSelect = 'none'
+    return () => {
+      window.removeEventListener('pointermove', onMove)
+      window.removeEventListener('pointerup', onUp)
+      window.removeEventListener('pointercancel', onUp)
+      document.body.style.cursor = ''
+      document.body.style.userSelect = ''
+    }
+  }, [resizing, sidebarW])
+
+  const startResize = (e) => {
+    e.preventDefault()
+    const right = e.currentTarget.parentElement?.getBoundingClientRect().right ?? sidebarW
+    dragRef.current = e.clientX - right
+    setResizing(true)
+  }
 
   return (
     <div className="relative flex min-h-screen min-h-dvh flex-col bg-ink font-sans text-paper">
@@ -58,23 +95,62 @@ export default function App() {
       )}
       <Background />
       <CursorLight />
-      <Particles />
 
-      <div className={`flex flex-1 flex-col transition-opacity duration-500 ${booted ? 'opacity-100' : 'opacity-0'}`}>
+      <div
+        className={`flex flex-1 flex-col transition-opacity duration-500 ${booted ? 'opacity-100' : 'opacity-0'}`}
+        style={{ '--sidebar-w': `${sidebarW}px` }}
+      >
         <TitleBar />
 
-        <div className="relative flex flex-1 items-stretch pt-14 pt-[calc(3.5rem+env(safe-area-inset-top))] pb-24 pb-[calc(6rem+env(safe-area-inset-bottom))] lg:pb-28">
-          <aside className="hidden w-64 shrink-0 border-r border-paper/10 bg-ink/50 backdrop-blur-xl lg:block">
-            <div className="sticky top-14 flex h-[calc(100vh-12.5rem)] flex-col overflow-hidden">
+        <div className="relative flex flex-1 items-stretch lg:pl-[var(--sidebar-w,20rem)]">
+          <aside className="fixed bottom-8 left-0 top-0 z-30 hidden w-[var(--sidebar-w,20rem)] shrink-0 border-r border-paper/10 bg-ink backdrop-blur-xl lg:block">
+            <div className="flex h-full flex-col overflow-hidden">
               <Suspense fallback={null}>
-                <FileExplorer />
+                <Sidebar onViewResume={() => setResumeOpen(true)} />
               </Suspense>
+            </div>
+            <div
+              role="separator"
+              aria-orientation="vertical"
+              aria-label="Resize sidebar"
+              title="Drag to resize · double-click to reset"
+              tabIndex={0}
+              onPointerDown={startResize}
+              onDoubleClick={() => {
+                setSidebarW(320)
+                try {
+                  localStorage.setItem('portfolio-sidebar-w', '320')
+                } catch {}
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                  e.preventDefault()
+                  setSidebarW((w) => {
+                    const next = Math.min(520, Math.max(240, w + (e.key === 'ArrowRight' ? 16 : -16)))
+                    try {
+                      localStorage.setItem('portfolio-sidebar-w', String(next))
+                    } catch {}
+                    return next
+                  })
+                }
+              }}
+              className={`absolute bottom-0 right-0 top-0 flex w-3 -translate-x-1/2 cursor-col-resize items-stretch justify-center outline-none transition-opacity ${
+                resizing ? 'opacity-100' : 'opacity-0 hover:opacity-100 focus-visible:opacity-100'
+              }`}
+            >
+              <span
+                className={`my-2 w-1 rounded-full transition-colors ${
+                  resizing ? 'bg-accent' : 'bg-paper/20 hover:bg-accent'
+                }`}
+                aria-hidden="true"
+              />
+              <span className="absolute inset-y-0 -left-2 -right-2" aria-hidden="true" />
             </div>
           </aside>
 
-          <main className="min-w-0 flex-1 overflow-x-hidden">
+          <main className="min-w-0 flex-1 overflow-x-hidden pt-14 pt-[calc(3.5rem+env(safe-area-inset-top))] pb-24 pb-[calc(6rem+env(safe-area-inset-bottom))] lg:pb-12">
             <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4 py-10 sm:px-6 md:py-14">
-              <WelcomeWindow onViewResume={() => setResumeOpen(true)} glass={glass} onGlass={setGlass} />
+              <WelcomeWindow onViewResume={() => setResumeOpen(true)} />
               <Suspense fallback={null}>
                 <AboutWindow />
                 <TerminalWindow />
@@ -87,13 +163,6 @@ export default function App() {
             </div>
           </main>
 
-          <aside className="hidden w-80 shrink-0 border-l border-paper/10 bg-ink/50 backdrop-blur-xl xl:block">
-            <div className="sticky top-14 flex h-[calc(100vh-12.5rem)] flex-col overflow-hidden">
-              <Suspense fallback={null}>
-                <AssistantPanel onViewResume={() => setResumeOpen(true)} />
-              </Suspense>
-            </div>
-          </aside>
         </div>
 
         <Dock />

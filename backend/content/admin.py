@@ -74,9 +74,9 @@ class ExperienceAdmin(admin.ModelAdmin):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'date', 'featured', 'order']
-    list_editable = ['featured', 'order']
-    list_filter = ['category', 'featured']
+    list_display = ['title', 'category', 'date', 'private', 'featured', 'order']
+    list_editable = ['private', 'featured', 'order']
+    list_filter = ['category', 'private', 'featured']
     search_fields = ['title', 'short_title', 'tags']
     inlines = [ProjectImageInline]
     prepopulated_fields = {'identifier': ('title',)}

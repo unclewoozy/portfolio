@@ -232,6 +232,7 @@ class Command(BaseCommand):
                 date=p.get('date', ''), category=p.get('category', ''),
                 cover=cover, tags=p.get('tags', []), description=p.get('description', []),
                 github=p.get('github', ''), demo=p.get('demo', ''),
+                private=p.get('private', False),
                 featured=(i == 0), order=i,
             )
             for j, gurl in enumerate(p.get('gallery', [])):

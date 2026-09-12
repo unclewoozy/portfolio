@@ -14,8 +14,8 @@ export default function TitleBar() {
   }, [])
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-2 pt-2 pt-[max(0.5rem,env(safe-area-inset-top))] sm:px-3">
-      <div className="glass mx-auto flex h-11 max-w-[1440px] items-center justify-between rounded-xl px-3 sm:px-4">
+    <header className="fixed top-0 left-0 right-0 z-50 px-2 pt-2 pt-[max(0.5rem,env(safe-area-inset-top))] sm:px-3 lg:left-[var(--sidebar-w,20rem)]">
+      <div className="chrome mx-auto flex h-11 max-w-[1440px] items-center justify-between rounded-md px-3 sm:px-4">
         <div className="flex items-center gap-4">
           <div className="flex gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-rose-500/90" />
@@ -26,10 +26,6 @@ export default function TitleBar() {
             portfolio<span className="text-accent">.dev</span>
           </p>
         </div>
-
-        <p className="hidden md:block font-mono text-[10px] uppercase tracking-[0.3em] text-fog">
-          ~/portfolio <span className="text-accent">●</span> workspace
-        </p>
 
         <div className="flex items-center gap-3">
           <p className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-fog sm:block">

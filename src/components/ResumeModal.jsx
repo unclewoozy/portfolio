@@ -27,7 +27,7 @@ export default function ResumeModal({ open, onClose }) {
       onClick={onClose}
     >
       <div
-        className="glass-deep sheen relative flex h-[96vh] h-[96dvh] w-full max-w-4xl flex-col overflow-hidden rounded-[32px]"
+        className="glass-deep sheen relative flex h-[96vh] h-[96dvh] w-full max-w-4xl flex-col overflow-hidden rounded-lg"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex shrink-0 items-center justify-between border-b border-paper/15 px-4 py-3">
@@ -39,21 +39,21 @@ export default function ResumeModal({ open, onClose }) {
               href={PROFILE.resumeView}
               target="_blank"
               rel="noreferrer"
-              className="glass-chip hidden items-center gap-2 rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:bg-accent hover:text-ink sm:inline-flex"
+              className="glass-chip hidden items-center gap-2 rounded-lg px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:bg-accent hover:text-ink sm:inline-flex"
               aria-label="Open resume in new tab"
             >
               <span className="text-accent">↗</span> view
             </a>
             <a
               href={PROFILE.resumeDownload}
-              className="glass-chip inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:bg-accent hover:text-ink"
+              className="glass-chip inline-flex items-center gap-2 rounded-lg px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:bg-accent hover:text-ink"
             >
               Download <span className="text-accent">↓</span>
             </a>
             <button
               type="button"
               onClick={onClose}
-              className="glass-chip flex h-9 w-9 items-center justify-center rounded-full font-mono text-sm text-paper transition-colors hover:bg-paper hover:text-ink"
+              className="glass-chip flex h-9 w-9 items-center justify-center rounded-lg font-mono text-sm text-paper transition-colors hover:bg-paper hover:text-ink"
               aria-label="Close resume viewer"
             >
               ✕

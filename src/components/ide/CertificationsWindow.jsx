@@ -13,14 +13,14 @@ export default function CertificationsWindow() {
         <span className="text-accent">//</span> verified credentials — {CERTIFICATIONS.length} records
       </p>
 
-      <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {CERTIFICATIONS.map((cert, i) =>
           cert.viewable ? (
             <button
               key={cert.title}
               type="button"
               onClick={() => setOpen(cert)}
-              className="glass sheen group flex flex-col rounded-2xl p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-accent/50"
+              className="glass sheen group flex flex-col rounded-lg p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-accent/50"
               aria-haspopup="dialog"
             >
               <CardBody cert={cert} i={i} viewable />
@@ -28,7 +28,7 @@ export default function CertificationsWindow() {
           ) : (
             <div
               key={cert.title}
-              className="glass sheen group flex flex-col rounded-2xl p-5 transition-all duration-300"
+              className="glass sheen group flex flex-col rounded-lg p-5 transition-all duration-300"
             >
               <CardBody cert={cert} i={i} />
             </div>
@@ -113,17 +113,13 @@ function CertificateModal({ cert, onClose }) {
     >
       <div className="overlay-blur absolute inset-0 bg-ink/70 backdrop-blur-sm" aria-hidden="true" />
       <div
-        className="glass-deep window-in relative flex max-h-[92vh] max-h-[92dvh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl"
+        className="glass-deep window-in relative flex max-h-[92vh] max-h-[92dvh] w-full max-w-4xl flex-col overflow-hidden rounded-lg"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between border-b border-paper/15 bg-ink/70 px-5 py-3 backdrop-blur-md">
           <div className="flex min-w-0 items-center gap-3">
-            <div className="flex shrink-0 gap-1.5" aria-hidden="true">
-              <span className="h-2.5 w-2.5 rounded-full bg-rose-500/90" />
-              <span className="h-2.5 w-2.5 rounded-full bg-amber-400/90" />
-              <span className="h-2.5 w-2.5 rounded-full bg-lime/90" />
-            </div>
             <p className="truncate font-mono text-[10px] uppercase tracking-[0.25em] text-paper/85">
+              <span className="text-accent">./</span>
               {cert.title}
             </p>
           </div>
@@ -138,7 +134,7 @@ function CertificateModal({ cert, onClose }) {
         </div>
 
         <div className="flex flex-1 flex-col overflow-hidden p-4 md:p-6">
-          <div className="flex flex-1 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-ink/60">
+          <div className="flex flex-1 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-ink/60">
             <img
               src={cert.image}
               alt={cert.title}
@@ -157,7 +153,7 @@ function CertificateModal({ cert, onClose }) {
               href={cert.image}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border-2 border-accent px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-accent transition-all hover:bg-accent hover:text-ink"
+              className="inline-flex items-center gap-2 rounded-lg border border-accent px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-accent transition-all hover:bg-accent hover:text-ink"
             >
               open full <span aria-hidden="true">↗</span>
             </a>

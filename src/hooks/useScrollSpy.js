@@ -1,37 +1,46 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function useScrollSpy(ids, offset = 300) {
   const [active, setActive] = useState(ids[0] ?? '')
-  const rafRef = useRef(0)
 
   useEffect(() => {
-    const compute = () => {
-      rafRef.current = 0
-      const pos = window.scrollY + offset
-      let current = ids[0]
-      let best = -Infinity
-      for (const id of ids) {
+    const els = ids
+      .map((id) => document.getElementById(id))
+      .filter(Boolean)
+    if (!els.length) return
+
+    // The section crossing a band near the top of the viewport wins.
+    // View-based (not scroll-math), so lazy images, dynamic heights,
+    // and content-visibility skipping can't throw it off.
+    const inView = new Set()
+    const pick = () => {
+      let best = null
+      let bestTop = Infinity
+      for (const id of inView) {
         const el = document.getElementById(id)
         if (!el) continue
-        const top = el.getBoundingClientRect().top + window.scrollY
-        if (top <= pos && top > best) {
-          best = top
-          current = id
+        const top = el.getBoundingClientRect().top
+        if (top < bestTop) {
+          bestTop = top
+          best = id
         }
       }
-      setActive((prev) => (prev === current ? prev : current))
+      if (best) setActive((prev) => (prev === best ? prev : best))
     }
-    const onScroll = () => {
-      if (!rafRef.current) rafRef.current = requestAnimationFrame(compute)
-    }
-    compute()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll, { passive: true })
-    return () => {
-      cancelAnimationFrame(rafRef.current)
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) inView.add(entry.target.id)
+          else inView.delete(entry.target.id)
+        }
+        pick()
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: 0 },
+    )
+
+    for (const el of els) observer.observe(el)
+    return () => observer.disconnect()
   }, [ids, offset])
 
   return active

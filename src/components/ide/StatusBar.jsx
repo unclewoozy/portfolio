@@ -27,11 +27,11 @@ export default function StatusBar() {
             <Network className="h-3 w-3 text-accent" strokeWidth={2} aria-hidden="true" />
             port 3000
           </p>
-          <p className="hidden sm:block">
-            built with <span className="text-gradient font-semibold">react</span> +{' '}
-            <span className="text-gradient font-semibold">tailwind</span> ·{' '}
-            <span className="text-gradient font-semibold">vercel</span>
-          </p>
+            <p className="hidden sm:block">
+              built with <span className="font-medium text-paper/80">react</span> +{' '}
+              <span className="font-medium text-paper/80">tailwind</span> ·{' '}
+              <span className="font-medium text-paper/80">vercel</span>
+            </p>
         </div>
       </div>
     </footer>

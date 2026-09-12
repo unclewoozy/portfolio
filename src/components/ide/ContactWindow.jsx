@@ -1,45 +1,32 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useSiteData } from '../../SiteData'
 import IdeWindow from './IdeWindow'
 
-const CONNECTION = ['establishing secure channel...', 'handshake verified ✓', 'connection established — say hi']
-
 export default function ContactWindow() {
   const { CONTACT } = useSiteData()
-  const [line, setLine] = useState(0)
   const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [status, setStatus] = useState('idle')
+  const [opened, setOpened] = useState(false)
 
-  useEffect(() => {
-    if (line >= CONNECTION.length) return
-    const t = setTimeout(() => setLine((l) => l + 1), 650)
-    return () => clearTimeout(t)
-  }, [line])
+  const recipient =
+    CONTACT.details
+      .find((d) => d.label?.toLowerCase() === 'email')
+      ?.href?.replace('mailto:', '') ?? ''
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault()
-    setStatus('sending')
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          subject: `Portfolio inquiry from ${form.name || 'visitor'}`,
-          message: form.message,
-          website: '',
-        }),
-      })
-      const data = await res.json().catch(() => ({}))
-      if (res.ok) {
-        setStatus('sent')
-      } else {
-        setStatus('error')
-      }
-    } catch (err) {
-      setStatus('error')
+    const name = form.name.trim() || 'visitor'
+    const subject = `Portfolio inquiry from ${name}`
+    const body = `${form.message.trim()}\n\n— ${name} (${form.email.trim()})`
+    const gmail =
+      `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}` +
+      `&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    const win = window.open(gmail, '_blank', 'noopener,noreferrer')
+    if (!win) {
+      // Popup blocked — fall back to the device mail client.
+      window.location.href =
+        `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
     }
+    setOpened(true)
   }
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }))
@@ -49,18 +36,10 @@ export default function ContactWindow() {
       <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-10">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-fog">
-            <span className="text-accent">❯</span> initialize connection?
+            <span className="text-accent">//</span> contact
           </p>
 
-          <div className="mt-4 h-24 space-y-1.5 font-mono text-xs text-fog" aria-live="polite">
-            {CONNECTION.slice(0, line).map((l, i) => (
-              <p key={i} className={l.includes('✓') || l.includes('established') ? 'text-lime' : ''}>
-                {l}
-              </p>
-            ))}
-          </div>
-
-          <div className="mt-2 space-y-3 text-[15px] leading-relaxed text-paper/75">
+          <div className="mt-5 space-y-3 text-[15px] leading-relaxed text-paper/75">
             {CONTACT.intro.map((p) => (
               <p key={p}>{p}</p>
             ))}
@@ -73,7 +52,7 @@ export default function ContactWindow() {
                 <Wrapper
                   key={detail.label}
                   {...(detail.href ? { href: detail.href, target: detail.href.startsWith('http') ? '_blank' : undefined, rel: 'noreferrer' } : {})}
-                  className="glass group flex items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:border-accent/50"
+                  className="glass group flex items-center gap-3 rounded-lg px-4 py-3 transition-colors hover:border-accent/50"
                 >
                   <i className={`${detail.icon} w-5 text-center text-accent`} aria-hidden="true" />
                   <span className="min-w-0">
@@ -88,19 +67,13 @@ export default function ContactWindow() {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-xl border border-white/10 bg-ink/70">
+        <div className="overflow-hidden rounded-lg border border-white/10 bg-ink/70">
           <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5">
             <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-fog">
               <span className="text-accent">~/dev</span> transmit-message
             </p>
             <p className="font-mono text-[10px] text-fog/70">
-              {status === 'sent'
-                ? 'message sent ✓'
-                : status === 'sending'
-                  ? 'transmitting...'
-                  : status === 'error'
-                    ? 'transmission failed'
-                    : 'secure channel'}
+              {opened ? 'gmail opened ↗' : 'via gmail'}
             </p>
           </div>
 
@@ -115,8 +88,8 @@ export default function ContactWindow() {
                   value={form.name}
                   onChange={set('name')}
                   required
-                  placeholder="Jane Doe"
-                  className="mt-1.5 w-full rounded-xl border border-white/10 bg-ink/60 px-4 py-3 text-sm text-paper placeholder:text-fog/50 outline-none transition-colors focus:border-accent"
+                  placeholder="Name"
+                  className="mt-1.5 w-full rounded-lg border border-white/10 bg-ink/60 px-4 py-3 text-sm text-paper placeholder:text-fog/50 outline-none transition-colors focus:border-accent"
                 />
               </label>
               <label className="block">
@@ -128,8 +101,8 @@ export default function ContactWindow() {
                   value={form.email}
                   onChange={set('email')}
                   required
-                  placeholder="jane@example.com"
-                  className="mt-1.5 w-full rounded-xl border border-white/10 bg-ink/60 px-4 py-3 text-sm text-paper placeholder:text-fog/50 outline-none transition-colors focus:border-accent"
+                  placeholder="Email address"
+                  className="mt-1.5 w-full rounded-lg border border-white/10 bg-ink/60 px-4 py-3 text-sm text-paper placeholder:text-fog/50 outline-none transition-colors focus:border-accent"
                 />
               </label>
             </div>
@@ -143,30 +116,23 @@ export default function ContactWindow() {
                 onChange={set('message')}
                 required
                 rows={5}
-                placeholder=">_ drop me a line..."
-                className="mt-1.5 w-full resize-none rounded-xl border border-white/10 bg-ink/60 px-4 py-3 font-mono text-sm text-paper placeholder:text-fog/50 outline-none transition-colors focus:border-accent"
+                placeholder="Message"
+                className="mt-1.5 w-full resize-none rounded-lg border border-white/10 bg-ink/60 px-4 py-3 font-mono text-sm text-paper placeholder:text-fog/50 outline-none transition-colors focus:border-accent"
               />
             </label>
 
             <div className="flex flex-wrap items-center gap-3">
               <button
                 type="submit"
-                disabled={status === 'sending'}
-                className="group inline-flex items-center gap-3 rounded-xl border-2 border-accent bg-accent px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-ink transition-all hover:bg-transparent hover:text-accent disabled:cursor-not-allowed disabled:opacity-60"
+                className="group inline-flex items-center gap-3 rounded-lg border-2 border-accent bg-accent px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-ink transition-all hover:bg-transparent hover:text-accent"
               >
-                {status === 'sent'
-                  ? 'Message sent ✓'
-                  : status === 'sending'
-                    ? 'Sending...'
-                    : 'Send Message'}
+                {opened ? 'Compose again' : 'Send via Gmail'}
                 <span className="transition-transform group-hover:translate-x-0.5" aria-hidden="true">→</span>
               </button>
               <p className="font-mono text-[10px] text-fog/60">
-                {status === 'error'
-                  ? 'could not reach server — try again or email me directly'
-                  : status === 'sent'
-                    ? 'delivered — responses within 24h'
-                    : 'encrypted & delivered via email — responses within 24h'}
+                {opened
+                  ? 'gmail should be open with your message ready — just hit send'
+                  : 'opens gmail with your message addressed to me — responses within 24h'}
               </p>
             </div>
           </form>
