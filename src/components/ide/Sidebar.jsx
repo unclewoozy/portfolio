@@ -237,26 +237,20 @@ export default function Sidebar({ onViewResume, onNavigate }) {
             />
           </div>
           <div className="p-3">
-            <div className="flex items-center justify-between">
-              <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">// status</p>
-              <span className="rounded border border-lime/30 bg-lime/10 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-lime">
-                available
-              </span>
-            </div>
-            <p className="mt-2.5 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.15em] text-paper">
+            <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.15em] text-paper">
               <span className="relative flex h-1.5 w-1.5 shrink-0" aria-hidden="true">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime opacity-60" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime" />
               </span>
               open to work
-            </p>
-            <p className="mt-1 pl-3.5 font-mono text-[9px] uppercase tracking-[0.2em] text-fog/60">
-              full-time · freelance
+              <span className="ml-auto font-mono text-[9px] uppercase tracking-[0.2em] text-fog/50">
+                full-time · freelance
+              </span>
             </p>
             <button
               type="button"
               onClick={onViewResume}
-              className="group mt-3 flex w-full items-center gap-2 rounded-md border border-paper/15 bg-white/5 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-accent/50 hover:bg-accent/10 hover:text-accent"
+              className="group mt-2.5 flex w-full items-center gap-2 rounded-md border border-paper/15 bg-white/5 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-accent/50 hover:bg-accent/10 hover:text-accent"
             >
               <FileText className="h-3.5 w-3.5 shrink-0 text-accent" strokeWidth={2} aria-hidden="true" />
               <span>resume.pdf</span>

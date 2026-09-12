@@ -4,7 +4,7 @@ import IdeWindow from './IdeWindow'
 export default function ExperienceWindow() {
   const { EXPERIENCE } = useSiteData()
   return (
-    <IdeWindow id="experience" title="experience.log" path="~/portfolio/experience/">
+    <IdeWindow id="experience" title="experience" path="~/portfolio/experience/">
       <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-fog">
         <span className="text-accent">//</span> professional records
       </p>

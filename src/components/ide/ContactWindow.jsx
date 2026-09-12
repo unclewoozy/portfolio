@@ -32,7 +32,7 @@ export default function ContactWindow() {
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }))
 
   return (
-    <IdeWindow id="contact" title="communication terminal" path="~/portfolio/contact/">
+    <IdeWindow id="contact" title="contact" path="~/portfolio/contact/">
       <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-10">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-fog">

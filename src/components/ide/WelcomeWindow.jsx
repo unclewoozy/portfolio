@@ -86,10 +86,6 @@ function PhotoCard({ photo }) {
       </figure>
       <figcaption className="relative z-10 flex items-center justify-between gap-3 border-t border-paper/10 bg-ink/40 px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-fog">
         <span className="truncate">profile.jpg</span>
-        <span className="flex shrink-0 items-center gap-1.5 text-lime">
-          <span className="h-1.5 w-1.5 rounded-full bg-lime animate-pulse-dot" aria-hidden="true" />
-          class of 2026
-        </span>
       </figcaption>
     </div>
   )
@@ -111,7 +107,7 @@ export default function WelcomeWindow({ onViewResume }) {
   }
 
   return (
-    <IdeWindow id="home" title="welcome — developer workspace" path="~/portfolio/README.md">
+    <IdeWindow id="home" title="welcome" path="~/portfolio/README.md">
       <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
         <div className="relative">
         <div className="relative">

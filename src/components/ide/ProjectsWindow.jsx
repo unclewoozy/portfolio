@@ -8,7 +8,7 @@ export default function ProjectsWindow() {
   const [open, setOpen] = useState(null)
 
   return (
-    <IdeWindow id="projects" title="projects archive" path="~/portfolio/projects/">
+    <IdeWindow id="projects" title="projects" path="~/portfolio/projects/">
       <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-fog">
         <span className="text-accent">//</span> select a module to inspect —{' '}
         <span className="text-paper/60">{PROJECTS.length} builds archived</span>
@@ -112,7 +112,7 @@ function ProjectsModal({ project, onClose }) {
           <div className="flex min-w-0 items-center gap-3">
             <p className="truncate font-mono text-[10px] uppercase tracking-[0.25em] text-paper/85">
               <span className="text-accent">./</span>
-              {project.title}.exe
+              {project.title}
             </p>
           </div>
           <button

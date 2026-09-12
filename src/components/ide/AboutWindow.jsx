@@ -4,20 +4,16 @@ import IdeWindow from './IdeWindow'
 export default function AboutWindow() {
   const { ABOUT, PROFILE } = useSiteData()
   const ROWS = ABOUT.whatIDo
-  const [lead, ...rest] = ABOUT.paragraphs
   const degree = ABOUT.education[0]
   return (
-    <IdeWindow id="about" title="about.me" path="~/portfolio/about.me">
+    <IdeWindow id="about" title="about" path="~/portfolio/about.me">
       <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-fog">
             <span className="text-accent">//</span> about.txt
           </p>
-          <p className="mt-5 border-l-2 border-accent pl-4 text-base leading-relaxed text-paper md:text-lg">
-            {lead}
-          </p>
-          <div className="mt-5 space-y-4 text-[15px] leading-relaxed text-paper/70">
-            {rest.map((p, i) => (
+          <div className="mt-5 space-y-4 text-[15px] leading-relaxed text-paper/80">
+            {ABOUT.paragraphs.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
           </div>

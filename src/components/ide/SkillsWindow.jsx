@@ -37,7 +37,7 @@ export default function SkillsWindow() {
   const grouped = new Set(CORE_GROUPS.flatMap((g) => g.skills))
   const ungrouped = SKILLS.featured.filter((s) => !grouped.has(s.name))
   return (
-    <IdeWindow id="skills" title="skills.json" path="~/portfolio/skills.json">
+    <IdeWindow id="skills" title="skills" path="~/portfolio/skills.json">
       <div>
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-fog">
