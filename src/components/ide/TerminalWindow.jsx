@@ -3,7 +3,7 @@ import Terminal from './Terminal'
 
 export default function TerminalWindow() {
   return (
-    <IdeWindow id="terminal" title="terminal" path="~/dev/terminal">
+    <IdeWindow id="terminal">
       <Terminal />
     </IdeWindow>
   )

@@ -1,17 +1,16 @@
 import { useSiteData } from '../../SiteData'
 import IdeWindow from './IdeWindow'
+import SectionHeader from './SectionHeader'
 
 export default function AboutWindow() {
   const { ABOUT, PROFILE } = useSiteData()
   const ROWS = ABOUT.whatIDo
   const degree = ABOUT.education[0]
   return (
-    <IdeWindow id="about" title="about" path="~/portfolio/about.me">
+    <IdeWindow id="about">
       <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-fog">
-            <span className="text-accent">//</span> about.txt
-          </p>
+          <SectionHeader index="01" kicker="~/portfolio/about.me" title="About" />
           <div className="mt-5 space-y-4 text-[15px] leading-relaxed text-paper/80">
             {ABOUT.paragraphs.map((p, i) => (
               <p key={i}>{p}</p>
@@ -49,7 +48,7 @@ export default function AboutWindow() {
               {ROWS.map((row, i) => (
                 <div
                   key={row.title}
-                  className="group flex gap-4 rounded-lg border border-paper/10 bg-white/[0.03] p-4 transition-colors hover:border-accent/40 hover:bg-accent/[0.06]"
+                  className="group tile flex gap-4 p-4"
                 >
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-accent/25 bg-accent/10 text-sm text-accent" aria-hidden="true">
                     <i className={`fas ${row.icon}`} />

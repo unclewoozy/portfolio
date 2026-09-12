@@ -2,19 +2,20 @@ import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useSiteData } from '../../SiteData'
 import IdeWindow from './IdeWindow'
+import SectionHeader from './SectionHeader'
 
 export default function ProjectsWindow() {
   const { PROJECTS } = useSiteData()
   const [open, setOpen] = useState(null)
 
   return (
-    <IdeWindow id="projects" title="projects" path="~/portfolio/projects/">
-      <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-fog">
-        <span className="text-accent">//</span> select a module to inspect —{' '}
-        <span className="text-paper/60">{PROJECTS.length} builds archived</span>
+    <IdeWindow id="projects">
+      <SectionHeader index="03" kicker="~/portfolio/projects/" title="Projects" />
+      <p className="-mt-5 mb-6 font-mono text-[11px] uppercase tracking-[0.25em] text-fog/70">
+        select a module to inspect — {PROJECTS.length} builds archived
       </p>
 
-      <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {PROJECTS.map((project, i) => (
           <ProjectCard key={project.id} project={project} index={i} total={PROJECTS.length} onOpen={setOpen} />
         ))}
@@ -30,7 +31,7 @@ function ProjectCard({ project, index, total, onOpen }) {
     <button
       type="button"
       onClick={() => onOpen(project)}
-      className="group glass sheen relative flex flex-col overflow-hidden rounded-lg text-left transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/60"
+      className="group tile relative flex flex-col overflow-hidden text-left"
       aria-haspopup="dialog"
     >
       <div className="relative overflow-hidden">
@@ -71,7 +72,7 @@ function ProjectCard({ project, index, total, onOpen }) {
         <p className="mt-auto flex items-center gap-2 pt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
           inspect
           <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
-          <span className="ml-auto text-fog/40 transition-colors group-hover:text-fog">
+          <span className="ml-auto tabular-nums text-fog/40 transition-colors group-hover:text-fog">
             {String(index + 1).padStart(2, '0')}/{String(total).padStart(2, '0')}
           </span>
         </p>

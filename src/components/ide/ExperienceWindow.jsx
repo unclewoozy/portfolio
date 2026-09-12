@@ -1,19 +1,18 @@
 import { useSiteData } from '../../SiteData'
 import IdeWindow from './IdeWindow'
+import SectionHeader from './SectionHeader'
 
 export default function ExperienceWindow() {
   const { EXPERIENCE } = useSiteData()
   return (
-    <IdeWindow id="experience" title="experience" path="~/portfolio/experience/">
-      <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-fog">
-        <span className="text-accent">//</span> professional records
-      </p>
+    <IdeWindow id="experience">
+      <SectionHeader index="04" kicker="~/portfolio/experience/" title="Experience" />
 
       <div className="mt-6 space-y-6">
         {EXPERIENCE.map((item, i) => (
           <div key={item.company}>
 
-            <div className="glass transition-colors rounded-lg p-5 md:p-6">
+            <div className="tile p-5 md:p-6">
               <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                 <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-fog">
                   record_{String(i + 1).padStart(2, '0')} · {item.date}
@@ -26,7 +25,7 @@ export default function ExperienceWindow() {
               <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
                 <div className="flex shrink-0 gap-3">
                   {item.logos.map((logo) => (
-                    <span key={logo} className="glass-chip flex h-16 w-16 items-center justify-center rounded-lg p-2 md:h-20 md:w-20">
+                      <span key={logo} className="flex h-16 w-16 items-center justify-center rounded-lg bg-white/[0.04] p-2 md:h-20 md:w-20">
                       <img
                         src={logo}
                         alt=""

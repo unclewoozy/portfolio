@@ -2,25 +2,27 @@ import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useSiteData } from '../../SiteData'
 import IdeWindow from './IdeWindow'
+import SectionHeader from './SectionHeader'
 
 export default function CertificationsWindow() {
   const { CERTIFICATIONS } = useSiteData()
   const [open, setOpen] = useState(null)
 
   return (
-    <IdeWindow id="certifications" title="certifications" path="~/portfolio/certifications/">
-      <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-fog">
-        <span className="text-accent">//</span> verified credentials — {CERTIFICATIONS.length} records
+    <IdeWindow id="certifications">
+      <SectionHeader index="05" kicker="~/portfolio/certifications/" title="Certifications" />
+      <p className="-mt-5 mb-6 font-mono text-[11px] uppercase tracking-[0.25em] text-fog/70">
+        {CERTIFICATIONS.length} verified records
       </p>
 
-      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {CERTIFICATIONS.map((cert, i) =>
           cert.viewable ? (
             <button
               key={cert.title}
               type="button"
               onClick={() => setOpen(cert)}
-              className="glass sheen group flex flex-col rounded-lg p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-accent/50"
+              className="tile group flex flex-col p-5 text-left"
               aria-haspopup="dialog"
             >
               <CardBody cert={cert} i={i} viewable />
@@ -28,7 +30,7 @@ export default function CertificationsWindow() {
           ) : (
             <div
               key={cert.title}
-              className="glass sheen group flex flex-col rounded-lg p-5 transition-all duration-300"
+              className="tile group flex flex-col p-5"
             >
               <CardBody cert={cert} i={i} />
             </div>

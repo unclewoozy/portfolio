@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useSiteData } from '../../SiteData'
 import IdeWindow from './IdeWindow'
+import SectionHeader from './SectionHeader'
 
 export const CORE_GROUPS = [
   { label: 'frontend', skills: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'ReactJS', 'Next.js', 'Tailwind CSS'] },
@@ -11,7 +12,7 @@ export const CORE_GROUPS = [
 
 function CorePill({ skill }) {
   return (
-    <span className="inline-flex w-auto shrink-0 items-center gap-2.5 rounded-lg border border-paper/10 bg-white/[0.02] px-3 py-2 transition-colors hover:border-accent/40 hover:bg-accent/5">
+    <span className="inline-flex w-auto shrink-0 items-center gap-2.5 rounded-lg bg-white/[0.03] px-3 py-2 transition-colors hover:bg-white/[0.06]">
       {skill.icon === 'cursor-logo' ? (
         <svg viewBox="0 0 24 24" className="h-[18px] w-[18px] shrink-0 fill-paper/85" aria-hidden="true">
           <path d="M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0-.42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23" />
@@ -37,12 +38,10 @@ export default function SkillsWindow() {
   const grouped = new Set(CORE_GROUPS.flatMap((g) => g.skills))
   const ungrouped = SKILLS.featured.filter((s) => !grouped.has(s.name))
   return (
-    <IdeWindow id="skills" title="skills" path="~/portfolio/skills.json">
+    <IdeWindow id="skills">
       <div>
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-fog">
-            <span className="text-accent">//</span> core-stack.sh
-          </p>
+          <SectionHeader index="02" kicker="~/portfolio/skills.json" title="Skills" />
           {CORE_GROUPS.map((group) => (
             <div key={group.label} className="mt-4">
               <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-fog/70">
@@ -108,7 +107,7 @@ export default function SkillsWindow() {
                         type="button"
                         onClick={() => toggleRow(i)}
                         aria-expanded={isOpen}
-                        className="group grid w-full grid-cols-[32px_1fr_auto] items-center gap-3 py-4 pl-3 text-left transition-colors hover:bg-white/[0.03] sm:gap-4"
+                        className="group grid w-full grid-cols-[32px_1fr_auto] items-center gap-3 py-4 pl-3 pr-4 text-left transition-colors hover:bg-white/[0.03] sm:gap-4"
                       >
                         <p className="font-mono text-xs text-fog/70 transition-colors group-hover:text-fog">
                           {String(i + 1).padStart(2, '0')}

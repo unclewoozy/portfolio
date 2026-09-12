@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { ArrowUpRight, ChevronRight, FileText, FolderGit2, Search } from 'lucide-react'
+import { ChevronRight, FolderGit2, Search } from 'lucide-react'
 import { useSiteData } from '../../SiteData'
 import { CORE_GROUPS } from './SkillsWindow'
 import { FILES } from './explorer-data'
@@ -18,6 +18,11 @@ export default function Sidebar({ onViewResume, onNavigate }) {
   const { PROFILE, SKILLS } = useSiteData()
   const go = (id) => (e) => {
     e.preventDefault()
+    if (id === 'resume') {
+      onViewResume()
+      onNavigate?.(id)
+      return
+    }
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
     onNavigate?.(id)
   }
@@ -32,26 +37,11 @@ export default function Sidebar({ onViewResume, onNavigate }) {
     setOpenStacks((prev) => (prev.includes(gi) ? prev.filter((i) => i !== gi) : [...prev, gi]))
   const toggleAllStacks = () =>
     setOpenStacks((prev) => (prev.length === CORE_GROUPS.length ? [] : CORE_GROUPS.map((_, i) => i)))
-  const [progress, setProgress] = useState(0)
 
   const visible = FILES.filter((f) =>
     f.name.toLowerCase().includes(query.trim().toLowerCase()),
   )
   const stackByName = Object.fromEntries(SKILLS.featured.map((s) => [s.name, s]))
-
-  useEffect(() => {
-    const update = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight
-      setProgress(max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0)
-    }
-    update()
-    window.addEventListener('scroll', update, { passive: true })
-    window.addEventListener('resize', update, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', update)
-      window.removeEventListener('resize', update)
-    }
-  }, [])
 
   return (
     <div className="flex h-full flex-col overflow-hidden" aria-label="Sidebar">
@@ -214,48 +204,6 @@ export default function Sidebar({ onViewResume, onNavigate }) {
                 </div>
               )
             })}
-          </div>
-        </section>
-
-        <section
-          aria-label="Status"
-          className="overflow-hidden rounded-md border border-paper/10 bg-white/[0.03]"
-        >
-          <div
-            className="h-0.5 w-full bg-white/5"
-            role="progressbar"
-            aria-label="Reading progress"
-            aria-valuenow={Math.round(progress)}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            title={`Reading progress — ${Math.round(progress)}%`}
-          >
-            <div
-              className="h-full rounded-full bg-gradient-to-r from-accent to-lime shadow-[0_0_8px_rgba(10,132,255,0.7)] transition-[width] duration-150 ease-out"
-              style={{ width: `${progress}%` }}
-              aria-hidden="true"
-            />
-          </div>
-          <div className="p-3">
-            <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.15em] text-paper">
-              <span className="relative flex h-1.5 w-1.5 shrink-0" aria-hidden="true">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime opacity-60" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime" />
-              </span>
-              open to work
-              <span className="ml-auto font-mono text-[9px] uppercase tracking-[0.2em] text-fog/50">
-                full-time · freelance
-              </span>
-            </p>
-            <button
-              type="button"
-              onClick={onViewResume}
-              className="group mt-2.5 flex w-full items-center gap-2 rounded-md border border-paper/15 bg-white/5 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-accent/50 hover:bg-accent/10 hover:text-accent"
-            >
-              <FileText className="h-3.5 w-3.5 shrink-0 text-accent" strokeWidth={2} aria-hidden="true" />
-              <span>resume.pdf</span>
-              <ArrowUpRight className="ml-auto h-3.5 w-3.5 shrink-0 text-fog/50 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" strokeWidth={2} aria-hidden="true" />
-            </button>
           </div>
         </section>
       </div>

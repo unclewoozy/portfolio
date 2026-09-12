@@ -3,7 +3,11 @@ import Background from './components/Background'
 import BootScreen from './components/ide/BootScreen'
 import CursorLight from './components/ide/CursorLight'
 import TitleBar from './components/ide/TitleBar'
+import SectionDivider from './components/ide/SectionDivider'
+import BackToTop from './components/ide/BackToTop'
+import ScrollProgress from './components/ide/ScrollProgress'
 import Dock from './components/ide/Dock'
+import useReveal from './hooks/useReveal'
 import WelcomeWindow from './components/ide/WelcomeWindow'
 import useParallax from './hooks/useParallax'
 import useDeviceTilt from './hooks/useDeviceTilt'
@@ -11,6 +15,7 @@ import useDeviceTilt from './hooks/useDeviceTilt'
 const Sidebar = lazy(() => import('./components/ide/Sidebar'))
 const StatusBar = lazy(() => import('./components/ide/StatusBar'))
 const ResumeModal = lazy(() => import('./components/ResumeModal'))
+const Footer = lazy(() => import('./components/ide/Footer'))
 const AboutWindow = lazy(() => import('./components/ide/AboutWindow'))
 const TerminalWindow = lazy(() => import('./components/ide/TerminalWindow'))
 const SkillsWindow = lazy(() => import('./components/ide/SkillsWindow'))
@@ -22,6 +27,7 @@ const ContactWindow = lazy(() => import('./components/ide/ContactWindow'))
 export default function App() {
   useParallax()
   useDeviceTilt()
+  useReveal()
   const [isDesktop] = useState(() => window.matchMedia('(min-width: 768px)').matches)
   const [booted, setBooted] = useState(() => {
     if (!isDesktop) return true
@@ -100,6 +106,8 @@ export default function App() {
         className={`flex flex-1 flex-col transition-opacity duration-500 ${booted ? 'opacity-100' : 'opacity-0'}`}
         style={{ '--sidebar-w': `${sidebarW}px` }}
       >
+        <ScrollProgress />
+        <BackToTop />
         <TitleBar />
 
         <div className="relative flex flex-1 items-stretch lg:pl-[var(--sidebar-w,20rem)]">
@@ -149,16 +157,23 @@ export default function App() {
           </aside>
 
           <main className="min-w-0 flex-1 overflow-x-hidden pt-14 pt-[calc(3.5rem+env(safe-area-inset-top))] pb-24 pb-[calc(6rem+env(safe-area-inset-bottom))] lg:pb-12">
-            <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4 py-10 sm:px-6 md:py-14">
+            <div className="mx-auto flex max-w-7xl flex-col gap-16 px-4 py-10 sm:px-6 md:gap-24 md:py-14">
               <WelcomeWindow onViewResume={() => setResumeOpen(true)} />
               <Suspense fallback={null}>
+                <SectionDivider />
                 <AboutWindow />
                 <TerminalWindow />
+                <SectionDivider />
                 <SkillsWindow />
+                <SectionDivider />
                 <ProjectsWindow />
+                <SectionDivider />
                 <ExperienceWindow />
+                <SectionDivider />
                 <CertificationsWindow />
+                <SectionDivider />
                 <ContactWindow />
+                <Footer />
               </Suspense>
             </div>
           </main>

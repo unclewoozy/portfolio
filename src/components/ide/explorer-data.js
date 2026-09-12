@@ -5,6 +5,7 @@ import { Award, Braces, Briefcase, FileText, Folder, FolderGit2, Home, Mail, Ter
 // navigation can never drift out of sync with the actual sections.
 export const ROUTES = [
   { id: 'home', file: 'README.md', label: 'home', icon: FileText, nav: Home, path: '~/portfolio/README.md', keys: ['g', 'h'], dock: true, goto: false, explore: true },
+  { id: 'resume', file: 'resume.pdf', label: 'resume', icon: FileText, nav: FileText, path: '~/portfolio/resume.pdf', keys: [], dock: false, goto: false, explore: true, action: 'resume' },
   { id: 'about', file: 'about.me', label: 'about', icon: User, nav: User, path: '~/portfolio/about.me', keys: ['g', 'a'], dock: true, goto: true, explore: true },
   { id: 'terminal', file: 'terminal', label: 'terminal', icon: Terminal, nav: Terminal, path: '~/dev/terminal', keys: [], dock: false, goto: false, explore: false },
   { id: 'skills', file: 'skills.json', label: 'skills', icon: Braces, nav: Wrench, path: '~/portfolio/skills.json', keys: ['g', 's'], dock: true, goto: true, explore: true },

@@ -153,6 +153,40 @@ body {
   -webkit-text-stroke: 1.5px currentColor;
 }
 
+/* ---------- Tile language ---------- */
+/* Borderless content cards: soft radius, faint fill, brighter fill on
+   hover. No edges, no lift, no gloss — calm and uniform. */
+.tile {
+  border-radius: 14px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.03);
+  transition: background 0.3s ease;
+}
+a.tile:hover,
+button.tile:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* ---------- Obsidian IDE surfaces ---------- */
 /* Solid layered panels: opaque base (always readable over the ambient
    background), hairline border, inner top light, deep drop shadows.

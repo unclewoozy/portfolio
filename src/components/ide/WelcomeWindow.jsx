@@ -51,7 +51,7 @@ function PhotoCard({ photo }) {
   }, [])
 
   return (
-    <div className="glass sheen relative overflow-hidden rounded-lg">
+    <div className="tile relative overflow-hidden">
       <figure
         className="group relative select-none"
         onMouseEnter={() => setHovered(true)}
@@ -92,7 +92,7 @@ function PhotoCard({ photo }) {
 }
 
 export default function WelcomeWindow({ onViewResume }) {
-  const { PROFILE, PROJECTS, CERTIFICATIONS, EXPERIENCE } = useSiteData()
+  const { ABOUT, PROFILE, PROJECTS, CERTIFICATIONS, EXPERIENCE } = useSiteData()
   // Stats are derived from the source arrays (projects, certs, roles) so the
   // numbers can't drift out of sync with the sections below.
   const stats = [
@@ -107,29 +107,31 @@ export default function WelcomeWindow({ onViewResume }) {
   }
 
   return (
-    <IdeWindow id="home" title="welcome" path="~/portfolio/README.md">
+    <IdeWindow id="home">
+      <div className="mb-8 flex flex-wrap items-center gap-x-4 gap-y-1 border-y border-paper/10 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-fog md:mb-10">
+        <span className="flex items-center gap-1.5 text-lime">
+          <span className="h-1.5 w-1.5 rounded-full bg-lime animate-pulse-dot" aria-hidden="true" />
+          open to work
+        </span>
+        <span className="text-accent/60" aria-hidden="true">/</span>
+        <span className="truncate">{PROFILE.location}</span>
+        <span className="hidden text-accent/60 sm:inline" aria-hidden="true">/</span>
+        <span className="hidden truncate sm:inline">{ABOUT.education[0].program}</span>
+      </div>
       <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
         <div className="relative">
-        <div className="relative">
-            <div className="flex flex-wrap items-center gap-2">
-                <span className="glass-chip inline-flex items-center gap-2 rounded-lg border border-lime/30 bg-ink/70 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.25em] text-paper shadow-[0_2px_12px_rgba(0,0,0,0.5)] [text-shadow:0_1px_8px_rgba(0,0,0,0.9)]">
-                  <span className="h-2 w-2 rounded-full bg-lime shadow-[0_0_8px_rgba(204,255,0,0.9)] animate-pulse-dot" aria-hidden="true" />
-                  Available for work
-                </span>
-            </div>
-
-            <p className="mt-7 font-mono text-[11px] md:text-xs uppercase tracking-[0.35em] text-fog">
-              Full Stack Web Developer <span className="text-accent">/</span> IT Specialist
+            <p className="font-mono text-[11px] md:text-xs uppercase tracking-[0.35em] text-fog">
+              <span className="text-accent">❯</span> Full Stack Web Developer <span className="text-accent">/</span> IT Specialist
             </p>
 
             <h1 className="mt-4 font-display font-bold uppercase leading-[0.95] tracking-tight text-paper">
-              <span className="block text-[clamp(2.25rem,5.2vw,4.25rem)]">
+              <span className="block text-[clamp(2.75rem,7vw,5.25rem)]">
                 Sigmund
               </span>
-              <span className="block text-[clamp(2.25rem,5.2vw,4.25rem)]">
+              <span className="block text-[clamp(2.75rem,7vw,5.25rem)]">
                 Godfrey M.
               </span>
-              <span className="block text-[clamp(2.25rem,5.2vw,4.25rem)]">
+              <span className="block text-[clamp(2.75rem,7vw,5.25rem)]">
                 Dela Cruz
               </span>
             </h1>
@@ -142,7 +144,7 @@ export default function WelcomeWindow({ onViewResume }) {
               {PROFILE.tagline}
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-7 flex flex-wrap items-center gap-2.5">
               <a
                 href="#projects"
                 onClick={go('projects')}
@@ -172,18 +174,17 @@ export default function WelcomeWindow({ onViewResume }) {
               {stats.map((stat, i) => (
                 <div key={stat.label} className="py-4 sm:px-5 sm:first:pl-0 sm:last:pr-0">
                   <i className={`fas ${stat.icon} text-sm text-accent/80`} aria-hidden="true" />
-                  <p className="mt-2 font-display text-3xl md:text-4xl font-bold text-paper">
+                  <p className="mt-2 font-display text-3xl md:text-4xl font-bold text-paper tabular-nums">
                     {stat.value}
                     <span className="text-accent">{stat.suffix}</span>
                   </p>
-                  <p className="mt-1 min-h-[2.6em] font-mono text-[9px] md:text-[10px] uppercase tracking-[0.25em] leading-[1.7] text-fog">
+                  <p className="mt-1 min-h-[2.6em] font-mono text-[9px] md:text-[10px] uppercase tracking-[0.18em] leading-[1.7] text-fog">
                     {stat.label}
                   </p>
                 </div>
               ))}
             </div>
           </div>
-        </div>
 
         <div className="relative hidden lg:block">
           <div

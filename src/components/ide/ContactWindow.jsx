@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useSiteData } from '../../SiteData'
 import IdeWindow from './IdeWindow'
+import SectionHeader from './SectionHeader'
 
 export default function ContactWindow() {
   const { CONTACT } = useSiteData()
@@ -32,12 +33,10 @@ export default function ContactWindow() {
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }))
 
   return (
-    <IdeWindow id="contact" title="contact" path="~/portfolio/contact/">
+    <IdeWindow id="contact">
       <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-10">
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-fog">
-            <span className="text-accent">//</span> contact
-          </p>
+          <SectionHeader index="06" kicker="~/portfolio/contact/" title="Contact" />
 
           <div className="mt-5 space-y-3 text-[15px] leading-relaxed text-paper/75">
             {CONTACT.intro.map((p) => (
@@ -52,7 +51,7 @@ export default function ContactWindow() {
                 <Wrapper
                   key={detail.label}
                   {...(detail.href ? { href: detail.href, target: detail.href.startsWith('http') ? '_blank' : undefined, rel: 'noreferrer' } : {})}
-                  className="glass group flex items-center gap-3 rounded-lg px-4 py-3 transition-colors hover:border-accent/50"
+                  className="tile group flex items-center gap-3 px-4 py-3"
                 >
                   <i className={`${detail.icon} w-5 text-center text-accent`} aria-hidden="true" />
                   <span className="min-w-0">
