@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useSiteData } from '../../SiteData'
 import IdeWindow from './IdeWindow'
 import SectionHeader from './SectionHeader'
+import { gmailLink } from './navigate'
 
 export default function ContactWindow() {
   const { CONTACT } = useSiteData()
@@ -46,11 +47,21 @@ export default function ContactWindow() {
 
           <div className="mt-7 grid gap-2.5 sm:grid-cols-2">
             {CONTACT.details.map((detail) => {
-              const Wrapper = detail.href ? 'a' : 'div'
+              const isEmail = detail.label?.toLowerCase() === 'email'
+              const href = isEmail
+                ? gmailLink(detail.href.replace('mailto:', ''))
+                : detail.href
+              const Wrapper = href ? 'a' : 'div'
               return (
                 <Wrapper
                   key={detail.label}
-                  {...(detail.href ? { href: detail.href, target: detail.href.startsWith('http') ? '_blank' : undefined, rel: 'noreferrer' } : {})}
+                  {...(href
+                    ? {
+                        href,
+                        target: isEmail || href.startsWith('http') ? '_blank' : undefined,
+                        rel: 'noreferrer',
+                      }
+                    : {})}
                   className="tile group flex items-center gap-3 px-4 py-3"
                 >
                   <i className={`${detail.icon} w-5 text-center text-accent`} aria-hidden="true" />

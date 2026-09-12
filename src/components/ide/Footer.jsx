@@ -1,5 +1,6 @@
 import { useSiteData } from '../../SiteData'
 import { ROUTES } from './explorer-data'
+import { gmailLink } from './navigate'
 
 export default function Footer() {
   const { CONTACT, PROFILE } = useSiteData()
@@ -35,7 +36,9 @@ export default function Footer() {
           </a>
           {email && (
             <a
-              href={email.href}
+              href={gmailLink(email.href.replace('mailto:', ''))}
+              target="_blank"
+              rel="noreferrer"
               className="inline-flex items-center gap-3 rounded-lg border border-paper/20 px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-paper/80 transition-colors hover:border-accent/60 hover:text-accent"
             >
               {email.value}
