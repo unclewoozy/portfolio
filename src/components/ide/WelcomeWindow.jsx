@@ -170,15 +170,15 @@ export default function WelcomeWindow({ onViewResume }) {
               </button>
             </div>
 
-            <div className="mt-10 grid grid-cols-2 gap-y-2 border-y border-paper/15 sm:grid-cols-4 sm:divide-x sm:divide-paper/15">
+            <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-2 border-y border-paper/15 lg:grid-cols-4 lg:gap-x-0 lg:divide-x lg:divide-paper/15">
               {stats.map((stat, i) => (
-                <div key={stat.label} className="py-4 sm:px-5 sm:first:pl-0 sm:last:pr-0">
+                <div key={stat.label} className="min-w-0 py-4 lg:px-5 lg:first:pl-0 lg:last:pr-0">
                   <i className={`fas ${stat.icon} text-sm text-accent/80`} aria-hidden="true" />
                   <p className="mt-2 font-display text-3xl md:text-4xl font-bold text-paper tabular-nums">
                     {stat.value}
                     <span className="text-accent">{stat.suffix}</span>
                   </p>
-                  <p className="mt-1 min-h-[2.6em] font-mono text-[9px] md:text-[10px] uppercase tracking-[0.18em] leading-[1.7] text-fog">
+                  <p className="mt-1 min-h-[2.6em] break-words font-mono text-[9px] md:text-[10px] uppercase tracking-[0.18em] leading-[1.7] text-fog">
                     {stat.label}
                   </p>
                 </div>
