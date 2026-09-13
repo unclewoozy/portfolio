@@ -55,7 +55,6 @@ export default function Terminal() {
   const [lines, setLines] = useState([{ t: 'banner', text: BANNER }])
   const [input, setInput] = useState('')
   const scrollRef = useRef(null)
-  const endRef = useRef(null)
 
   useEffect(() => {
     const el = scrollRef.current
@@ -153,7 +152,6 @@ export default function Terminal() {
             placeholder="type a command..."
           />
         </form>
-        <div ref={endRef} />
       </div>
     </div>
   )

@@ -19,9 +19,7 @@
 
   --animate-blink: blink 1.1s step-end infinite;
   --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
-  --animate-scan: scan 1.8s linear infinite;
   --animate-blob: blob 24s ease-in-out infinite alternate;
-  --animate-progress: progress 6s ease-in-out infinite;
 
   @keyframes blink {
     0%,
@@ -43,33 +41,12 @@
     }
   }
 
-  @keyframes scan {
-    0% {
-      top: 0;
-    }
-    100% {
-      top: calc(100% - 2rem);
-    }
-  }
-
   @keyframes blob {
     from {
       transform: translate(0, 0) scale(1);
     }
     to {
       transform: translate(70px, -50px) scale(1.18);
-    }
-  }
-
-  @keyframes progress {
-    0% {
-      width: 8%;
-    }
-    60% {
-      width: 92%;
-    }
-    100% {
-      width: 8%;
     }
   }
 }
@@ -149,10 +126,6 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
 }
 
-.text-outline {
-  -webkit-text-stroke: 1.5px currentColor;
-}
-
 /* ---------- Tile language ---------- */
 /* Borderless content cards: soft radius, faint fill, brighter fill on
    hover. No edges, no lift, no gloss — calm and uniform. */
@@ -193,25 +166,7 @@ button.tile:hover {
    No backdrop blur anywhere on content — frosted surfaces washed text
    out and cost GPU on every scroll frame. */
 
-:root {
-  --glass-opacity: 1;
-}
-
-.glass {
-  position: relative;
-  background: linear-gradient(180deg, #15161d 0%, #0c0d12 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.07),
-    0 1px 2px rgba(0, 0, 0, 0.6),
-    0 8px 24px rgba(0, 0, 0, 0.45),
-    0 24px 64px rgba(0, 0, 0, 0.5);
-}
-
-/* refraction layer retired with liquid glass */
-.glass::after {
-  display: none;
-}
+/* ---------- Deep surfaces (modals) ---------- */
 
 .glass-deep {
   background: linear-gradient(180deg, #15161d 0%, #0b0c11 100%);
@@ -253,35 +208,16 @@ button.tile:hover {
   border-radius: 8px;
 }
 
-.glass-hover {
-  transition:
-    background 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease,
-    transform 0.3s ease;
-}
 
-/* Modals are focused reading surfaces — always render them at full glass
-   density regardless of the global glass slider. */
-[role='dialog'] {
-  --glass-opacity: 1;
-}
+
+
 
 /* iOS Safari: backdrop-filter inside fixed overlays delays/loses taps on children.
    Modals sit on a near-opaque dark overlay, so the blur is invisible — drop it. */
 [role='dialog'] .glass-deep,
-[role='dialog'] .glass-chip,
-[role='dialog'] .glass {
+[role='dialog'] .glass-chip {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
-}
-.glass-hover:hover {
-  transform: translateY(-3px);
-  background: linear-gradient(180deg, #1a1c23 0%, #14151b 100%);
-  border-color: rgba(255, 255, 255, 0.14);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 16px 48px rgba(0, 0, 0, 0.5);
 }
 
 /* edge light — a 1px gradient hairline along the top edge instead of a
@@ -451,11 +387,6 @@ button.tile:hover {
   filter: blur(60px);
 }
 
-.glow-line {
-  background: linear-gradient(90deg, transparent, rgba(10, 132, 255, 0.4), rgba(100, 210, 255, 0.3), transparent);
-  height: 1px;
-}
-
 section[id] {
   scroll-margin-top: calc(5rem + env(safe-area-inset-top));
 }
@@ -508,52 +439,6 @@ section[id] {
   animation: boot-fade 0.5s ease forwards;
 }
 
-/* skill network */
-.skill-node circle {
-  transition: fill 0.25s ease, r 0.25s ease, filter 0.25s ease;
-}
-.skill-node:hover circle {
-  fill: var(--color-accent);
-  r: 14;
-  filter: drop-shadow(0 0 14px rgba(10, 132, 255, 0.9));
-}
-.skill-edge {
-  transition: opacity 0.25s ease, stroke 0.25s ease;
-}
-.skill-node:hover ~ .skill-edge,
-.skill-node:hover + * ~ .skill-edge,
-.skill-node:hover .skill-edge-inline {
-  opacity: 1;
-}
-.skill-edge-inline {
-  transition: opacity 0.25s ease;
-}
-.edge-glow {
-  opacity: 0.45;
-}
-.skill-node:hover ~ .edge-glow,
-.skill-node:hover + * ~ .edge-glow {
-  opacity: 0.9;
-}
-
-/* terminal caret */
-.term-caret {
-  display: inline-block;
-  width: 0.55em;
-  height: 1.05em;
-  vertical-align: text-bottom;
-  background: var(--color-lime);
-  animation: blink 1.1s step-end infinite;
-}
-
-/* particles canvas */
-#particles-canvas {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
 /* window entrance */
 @keyframes window-in {
   from {
@@ -577,19 +462,6 @@ section[id] {
 @media (prefers-reduced-motion: reduce) {
   .window-in {
     animation: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .cursor-light,
-  #particles-canvas {
-    display: none !important;
-  }
-}
-
-@media (max-width: 767px) {
-  #particles-canvas {
-    display: none !important;
   }
 }
 
@@ -623,11 +495,6 @@ section[id] {
   .specular-sweep {
     display: none;
   }
-  /* hover lift feels sticky on touch — disable it */
-  .glass-hover:hover {
-    transform: none;
-  }
-
   /* heavy parallax blob layers are pure paint cost on phones — hide them */
   [data-depth] {
     display: none;
@@ -637,13 +504,6 @@ section[id] {
   .chrome {
     -webkit-backdrop-filter: blur(12px) saturate(1.3);
     backdrop-filter: blur(12px) saturate(1.3);
-  }
-
-  /* content windows: lighter shadow stack on phones */
-  .glass {
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.07),
-      0 8px 24px rgba(0, 0, 0, 0.5);
   }
 
   /* the full-screen modal overlay blur is the single most expensive layer on

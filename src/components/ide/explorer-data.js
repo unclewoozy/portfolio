@@ -23,17 +23,9 @@ export const FILES = ROUTES.filter((r) => r.explore).map((r) => ({
   path: r.path,
 }))
 
-export const FILE_IDS = Object.fromEntries(FILES.map((f) => [f.id, f.id]))
-
 export const FILE_ICONS = Object.fromEntries(ROUTES.map((r) => [r.id, r.nav]))
 
 export const DOCK_ITEMS = ROUTES.filter((r) => r.dock).map((r) => ({
   id: r.id,
   label: r.label,
-}))
-
-export const COMMANDS = ROUTES.filter((r) => r.goto).map((r) => ({
-  id: r.id,
-  label: `open ${r.file}`,
-  keys: r.keys,
 }))

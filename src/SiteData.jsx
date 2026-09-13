@@ -49,7 +49,13 @@ export function SiteDataProvider({ children }) {
       })
       .then((data) => {
         if (!active) return
-        setState({ ...FALLBACK, ...data, loaded: true, fromApi: true })
+        // Drop null/undefined keys: a partial API payload must never
+        // overwrite a good fallback section with nothing (that unmounts
+        // the whole page on the next render).
+        const clean = Object.fromEntries(
+          Object.entries(data ?? {}).filter(([, v]) => v !== null && v !== undefined),
+        )
+        setState({ ...FALLBACK, ...clean, loaded: true, fromApi: true })
       })
       .catch(() => {
         if (!active) return

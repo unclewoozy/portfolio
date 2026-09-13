@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { ChevronRight, FolderGit2, Search } from 'lucide-react'
 import { useSiteData } from '../../SiteData'
 import { CORE_GROUPS } from './SkillsWindow'

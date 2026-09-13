@@ -4,14 +4,6 @@ export default function useScrollSpy(ids, offset = 300) {
   const [active, setActive] = useState(ids[0] ?? '')
 
   useEffect(() => {
-    const els = ids
-      .map((id) => document.getElementById(id))
-      .filter(Boolean)
-    if (!els.length) return
-
-    // The section crossing a band near the top of the viewport wins.
-    // View-based (not scroll-math), so lazy images, dynamic heights,
-    // and content-visibility skipping can't throw it off.
     const inView = new Set()
     const pick = () => {
       let best = null
@@ -39,8 +31,33 @@ export default function useScrollSpy(ids, offset = 300) {
       { rootMargin: '-45% 0px -45% 0px', threshold: 0 },
     )
 
-    for (const el of els) observer.observe(el)
-    return () => observer.disconnect()
+    // Sections lazy-mount after this effect runs — observe whatever exists
+    // now, then pick up the rest as they mount.
+    const wanted = new Set(ids)
+    const seen = new Set()
+    const observeEl = (el) => {
+      if (el && el.id && wanted.has(el.id) && !seen.has(el.id)) {
+        seen.add(el.id)
+        observer.observe(el)
+      }
+    }
+    ids.forEach((id) => observeEl(document.getElementById(id)))
+
+    const mo = new MutationObserver((mutations) => {
+      mutations.forEach((m) => {
+        m.addedNodes.forEach((node) => {
+          if (node.nodeType !== 1) return
+          observeEl(node)
+          node.querySelectorAll?.('[id]').forEach(observeEl)
+        })
+      })
+    })
+    mo.observe(document.body, { childList: true, subtree: true })
+
+    return () => {
+      observer.disconnect()
+      mo.disconnect()
+    }
   }, [ids, offset])
 
   return active
