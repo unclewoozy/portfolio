@@ -5,7 +5,6 @@ import CursorLight from './components/ide/CursorLight'
 import TitleBar from './components/ide/TitleBar'
 import SectionDivider from './components/ide/SectionDivider'
 import BackToTop from './components/ide/BackToTop'
-import ScrollProgress from './components/ide/ScrollProgress'
 import Dock from './components/ide/Dock'
 import useReveal from './hooks/useReveal'
 import WelcomeWindow from './components/ide/WelcomeWindow'
@@ -16,6 +15,7 @@ const Sidebar = lazy(() => import('./components/ide/Sidebar'))
 const StatusBar = lazy(() => import('./components/ide/StatusBar'))
 const ResumeModal = lazy(() => import('./components/ResumeModal'))
 const Footer = lazy(() => import('./components/ide/Footer'))
+const TerminalPanel = lazy(() => import('./components/ide/TerminalPanel'))
 const AboutWindow = lazy(() => import('./components/ide/AboutWindow'))
 const TerminalWindow = lazy(() => import('./components/ide/TerminalWindow'))
 const SkillsWindow = lazy(() => import('./components/ide/SkillsWindow'))
@@ -38,6 +38,14 @@ export default function App() {
     }
   })
   const [resumeOpen, setResumeOpen] = useState(false)
+  const [terminalOpen, setTerminalOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(() => {
+    try {
+      return localStorage.getItem('portfolio-sidebar-open') !== '0'
+    } catch {
+      return true
+    }
+  })
   const [sidebarW, setSidebarW] = useState(() => {
     try {
       const v = parseInt(localStorage.getItem('portfolio-sidebar-w'), 10)
@@ -48,6 +56,24 @@ export default function App() {
   })
   const [resizing, setResizing] = useState(false)
   const dragRef = useRef(null)
+
+  useEffect(() => {
+    const onToggle = () => setTerminalOpen((o) => !o)
+    const onKey = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === '`') {
+        const tag = document.activeElement?.tagName
+        if (tag === 'INPUT' || tag === 'TEXTAREA') return
+        e.preventDefault()
+        onToggle()
+      }
+    }
+    window.addEventListener('ide:terminal', onToggle)
+    window.addEventListener('keydown', onKey)
+    return () => {
+      window.removeEventListener('ide:terminal', onToggle)
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [])
 
   useEffect(() => {
     if (!resizing) return
@@ -80,6 +106,15 @@ export default function App() {
     }
   }, [resizing, sidebarW])
 
+  const toggleSidebar = () => {
+    setSidebarOpen((open) => {
+      try {
+        localStorage.setItem('portfolio-sidebar-open', open ? '0' : '1')
+      } catch {}
+      return !open
+    })
+  }
+
   const startResize = (e) => {
     e.preventDefault()
     const right = e.currentTarget.parentElement?.getBoundingClientRect().right ?? sidebarW
@@ -104,14 +139,17 @@ export default function App() {
 
       <div
         className={`flex flex-1 flex-col transition-opacity duration-500 ${booted ? 'opacity-100' : 'opacity-0'}`}
-        style={{ '--sidebar-w': `${sidebarW}px` }}
+        style={{ '--sidebar-w': `${sidebarOpen ? sidebarW : 0}px` }}
       >
-        <ScrollProgress />
         <BackToTop />
-        <TitleBar />
+        <TitleBar
+          onViewResume={() => setResumeOpen(true)}
+          sidebarOpen={sidebarOpen}
+          onToggleSidebar={toggleSidebar}
+        />
 
         <div className="relative flex flex-1 items-stretch lg:pl-[var(--sidebar-w,20rem)]">
-          <aside className="fixed bottom-8 left-0 top-0 z-30 hidden w-[var(--sidebar-w,20rem)] shrink-0 border-r border-paper/10 bg-ink backdrop-blur-xl lg:block">
+          <aside className={`fixed bottom-8 left-0 top-12 z-30 hidden w-[var(--sidebar-w,20rem)] shrink-0 border-r border-paper/10 bg-ink backdrop-blur-xl ${sidebarOpen ? 'lg:block' : ''}`}>
             <div className="flex h-full flex-col overflow-hidden">
               <Suspense fallback={null}>
                 <Sidebar onViewResume={() => setResumeOpen(true)} />
@@ -156,7 +194,7 @@ export default function App() {
             </div>
           </aside>
 
-          <main className="min-w-0 flex-1 overflow-x-hidden pt-14 pt-[calc(3.5rem+env(safe-area-inset-top))] pb-24 pb-[calc(6rem+env(safe-area-inset-bottom))] lg:pb-12">
+          <main className="min-w-0 flex-1 overflow-x-hidden pt-12 pt-[calc(3rem+env(safe-area-inset-top))] pb-24 pb-[calc(6rem+env(safe-area-inset-bottom))] lg:pb-12">
             <div className="mx-auto flex max-w-7xl flex-col gap-16 px-4 py-10 sm:px-6 md:gap-24 md:py-14">
               <WelcomeWindow onViewResume={() => setResumeOpen(true)} />
               <Suspense fallback={null}>
@@ -182,9 +220,13 @@ export default function App() {
 
         <Dock />
 
+        <Suspense fallback={null}>
+          <TerminalPanel open={terminalOpen} onClose={() => setTerminalOpen(false)} />
+        </Suspense>
+
         <div className="hidden lg:block">
           <Suspense fallback={null}>
-            <StatusBar />
+            <StatusBar terminalOpen={terminalOpen} onToggleTerminal={() => setTerminalOpen((o) => !o)} />
           </Suspense>
         </div>
       </div>

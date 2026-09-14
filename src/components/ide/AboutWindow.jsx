@@ -73,31 +73,28 @@ export default function AboutWindow() {
             <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-fog">
               <span className="text-accent">//</span> education
             </p>
-            <ol className="mt-4 space-y-6 border-l border-paper/25 pl-6">
+            <div className="mt-4 grid gap-3">
               {ABOUT.education.map((edu) => (
-                <li key={edu.school} className="relative">
-                  <span className="absolute -left-[31px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-accent bg-ink" aria-hidden="true" />
-                  <div className="flex items-start gap-4">
-                    <div className="glass-chip flex h-14 w-14 shrink-0 items-center justify-center rounded-lg p-1.5">
-                      <img
-                        src={edu.logo}
-                        alt={`${edu.school} logo`}
-                        className="h-full w-full object-contain"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="min-w-0 pt-0.5">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent/80">
-                        {edu.years}
-                      </p>
-                      <h3 className="mt-1 font-display text-base font-bold leading-snug">{edu.school}</h3>
-                      <p className="mt-0.5 text-sm text-paper/70">{edu.program}</p>
-                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-fog/60">{edu.location}</p>
-                    </div>
+                <div key={edu.school} className="tile flex items-center gap-5 p-5">
+                  <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl bg-white/[0.06] p-2 md:h-24 md:w-24">
+                    <img
+                      src={edu.logo}
+                      alt={`${edu.school} logo`}
+                      className="h-full w-full object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]"
+                      loading="lazy"
+                    />
                   </div>
-                </li>
+                  <div className="min-w-0">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent/80">
+                      {edu.years}
+                    </p>
+                    <h3 className="mt-1 font-display text-lg font-bold leading-snug">{edu.school}</h3>
+                    <p className="mt-0.5 text-sm text-paper/70">{edu.program}</p>
+                    <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-fog/60">{edu.location}</p>
+                  </div>
+                </div>
               ))}
-            </ol>
+            </div>
           </div>
         </div>
       </div>

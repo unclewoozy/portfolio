@@ -292,6 +292,7 @@ export const SKILLS = {
     { icon: 'devicon-github-original', name: 'GitHub' },
     { icon: 'devicon-vscode-plain colored', name: 'VS Code' },
     { icon: 'cursor-logo', name: 'Cursor' },
+    { icon: 'antigravity-logo', name: 'Antigravity' },
     { icon: 'devicon-figma-plain colored', name: 'Figma' },
     { icon: 'devicon-androidstudio-plain colored', name: 'Android Studio' },
   ],
@@ -340,7 +341,7 @@ export const SKILLS = {
     {
       icon: 'fa-toolbox',
       title: 'Tools & Platforms',
-      tags: ['Git', 'GitHub', 'Vercel', 'Supabase', 'Android Studio', 'VS Code', 'Cursor', 'NetBeans', 'XAMPP', 'Figma'],
+      tags: ['Git', 'GitHub', 'Vercel', 'Supabase', 'Android Studio', 'VS Code', 'Cursor', 'Antigravity', 'NetBeans', 'XAMPP', 'Figma'],
     },
     {
       icon: 'fa-laptop-code',

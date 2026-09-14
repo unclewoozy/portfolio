@@ -51,7 +51,7 @@ const JUMP = {
   contact: 'contact',
 }
 
-export default function Terminal() {
+export default function Terminal({ inputId = 'term-input', onCommand }) {
   const [lines, setLines] = useState([{ t: 'banner', text: BANNER }])
   const [input, setInput] = useState('')
   const scrollRef = useRef(null)
@@ -67,6 +67,8 @@ export default function Terminal() {
     const out = []
 
     if (cmd === '') return
+
+    onCommand?.(raw)
 
     if (cmd === 'clear') {
       setLines([])
@@ -139,11 +141,11 @@ export default function Terminal() {
         ))}
         <form onSubmit={onSubmit} className="mt-2 flex items-center gap-2">
           <span className="text-accent" aria-hidden="true">❯</span>
-          <label htmlFor="term-input" className="sr-only">
+          <label htmlFor={inputId} className="sr-only">
             Terminal command
           </label>
           <input
-            id="term-input"
+            id={inputId}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="flex-1 bg-transparent font-mono text-[12px] text-paper caret-lime outline-none md:text-[13px]"

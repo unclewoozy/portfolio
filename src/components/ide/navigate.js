@@ -5,3 +5,8 @@ export function gmailLink(to, subject = '', body = '') {
     `&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   )
 }
+
+/** Toggle the floating terminal panel (VS Code style). */
+export function toggleTerminal() {
+  window.dispatchEvent(new CustomEvent('ide:terminal'))
+}

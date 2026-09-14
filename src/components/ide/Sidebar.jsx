@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { ChevronRight, FolderGit2, Search } from 'lucide-react'
 import { useSiteData } from '../../SiteData'
 import { CORE_GROUPS } from './SkillsWindow'
@@ -18,6 +18,7 @@ export default function Sidebar({ onViewResume, onNavigate }) {
   const { PROFILE, SKILLS } = useSiteData()
   const go = (id) => (e) => {
     e.preventDefault()
+    setManual(id)
     if (id === 'resume') {
       onViewResume()
       onNavigate?.(id)
@@ -28,7 +29,25 @@ export default function Sidebar({ onViewResume, onNavigate }) {
   }
 
   const ids = useMemo(() => FILES.map((f) => f.id), [])
-  const active = useScrollSpy(ids)
+  const spyActive = useScrollSpy(ids)
+  const [manual, setManual] = useState(null)
+  const manualTimer = useRef(null)
+
+  // Hand control back to the scroll-spy once scrolling settles, so the
+  // highlight always reflects where the user actually is. Files with no
+  // section (resume.pdf) stay pinned until the next navigation.
+  useEffect(() => {
+    const onScroll = () => {
+      clearTimeout(manualTimer.current)
+      manualTimer.current = setTimeout(() => setManual(null), 900)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      clearTimeout(manualTimer.current)
+    }
+  }, [])
+  const active = manual ?? spyActive
   const [query, setQuery] = useState('')
   const [hovered, setHovered] = useState(null)
   const [openStacks, setOpenStacks] = useState([])
@@ -55,7 +74,7 @@ export default function Sidebar({ onViewResume, onNavigate }) {
           <img
             src={PROFILE.photo}
             alt=""
-            className="h-11 w-11 rounded-xl object-cover object-top ring-1 ring-white/20 shadow-[0_0_18px_rgba(10,132,255,0.28)]"
+            className="h-11 w-11 rounded-xl object-cover object-top ring-1 ring-white/20"
             loading="lazy"
           />
           <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-[2.5px] border-[#121318] bg-lime" aria-hidden="true" />

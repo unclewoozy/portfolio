@@ -1,7 +1,7 @@
-import { GitBranch, Network } from 'lucide-react'
+import { GitBranch, Network, SquareTerminal } from 'lucide-react'
 import { useSiteData } from '../../SiteData'
 
-export default function StatusBar() {
+export default function StatusBar({ terminalOpen, onToggleTerminal }) {
   const { PROFILE } = useSiteData()
   const year = new Date().getFullYear()
 
@@ -20,6 +20,17 @@ export default function StatusBar() {
         </div>
 
         <div className="flex items-center gap-4">
+          <button
+            type="button"
+            onClick={onToggleTerminal}
+            aria-pressed={terminalOpen}
+            aria-label="Toggle terminal panel"
+            title="Toggle terminal (Ctrl `)"
+            className={`flex items-center gap-1.5 transition-colors hover:text-paper ${terminalOpen ? 'text-accent' : ''}`}
+          >
+            <SquareTerminal className="h-3 w-3" strokeWidth={2} aria-hidden="true" />
+            terminal
+          </button>
           <p className="hidden md:block">
             <span className="text-accent">Ln 1, Col 1</span> · UTF-8 · Sp:2
           </p>

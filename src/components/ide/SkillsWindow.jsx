@@ -7,13 +7,31 @@ export const CORE_GROUPS = [
   { label: 'frontend', skills: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'ReactJS', 'Next.js', 'Tailwind CSS'] },
   { label: 'backend', skills: ['Python', 'Java', 'C++', 'PHP', 'Flask', 'Django', 'Node.js'] },
   { label: 'database', skills: ['SQL', 'MySQL', 'PostgreSQL', 'SQLite', 'MSSQL'] },
-  { label: 'tools', skills: ['Git', 'GitHub', 'Vercel', 'Supabase', 'VS Code', 'Cursor', 'Figma', 'Android Studio'] },
+  { label: 'tools', skills: ['Git', 'GitHub', 'Vercel', 'Supabase', 'VS Code', 'Cursor', 'Antigravity', 'Figma', 'Android Studio'] },
 ]
 
 function CorePill({ skill }) {
   return (
     <span className="inline-flex w-auto shrink-0 items-center gap-2.5 rounded-lg bg-white/[0.03] px-3 py-2 transition-colors hover:bg-white/[0.06]">
-      {skill.icon === 'cursor-logo' ? (
+      {skill.icon === 'antigravity-logo' ? (
+        <svg viewBox="0 0 24 24" className="h-[18px] w-[18px] shrink-0" aria-hidden="true">
+          <defs>
+            <linearGradient id="antigravity-g" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0" stopColor="#4285F4" />
+              <stop offset="0.38" stopColor="#34A853" />
+              <stop offset="0.62" stopColor="#FBBC04" />
+              <stop offset="0.85" stopColor="#EA4335" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M4 20C4 15 7 12 9 6c.8-2.5 5.2-2.5 6 0 2 6 5 9 5 14"
+            fill="none"
+            stroke="url(#antigravity-g)"
+            strokeWidth="3"
+            strokeLinecap="round"
+          />
+        </svg>
+      ) : skill.icon === 'cursor-logo' ? (
         <svg viewBox="0 0 24 24" className="h-[18px] w-[18px] shrink-0 fill-paper/85" aria-hidden="true">
           <path d="M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0-.42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23" />
         </svg>
